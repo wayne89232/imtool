@@ -1,0 +1,43 @@
+<html ng-app="myApp">
+    <head>
+
+        <!-- All css and scripts used -->
+        <title></title>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+
+        <base href="/">
+        <script src="../js/lib/underscore/underscore-min.js"></script>    
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery.dropotron.min.js"></script>
+        <script src="js/skel.min.js"></script>
+        <script src="js/skel-layers.min.js"></script>
+        <script src="js/init.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-route.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-animate.min.js"></script>
+        <script src="../js/app.js"></script>
+        <script src="../js/services.js"></script>
+        <script src="../js/controllers.js"></script>
+        <script src="../js/filters.js"></script>
+        <script src="../js/directives.js"></script>
+        <script type="text/javascript" src="http://semantic-ui.com/dist/semantic.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="http://semantic-ui.com/dist/semantic.min.css">
+        <link rel="stylesheet" href="css/class.css" />
+    </head>
+    <body ng-controller="AppCtrl">
+        <!-- some navbar here -->
+        <!-- <nav id="nav" class="skel-layers-fixed "> -->
+        <!-- </nav> -->
+
+        <!-- The div for partials -->
+        <div class = "container">
+            <div ng-view="">
+                
+            </div>
+        </div>
+    </body>
+</html>

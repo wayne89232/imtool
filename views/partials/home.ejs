@@ -1,0 +1,46 @@
+<section class="box features">
+                  <h2 class="major " ;><span class="backcolor">My Ball My Stage My Dream</span></h2>
+<div class="home" height="35%">
+    <p>Recent Games</p>
+		<table class="ui celled table ">
+            <thead>
+                <tr class="tableform wordtype">
+                    <th>Home Team</th>
+                    <th>  Score  </th>
+                    <th>Away Team</th>
+                    <th>Game Stat</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="game in games" >
+                    <td> 
+                        <span ng-bind="game[1].team_name"></span>
+                    </td>
+                    <td>
+                        <span ng-bind="game[0].home_team_score"></span>
+                        :
+                        <span ng-bind="game[0].away_team_score"></span>  
+                    </td>
+                    <td>
+                        <span ng-bind="game[2].team_name"></span>
+                    </td>
+                    <td>
+                         <button class="ui button" ng-click="view(game[0].game_id)">
+                         <i class="content icon "></i>Details
+                         </button>
+                    </td>
+                </tr>
+            </tbody>
+	</table>
+</div>
+<section class="box blog">
+      <h2 class="major"><span>About Our Website</span></h2>
+<div class="home ">
+    <p>Rationale</p>
+</div> 
+<section class="box blog">
+      <h2 class="major"><span>About Us</span></h2>
+<div class="home ">
+    <p >About Us</p>
+</div>
+
