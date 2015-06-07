@@ -4,16 +4,15 @@
  */
 
 var express = require('express'),
-  bodyParser = require('body-parser'),
-  // methodOverride = require('method-override'),
-  // errorHandler = require('error-handler'),
-  morgan = require('morgan'),
-  routes = require('./routes'),
-  api = require('./routes/api'),
-  // import routers
-  // example = require('./routes/example'),
-  http = require('http'),
-  path = require('path');
+    bodyParser = require('body-parser'),
+    morgan = require('morgan'),
+    routes = require('./routes'),
+    api = require('./routes/api'),
+    
+    // import routers
+    // example = require('./routes/example'),
+    http = require('http'),
+    path = require('path');
 
 var app = module.exports = express();
 
@@ -66,5 +65,5 @@ app.get('*', routes.index);
  */
 
 http.createServer(app).listen(app.get('port'), function () {
-  console.log('Express server listening on port ' + app.get('port'));
+    console.log('Express server listening on port ' + app.get('port'));
 });

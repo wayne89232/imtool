@@ -1,10 +1,10 @@
-var settimns = require("../setting/db");
+var settings = require("../setting/db");
 var Sequelize = require('sequelize');
 var sequelize = new Sequelize(
-		settimns.model.mysql.database,
-		settimns.model.mysql.account,
-		settimns.model.mysql.password,
-		settimns.model.mysql.options
+		settings.model.mysql.database,
+		settings.model.mysql.account,
+		settings.model.mysql.password,
+		settings.model.mysql.options
 	);
 
 // import models: 
