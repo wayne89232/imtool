@@ -13,5 +13,9 @@ var sequelize = new Sequelize(
 //add some relations here
 // Example.hasMany(People, {foreignKey: 'people_id'});
 
+
 //export for use in other directory
 // exports.Example = Example;
+exports.User = User;
+exports.Mission = Mission;
+exports.Feedback = Feedback;

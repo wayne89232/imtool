@@ -1,4 +1,4 @@
-//copy the whole file into the same directory and name it "local.js"
+//copy the whole file into the same directory and name it "db.js"
 //todos see below
 
 var sslEnabled = false;
