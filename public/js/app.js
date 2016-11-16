@@ -12,8 +12,25 @@ config(function ($routeProvider, $locationProvider) {
     when('/home', {
       templateUrl: 'partials/home',
       controller: 'AppCtrl'
-    }).otherwise({
-      redirectTo: '/home'
+    }).
+    when('/missions', {
+      templateUrl: 'partials/missions',
+      controller: 'mission_list'
+    }).
+    when('/mission/:id', {
+      templateUrl: 'partials/mission',
+      controller: 'mission'
+    }).
+    when('/discover', {
+      templateUrl: 'partials/discover',
+      controller: 'discover'
+    }).
+    when('/home', {
+      templateUrl: 'partials/community',
+      controller: 'AppCtrl'
+    }).
+    otherwise({
+      redirectTo: '/community'
     });
 
   

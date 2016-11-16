@@ -6,6 +6,9 @@ var sequelize = new Sequelize(
 		settings.model.mysql.password,
 		settings.model.mysql.options
 	);
+var User = require('./User');
+var Mission = require('./Mission');
+var Feedback = require('./Feedback');
 
 // import models: 
 // var Example = require('./example').Example(Sequelize,sequelize);

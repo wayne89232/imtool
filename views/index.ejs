@@ -1,12 +1,10 @@
 <html ng-app="myApp">
     <head>
-
         <!-- All css and scripts used -->
         <title></title>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
-
         <base href="/">
         <script src="../js/lib/underscore/underscore-min.js"></script>
         <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -19,14 +17,44 @@
         <script src="../js/controllers.js"></script>
         <script src="../js/filters.js"></script>
         <script src="../js/directives.js"></script>
+        <!--  <link href="../css/Flat-UI/dist/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/Flat-UI/dist/css/flat-ui.css" rel="stylesheet">
+        <link href="../css/Flat-UI/dist/css/docs.css" rel="stylesheet"> -->
+        <link rel="stylesheet" type="text/css" href="../css/dist/semantic.min.css">
+        <script src="../css/dist/semantic.min.js"></script>
     </head>
     <body ng-controller="AppCtrl">
         <!-- some navbar here -->
         <!-- <nav id="nav" class="skel-layers-fixed "> -->
         <!-- </nav> -->
-
         <!-- The div for partials -->
         <div class = "container">
+            <div class="ui mini menu">
+                <a class="active item">
+                    Home
+                </a>
+                <a class="item">
+                    Messages
+                </a>
+                                <a class="item">
+                    Personal Info
+                </a>
+                                <a class="item">
+                    Missions
+                </a>
+                <div class="right menu">
+                    <div class="ui dropdown item">
+                        Language <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <a class="item">English</a>
+                            <a class="item">TW</a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="ui primary button">Sign Up</div>
+                    </div>
+                </div>
+            </div>
             <div ng-view="">
                 
             </div>
