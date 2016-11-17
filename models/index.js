@@ -23,10 +23,10 @@ var User_skill = require('./user_skill').User_skill(Sequelize,sequelize);
 //add some relations here
 
 User.hasMany(Mission, {foreignKey: 'user_id'});
-Mission.belongsto(User, {foreignKey: 'user_id'});
+Mission.belongsTo(User, {foreignKey: 'user_id'});
 
 Mission.hasOne(Location, {foreignKey: 'location_id'});
-Location.belongsto(Mission,{foreignKey: 'location_id'});
+Location.belongsTo(Mission,{foreignKey: 'location_id'});
 
 User.hasMany(User_location,{foreignKey: 'user_id'});
 Location.hasMany(User_location,{foreignKey: 'location_id'});
