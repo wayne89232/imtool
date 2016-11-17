@@ -13,8 +13,12 @@ config(function ($routeProvider, $locationProvider) {
       templateUrl: 'partials/home',
       controller: 'AppCtrl'
     }).
-    when('/missions', {
-      templateUrl: 'partials/missions',
+    when('/user_info', {
+      templateUrl: 'partials/user_info',
+      controller: 'AppCtrl'
+    }).
+    when('/mission_list', {
+      templateUrl: 'partials/mission_list',
       controller: 'mission_list'
     }).
     when('/mission/:id', {
@@ -25,12 +29,16 @@ config(function ($routeProvider, $locationProvider) {
       templateUrl: 'partials/discover',
       controller: 'discover'
     }).
-    when('/home', {
+    when('/community', {
       templateUrl: 'partials/community',
       controller: 'AppCtrl'
     }).
+   	when('/create_mission', {
+      templateUrl: 'partials/create_mission',
+      controller: 'create_mission'
+    }).
     otherwise({
-      redirectTo: '/community'
+      redirectTo: '/home'
     });
 
   

@@ -10,8 +10,22 @@ var sequelize = new Sequelize(
 // import models for syncing
 // var Example = require('./models').Example;
 
-
+var User = require('./models').User;
+var Mission = require('./models').Mission;
+var Location = require('./models').Location;
+var Skill = require('./models').Skill;
+var Toolship = require('./models').Toolship;
+var User_location = require('./models').User_location;
+var User_skill = require('./models').User_skill;
 
 
 // Sync database with below
 // Example.sync({force: true});
+
+User.sync({force: true});
+Mission.sync({force: true});
+Location.sync({force: true});
+Skill.sync({force: true});
+Toolship.sync({force: true});
+User_location.sync({force: true});
+User_skill.sync({force: true});

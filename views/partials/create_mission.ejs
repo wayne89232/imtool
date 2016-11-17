@@ -1,0 +1,171 @@
+<form class="ui form">
+    <h4 class="ui dividing header">User Information</h4>
+    <div class="field">
+        <label>Account ibfo</label>
+        <div class="two fields">
+            <div class="field">
+                <input type="text" name="shipping[first-name]" placeholder="Account">
+            </div>
+            <div class="field">
+                <input type="text" name="shipping[last-name]" placeholder="Pwd">
+            </div>
+        </div>
+    </div>
+    <div class="field">
+        <label>Billing Address</label>
+        <div class="fields">
+            <div class="twelve wide field">
+                <input type="text" name="shipping[address]" placeholder="Street Address">
+            </div>
+            <div class="four wide field">
+                <input type="text" name="shipping[address-2]" placeholder="Apt #">
+            </div>
+        </div>
+    </div>
+    <div class="two fields">
+        <div class="field">
+            <label>State</label>
+            <select class="ui fluid dropdown">
+                <option value="">State</option>
+                <option value="AL">Alabama</option>
+            </select>
+        </div>
+        <div class="field">
+            <label>Country</label>
+            <div class="ui fluid search selection dropdown">
+                <input type="hidden" name="country">
+                <i class="dropdown icon"></i>
+                <div class="default text">Select Country</div>
+                <div class="menu">
+                    <div class="item" data-value="af"><i class="af flag"></i>Afghanistan</div>
+                    <div class="item" data-value="ax"><i class="ax flag"></i>Aland Islands</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h4 class="ui dividing header">Billing Information</h4>
+    <div class="field">
+        <label>Add tag</label>
+        <div class="ui floating dropdown labeled icon button">
+            <i class="filter icon"></i>
+            <span class="text">Filter Posts</span>
+            <div class="menu">
+                <div class="ui icon search input">
+                    <i class="search icon"></i>
+                    <input type="text" placeholder="Search tags...">
+                </div>
+                <div class="divider"></div>
+                <div class="header">
+                    <i class="tags icon"></i>
+                    Tag Label
+                </div>
+                <div class="scrolling menu">
+                    <div class="item">
+                        <div class="ui red empty circular label"></div>
+                        Important
+                    </div>
+                    <div class="item">
+                        <div class="ui blue empty circular label"></div>
+                        Announcement
+                    </div>
+                    <div class="item">
+                        <div class="ui black empty circular label"></div>
+                        Cannot Fix
+                    </div>
+                    <div class="item">
+                        <div class="ui purple empty circular label"></div>
+                        News
+                    </div>
+                    <div class="item">
+                        <div class="ui orange empty circular label"></div>
+                        Enhancement
+                    </div>
+                    <div class="item">
+                        <div class="ui empty circular label"></div>
+                        Change Declined
+                    </div>
+                    <div class="item">
+                        <div class="ui yellow empty circular label"></div>
+                        Off Topic
+                    </div>
+                    <div class="item">
+                        <div class="ui pink empty circular label"></div>
+                        Interesting
+                    </div>
+                    <div class="item">
+                        <div class="ui green empty circular label"></div>
+                        Discussion
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fields">
+        <div class="seven wide field">
+            <label>Card Number</label>
+            <input type="text" name="card[number]" maxlength="16" placeholder="Card #">
+        </div>
+        <div class="three wide field">
+            <label>CVC</label>
+            <input type="text" name="card[cvc]" maxlength="3" placeholder="CVC">
+        </div>
+        <div class="six wide field">
+            <label>Expiration</label>
+            <div class="two fields">
+                <div class="field">
+                    <select class="ui fluid search dropdown" name="card[expire-month]">
+                        <option value="">Month</option>
+                        <option value="1">January</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <input type="text" name="card[expire-year]" maxlength="4" placeholder="Year">
+                </div>
+            </div>
+        </div>
+    </div>
+    <h4 class="ui dividing header">Receipt</h4>
+    <div class="field">
+        <label>Send Receipt To:</label>
+        <div class="ui fluid multiple search selection dropdown">
+            <input type="hidden" name="receipt">
+            <i class="dropdown icon"></i>
+            <div class="default text">Saved Contacts</div>
+            <div class="menu">
+                <div class="item" data-value="jenny" data-text="Jenny">
+                    <img class="ui mini avatar image" src="/images/avatar/small/jenny.jpg">
+                    Jenny Hess
+                </div>
+                <div class="item" data-value="elliot" data-text="Elliot">
+                    <img class="ui mini avatar image" src="/images/avatar/small/elliot.jpg">
+                    Elliot Fu
+                </div>
+                <div class="item" data-value="stevie" data-text="Stevie">
+                    <img class="ui mini avatar image" src="/images/avatar/small/stevie.jpg">
+                    Stevie Feliciano
+                </div>
+                <div class="item" data-value="christian" data-text="Christian">
+                    <img class="ui mini avatar image" src="/images/avatar/small/christian.jpg">
+                    Christian
+                </div>
+                <div class="item" data-value="matt" data-text="Matt">
+                    <img class="ui mini avatar image" src="/images/avatar/small/matt.jpg">
+                    Matt
+                </div>
+                <div class="item" data-value="justen" data-text="Justen">
+                    <img class="ui mini avatar image" src="/images/avatar/small/justen.jpg">
+                    Justen Kitsune
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui segment">
+        <div class="field">
+            <div class="ui toggle checkbox">
+                <input type="checkbox" name="gift" tabindex="0" class="hidden">
+                <label>Do not include a receipt in the package</label>
+            </div>
+        </div>
+    </div>
+    <div class="ui button" tabindex="0">Submit Order</div>
+</form>

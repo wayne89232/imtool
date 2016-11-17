@@ -6,19 +6,45 @@ var sequelize = new Sequelize(
 		settings.model.mysql.password,
 		settings.model.mysql.options
 	);
-var User = require('./User');
-var Mission = require('./Mission');
-var Feedback = require('./Feedback');
+
 
 // import models: 
 // var Example = require('./example').Example(Sequelize,sequelize);
+var User = require('./user').User(Sequelize,sequelize);
+var Mission = require('./mission').Mission(Sequelize,sequelize);
+var Location = require('./location').Location(Sequelize,sequelize);
+var Skill = require('./skill').Skill(Sequelize,sequelize);
+var Toolship = require('./toolship').Toolship(Sequelize,sequelize);
+var User_location = require('./user_location').User_location(Sequelize,sequelize);
+var User_skill = require('./user_skill').User_skill(Sequelize,sequelize);
+
+
 
 //add some relations here
-// Example.hasMany(People, {foreignKey: 'people_id'});
 
+User.hasMany(Mission, {foreignKey: 'user_id'});
+Mission.belongsto(User, {foreignKey: 'user_id'});
+
+Mission.hasOne(Location, {foreignKey: 'location_id'});
+Location.belongsto(Mission,{foreignKey: 'location_id'});
+
+User.hasMany(User_location,{foreignKey: 'user_id'});
+Location.hasMany(User_location,{foreignKey: 'location_id'});
+
+User.hasMany(User_skill,{foreignKey: 'user_id'});
+Skill.hasMany(User_skill,{foreignKey: 'skill_id'});
+
+User.hasMany(Toolship,{foreignKey: 'user_id'});
+Mission.hasMany(Toolship,{foreignKey: 'mission_id'});
 
 //export for use in other directory
 // exports.Example = Example;
+
 exports.User = User;
 exports.Mission = Mission;
-exports.Feedback = Feedback;
+exports.Location = Location;
+exports.Skill = Skill;
+exports.Toolship = Toolship;
+exports.User_location = User_location;
+exports.User_skill = User_skill;
+
