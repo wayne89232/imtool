@@ -8,6 +8,7 @@ var express = require('express'),
     morgan = require('morgan'),
     routes = require('./routes'),
     api = require('./routes/api'),
+    user = require('./routes/user'),
     
     // import routers
     // example = require('./routes/example'),
@@ -51,6 +52,7 @@ if (env === 'production') {
 // serve index and view partials
 app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
+app.post('/register', user.register);
 
 //functions, ex: 
 // app.post('/api/add_league', api.add_league);
