@@ -1,7 +1,20 @@
 'use strict';
 
-angular.module('myApp.controllers', ['ngRoute']).controller('AppCtrl', function ($scope, $http, $location) {
-	// $('.basic.modal').modal('attach events', '.minimal.button');
+angular.module('myApp.controllers', ['ngRoute']).controller('AppCtrl', function ($rootScope, $window, $scope, $http, $state, $location) {
+
+	// // change language, left to milestone 2
+	// $rootScope.$watch('lang',function(newValue, oldValue){   
+
+ //      if(newValue!=oldValue){
+ //        localStorage.setItem("lang", newValue);
+ //        $http({
+ //        	method:"POST", url:'/api/setLocale', 
+ //        	data:{ locale: newValue }
+ //        }).success(function(result){
+ //          location.reload();
+ //        });
+ //      } 
+ //    });
 
 	$scope.jump_login = function(){
 		$('.ui.basic.modal').modal('show');

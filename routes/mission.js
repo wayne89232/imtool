@@ -2,6 +2,8 @@
 // var Example = require('../models').Example;
 var _ = require('underscore');
 var Mission = require('../models').Mission;
+var User = require('../models').User;
+var Toolship = require('../models').Toolship;
 
 exports.create_mission = function(req, res){
 	var new_id = crypto.randomBytes(20).toString('hex');
@@ -40,5 +42,18 @@ exports.view_event = function(req, res){
 		} 
 	}).then(function(result){
 		res.json({ data: result.dataValues });
+	});
+}
+
+exports.get_tooled = function(req, res){
+	var new_id = crypto.randomBytes(20).toString('hex');
+	Toolship.create({
+		toolship_id: new_id,
+		user_id: req.params.user_id,
+		mission_id: req.params.mission_id,
+		rating: 0,
+		feedback: ""
+	}).then(function(result){
+		res.json({ msg: "Success on getting tooled " + result });
 	});
 }

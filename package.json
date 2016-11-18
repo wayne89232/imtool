@@ -9,6 +9,7 @@
     "error-handler": "^0.1.4",
     "express": "~4.1.1",
     "flat-ui": "^2.1.1",
+    "i18n": "^0.8.3",
     "jade": "~0.31.2",
     "method-override": "^1.0.0",
     "morgan": "^1.0.0",
