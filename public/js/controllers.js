@@ -7,7 +7,10 @@ angular.module('myApp.controllers', ['ngRoute']).controller('AppCtrl', function 
 		$('.ui.basic.modal').modal('show');
 	}
 }).controller('create_mission', function ($scope, $http, $location) {
-	$(' .ui.dropdown').dropdown();
-}).controller('create_mission', function ($scope, $http, $location) {
-	$(' .ui.dropdown').dropdown();
+	$('.ui .dropdown').dropdown({
+    maxSelections: 5,
+    allowAdditions: true
+  });
+}).controller('discover', function ($scope, $http, $location) {
+}).controller('mission_list', function ($scope, $http, $location) {
 });
