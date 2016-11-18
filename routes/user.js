@@ -39,7 +39,6 @@ exports.register = function(req, res){
             account: req.body.account
         }
     }
-    // var new_id = crypto.randomBytes(20).toString('hex');
     User.find(query).then(function(user){
         if(user == null){
             var user = {}
@@ -71,14 +70,15 @@ exports.register = function(req, res){
     });    
 }
 exports.user_info = function(req, res){
-    User.find({ where:{ user_id: req.params.user_id } }).then(function(result){
+    User.find({ where:{ user_id: req.params.id } }).then(function(result){
         res.json({ data: result.dataValues });
-
+    }).catch(function(err){
+        res.send(err)
     });
 }
 exports.tooler_mission = function(req, res){
     Mission.findAll({ 
-        where:{ user_id: req.params.user_id }
+        where:{ user_id: req.params.id }
     }).then(function(result){
         res.json({ data: result });
     });

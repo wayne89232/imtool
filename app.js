@@ -9,6 +9,7 @@ var express = require('express'),
     routes = require('./routes'),
     api = require('./routes/api'),
     user = require('./routes/user'),
+    mission = require('./routes/mission'),
     
     // import routers
     // example = require('./routes/example'),
@@ -53,6 +54,8 @@ if (env === 'production') {
 app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
 app.post('/register', user.register);
+app.get('/getUserInfo/:id', user.user_info);
+app.get('/getUserMission/:id', user.tooler_mission);
 
 //functions, ex: 
 // app.post('/api/add_league', api.add_league);
