@@ -1,6 +1,6 @@
 exports.User = function(Sequelize, sequelize){
   return sequelize.define('User', {
-    user_id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true }, 
+    user_id: { type: Sequelize.STRING, primaryKey: true, autoIncrement: true }, 
 	account: Sequelize.STRING,
 	password: Sequelize.STRING,
 	gender: {
