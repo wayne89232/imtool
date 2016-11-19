@@ -9,20 +9,16 @@ var async = require('async');
 exports.login = function (req, res){
     // case for sso login: if found login, if not create one
 
+    var searchId = crypto.createHash('md5').update('imtool' + req.body.account + req.body.password).digest('hex');
+
     User.find({
-        where: {account: req.body.account}
+        where: {user_id: searchId}
     }).then(function(user){
         if(user == null){
             res.json({
                 success:false,
-                msg: "No such user"
+                msg: "No such user or Wrong password"
             });
-        }
-        else if(req.body.password!=user.dataValues.password){
-            res.json({
-                success: false,
-                msg: "Wrong password"
-            })
         }
         else{
             res.json({
@@ -34,6 +30,19 @@ exports.login = function (req, res){
 }
 
 exports.register = function(req, res){
+	req.checkBody('account').notEmpty();
+	req.checkBody('password').notEmpty();
+	req.checkBody('user_name').notEmpty();
+	req.checkBody('email').notEmpty().isEmail();
+	req.checkBody('gender').notEmpty().isGender();
+
+	var errors = req.validationErrors();
+    if (errors) {
+		return res.status(405).json({
+			errors: errors
+		});
+	}
+
     var query = {
         where:{
             account: req.body.account
