@@ -17,7 +17,10 @@ angular.module('myApp.controllers', ['ngRoute']).controller('AppCtrl', function 
  //    });
 
 	$scope.jump_login = function(){
-		$('.ui.basic.modal').modal('show');
+		$('.ui.modal').modal('show');
+	}
+	$scope.jump_register = function(){
+		$('.ui.modal').modal('hide');
 	}
 }).controller('create_mission', function ($scope, $http, $location) {
 	$('.ui .dropdown').dropdown({
@@ -26,6 +29,7 @@ angular.module('myApp.controllers', ['ngRoute']).controller('AppCtrl', function 
   });
 }).controller('discover', function ($scope, $http, $location) {
 }).controller('mission_list', function ($scope, $http, $location) {
+
 }).controller('rank_list', function ($scope, $http, $location) {
 	$('.ui.rating').rating('disable');
 	$('.sortable.table').tablesort();
@@ -35,6 +39,12 @@ angular.module('myApp.controllers', ['ngRoute']).controller('AppCtrl', function 
 		$('.ui.small.modal').modal('show');
 	}
 	$('.ui.rating').rating('enable');
+
+}).controller('register_page', function ($scope, $http, $location) {
+	$('.ui .dropdown').dropdown({
+    maxSelections: 5,
+    allowAdditions: true
+  });
 });
 
 
