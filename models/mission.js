@@ -6,7 +6,6 @@ exports.Mission = function(Sequelize, sequelize){
     location_id: Sequelize.INTEGER,
     title: { type: Sequelize.STRING },
     content: Sequelize.STRING,
-    photo_url: Sequelize.STRING,
     recruit_time: Sequelize.STRING,
     start_time: Sequelize.STRING,
     expire_time: Sequelize.STRING,
