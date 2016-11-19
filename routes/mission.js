@@ -5,33 +5,85 @@ var Mission = require('../models').Mission;
 var User = require('../models').User;
 var Toolship = require('../models').Toolship;
 
+var crypto = require('crypto');
+
 exports.create_mission = function(req, res){
+
+	req.checkBody('user_id').notEmpty();
+	req.checkBody('title').notEmpty();
+	req.checkBody('start_time').notEmpty();
+	req.checkBody('expire_time').notEmpty();
+	req.checkBody('recruit_time').notEmpty();
+	req.checkBody('location').notEmpty();
+	req.checkBody('content').notEmpty();
+
+	var errors = req.validationErrors();
+	if (errors) {
+    	return res.status(405).json({
+    		errors: errors
+		});
+	}
+
+
 	var new_id = crypto.randomBytes(20).toString('hex');
-	Mission.create({
-		event_id: new_id,
+	var newMission = {
+		mission_id: new_id,
+		user_id: req.body.user_id,
 		title: req.body.title,
 		photo_url: "",
-		mission_date: req.body.mission_date,
+		start_time: req.body.start_time,
 		expire_time: req.body.expire_time,
-		location: req.body.location,
-		content: req.body.content
-	}).then(function(result){
-		res.json({ msg: "Success on creating mission " + result });
+		recruit_time: req.body.recruit_time,
+		location_id: req.body.location,
+		content: req.body.content,
+		state: 'Recruiting'
+	};
+
+	Mission.create(newMission).then(function(result){
+		var succesMsg = "User " + result.dataValues.user_id + " Success on creating mission " + result.dataValues.title;
+
+		res.json({
+			success: true,
+			msg: succesMsg
+		});
+	}).catch(function(err){
+		res.send(err);
 	});
 }
 
 //use query to filter missions
 exports.list_mission = function(req, res){
+
 	var query = {
-		where: {
-			status: req.body.status
-		}
+		order: [
+			['recruit_time', 'DESC'],
+			['start_time', 'DESC'],
+			['expire_time', 'DESC'],
+		],
+		limit: 20
 	}
+
+	if (req.params.state){
+		req.checkParams('state').isMissionState();
+
+		var errors = req.validationErrors();
+		if (errors) {
+			return res.status(405).json({
+				errors: errors
+			});
+		}
+
+		query.where = {
+			state: req.params.state
+		}
+
+	}
+
 	Mission.findAll(query).then(function(result){
-		mission_list = _.map(result, function(result){
+		var missionList = _.map(result, function(result){
 			return result.dataValues;
 		});
-		res.json({ data: mission_list });
+		res.json({ data: missionList });
 	});
 }
 
