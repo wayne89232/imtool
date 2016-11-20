@@ -37,6 +37,14 @@ config(function ($routeProvider, $locationProvider) {
       templateUrl: 'partials/create_mission',
       controller: 'create_mission'
     }).
+    when('/rank_list', {
+      templateUrl: 'partials/rank_list',
+      controller: 'rank_list'
+    }).
+    when('/testPopup', {
+      templateUrl: 'partials/testPopup',
+      controller: 'testPopup'
+    }).
     otherwise({
       redirectTo: '/home'
     });

@@ -26,4 +26,15 @@ angular.module('myApp.controllers', ['ngRoute']).controller('AppCtrl', function 
   });
 }).controller('discover', function ($scope, $http, $location) {
 }).controller('mission_list', function ($scope, $http, $location) {
+}).controller('rank_list', function ($scope, $http, $location) {
+	$('.ui.rating').rating('disable');
+	$('.sortable.table').tablesort();
+	$('.tabular.menu .item').tab();
+}).controller('testPopup', function ($scope, $http, $location) {
+	$scope.missionCleared = function(){
+		$('.ui.small.modal').modal('show');
+	}
+	$('.ui.rating').rating('enable');
 });
+
+
