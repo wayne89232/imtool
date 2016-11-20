@@ -37,6 +37,10 @@ config(function ($routeProvider, $locationProvider) {
       templateUrl: 'partials/create_mission',
       controller: 'create_mission'
     }).
+    when('/register_page', {
+      templateUrl: 'partials/register_page',
+      controller: 'register_page'
+    }).
     otherwise({
       redirectTo: '/home'
     });

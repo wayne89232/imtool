@@ -25,3 +25,13 @@
     6. Run node init.js (The table should be constructed then)
     7. Uncomment the relations in step 4
     8. Run node app.js
+
+## Merge notes
+    1. Checkout master
+    2. Fetch remote master
+    3. Rebase origin/master
+    4. Checkout developing branch
+    5. Rebase master (Done updating from master)
+    6. Commit before pushing (?)
+    7. Push to remote working branch
+    8. Pull request from remote working branch to master 

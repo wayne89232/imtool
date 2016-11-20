@@ -17,7 +17,6 @@
 		<script src="../js/controllers.js"></script>
 		<script src="../js/filters.js"></script>
 		<script src="../js/directives.js"></script>
-
 		<link rel="stylesheet" type="text/css" href="../css/dist/semantic.min.css">
 		<script src="../css/dist/semantic.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="../css/UI-Dropdown/dropdown.min.css">
@@ -43,32 +42,71 @@
 				</div>
 			</div>
 		</div>
-		<div class="ui basic modal">
+		<div class="ui modal">
 			<i class="close icon"></i>
-			<div class="header">
-				Archive Old Messages
-			</div>
-			<div class="image content">
-				<div class="image">
-					<i class="archive icon"></i>
-				</div>
-				<div class="description">
-					<p>Your inbox is getting full, would you like us to enable automatic archiving of old messages?</p>
+
+			<div class=" content">
+				<div class="ui middle aligned center aligned grid">
+					<div class="column">
+						<h2 class="ui teal image header">
+						<img src="assets/images/tool.png" class="image">
+						<div class="content">
+							Log-in to your account
+						</div>
+						</h2>
+						<form class="ui large form">
+							<div class="ui stacked segment">
+								<div class="field">
+									<div class="ui left icon input">
+										<i class="user icon"></i>
+										<input type="text" name="email" placeholder="Account">
+									</div>
+								</div>
+								<div class="field">
+									<div class="ui left icon input">
+										<i class="lock icon"></i>
+										<input type="password" name="password" placeholder="Password">
+									</div>
+								</div>
+								<div class="ui fluid large teal submit button">Login</div>
+							</div>
+							<div class="ui error message"></div>
+						</form>
+					</div>
 				</div>
 			</div>
 			<div class="actions">
-				<div class="two fluid ui inverted buttons">
-					<div class="ui cancel red basic inverted button">
-						<i class="remove icon"></i>
-						No
-					</div>
-					<div class="ui ok green basic inverted button">
-						<i class="checkmark icon"></i>
-						Yes
-					</div>
+				<div class="ui message">
+					New to us? <a href="/register_page" ng-click="jump_register()">Sign Up</a>
 				</div>
 			</div>
 		</div>
+		<!-- 		<div class="ui basic modal">
+				<i class="close icon"></i>
+				<div class="header">
+						Archive Old Messages
+				</div>
+				<div class="image content">
+						<div class="image">
+								<i class="archive icon"></i>
+						</div>
+						<div class="description">
+								<p>Your inbox is getting full, would you like us to enable automatic archiving of old messages?</p>
+						</div>
+				</div>
+				<div class="actions">
+						<div class="two fluid ui inverted buttons">
+								<div class="ui cancel red basic inverted button">
+										<i class="remove icon"></i>
+										No
+								</div>
+								<div class="ui ok green basic inverted button">
+										<i class="checkmark icon"></i>
+										Yes
+								</div>
+						</div>
+				</div>
+		</div> -->
 		<!-- The div for partials -->
 		<div class = "container">
 			<div ng-view="">
