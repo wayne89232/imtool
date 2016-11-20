@@ -1,7 +1,7 @@
 exports.Mission = function(Sequelize, sequelize){
   return sequelize.define('Mission', {
 
-    mission_id: { type: Sequelize.STRING, primaryKey: true}
+    mission_id: { type: Sequelize.STRING, primaryKey: true},
     user_id: Sequelize.STRING,
     location_id: Sequelize.INTEGER,
     title: { type: Sequelize.STRING },
