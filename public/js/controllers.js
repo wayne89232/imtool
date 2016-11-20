@@ -15,7 +15,10 @@ angular.module('myApp.controllers', ['ngRoute']).controller('AppCtrl', function 
  //        });
  //      } 
  //    });
-
+ 	$('.ui.sticky').sticky({
+    context: '#context'
+  })
+;
 	$scope.jump_login = function(){
 		$('.ui.modal').modal('show');
 	}
