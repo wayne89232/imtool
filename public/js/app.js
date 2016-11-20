@@ -41,6 +41,10 @@ config(function ($routeProvider, $locationProvider) {
       templateUrl: 'partials/rank_list',
       controller: 'rank_list'
     }).
+    when('/testPopup', {
+      templateUrl: 'partials/testPopup',
+      controller: 'testPopup'
+    }).
     otherwise({
       redirectTo: '/home'
     });

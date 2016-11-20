@@ -30,4 +30,11 @@ angular.module('myApp.controllers', ['ngRoute']).controller('AppCtrl', function 
 	$('.ui.rating').rating('disable');
 	$('.sortable.table').tablesort();
 	$('.tabular.menu .item').tab();
+}).controller('testPopup', function ($scope, $http, $location) {
+	$scope.missionCleared = function(){
+		$('.ui.small.modal').modal('show');
+	}
+	$('.ui.rating').rating('enable');
 });
+
+
