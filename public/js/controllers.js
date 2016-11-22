@@ -15,6 +15,35 @@ angular.module('myApp.controllers', ['ngRoute']).controller('AppCtrl', function 
 	$scope.jump_register = function(){
 		$('.ui.modal').modal('hide');
 	}
+    $scope.add_mission = function(){
+    	if($scope.title != null ){
+            var data = {
+            	user_id: "window storage",
+            	location: "if not started with id segment, create new",
+                title: $scope.title, 
+                recruit_time: new Date(),
+                skills: $scope.skills,
+                start_time: $scope.start_time,
+                expire_time: $scope.expire_time,
+                content: $scope.content,
+                state: "Recruiting"
+            };
+            // $http({
+            //     method: "POST", 
+            //     url: '/mission/create_mission', 
+            //     data: data
+            // }).then(function(result){
+            // 	$window.location.reload();
+            // 	// $location.path("/mission");
+            // });
+            console.log(data)
+            $window.location.reload;
+        }
+        else{
+            alert("Fill in all entities!");
+        }
+    }
+
 }).controller('create_mission', function ($scope, $http, $location) {
 	$('.ui .dropdown').dropdown({
     maxSelections: 5,

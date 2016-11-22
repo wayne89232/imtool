@@ -106,21 +106,21 @@
         <h4 class="ui dividing header">Mission Title</h4>
         <div class="field">
             <div class="fields">
-                <input type="text" placeholder="Account">
+                <input ng-model="title" type="text" placeholder="title">
             </div>
         </div>
         <div class="field">
             <label>Description</label>
                 <div class="ui segment">
                     <!-- <input type="textarea" placeholder="Password"> -->
-                    <textarea></textarea>
+                    <textarea ng-model="content"></textarea>
                 </div>
         </div>
 
         <h4 class="ui dividing header">Locations</h4>
         <div class="field">
             <label>Where to tool you or be tooled</label>
-            <select class="ui fluid search dropdown" multiple="">
+            <select ng-model="location" class="ui fluid search dropdown" multiple="">
                 <option value="">Add your own if not here</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -129,7 +129,7 @@
         </div>
         <h4 class="ui dividing header">Required skills</h4>
         <div class="field">
-            <select class="ui fluid search dropdown" multiple="">
+            <select class="ui fluid search dropdown" multiple="" ng-model="skills">
                 <option value="">Add your own if not here</option>
                 <option value="1">駝獸</option>
                 <option value="2">修電腦</option>
@@ -140,14 +140,14 @@
         <div class="field">
             <label>Start time</label>
             <div class="fields">
-                <input type="text" class="datepicker" placeholder="Pick the date the task should start">
+                <input type="text" class="datepicker" placeholder="Pick the date the task should start" ng-model="start_time">
             </div>
             <label>Deadline</label>
             <div class="fields">
-                <input type="text" class="datepicker" placeholder="Deadline">
+                <input type="text" class="datepicker" placeholder="Deadline" ng-model="expire_time">
             </div>
         </div>
-        <div class="ui button" tabindex="0">GO</div>
+        <div class="ui button" tabindex="0" ng-click="add_mission()">GO</div>
     </form>
 					</div>
 				</div>
