@@ -40,7 +40,6 @@ angular.module('myApp.controllers', ['ngRoute']).controller('AppCtrl', function 
             // 	$window.location.reload();
             // 	// $location.path("/mission");
             // });
-
             // $window.location.reload();
                         console.log(data)
         }
