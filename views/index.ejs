@@ -18,6 +18,12 @@
 		<script src="../js/filters.js"></script>
 		<script src="../js/directives.js"></script>
 		<link rel="stylesheet" type="text/css" href="../css/dist/semantic.min.css">
+		<script src="../pickadate.js/lib/picker.js"></script>
+		<script src="../pickadate.js/lib/picker.date.js"></script>
+		<script src="../pickadate.js/lib/picker.time.js"></script>
+		<link rel="stylesheet" type="text/css" href="../pickadate.js/lib/themes/classic.css">
+				<link rel="stylesheet" type="text/css" href="../pickadate.js/lib/themes/classic.time.css">
+						<link rel="stylesheet" type="text/css" href="../pickadate.js/lib/themes/classic.date.css">
 		<script src="../css/dist/semantic.min.js"></script>
 		<script src="http://semantic-ui.com/javascript/library/tablesort.js"></script>
 		
@@ -132,7 +138,14 @@
         </div>
         <h4 class="ui dividing header">Schedule</h4>
         <div class="field">
-            <input type="text"  placeholder="Your schedule">
+            <label>Start time</label>
+            <div class="fields">
+                <input type="text" class="datepicker" placeholder="Pick the date the task should start">
+            </div>
+            <label>Deadline</label>
+            <div class="fields">
+                <input type="text" class="datepicker" placeholder="Deadline">
+            </div>
         </div>
         <div class="ui button" tabindex="0">GO</div>
     </form>

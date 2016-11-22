@@ -5,7 +5,7 @@ angular.module('myApp.controllers', ['ngRoute']).controller('AppCtrl', function 
     maxSelections: 5,
     allowAdditions: true
   });
-
+	$('.datepicker').pickadate();
 	$scope.jump_login = function(){
 		$('.ui.modal.login').modal('show');
 	}
