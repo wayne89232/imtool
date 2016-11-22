@@ -45,6 +45,14 @@ config(function ($routeProvider, $locationProvider) {
       templateUrl: 'partials/testPopup',
       controller: 'testPopup'
     }).
+    when('/register_page', {
+      templateUrl: 'partials/register_page',
+      controller: 'register_page'
+    }).
+    when('/view_mission', {
+      templateUrl: 'partials/view_mission',
+      controller: 'AppCtrl'
+    }).
     otherwise({
       redirectTo: '/home'
     });

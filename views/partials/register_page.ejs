@@ -1,0 +1,75 @@
+<div class="ui container">
+    <form class="ui form">
+        <h4 class="ui dividing header">User Information</h4>
+        <div class="field">
+            <label>Account</label>
+            <div class="fields">
+                <input type="text" placeholder="Account">
+            </div>
+        </div>
+        <div class="field">
+            <label>Password</label>
+            <div class="two fields">
+                <div class="field">
+                    <input type="text" placeholder="Password">
+                </div>
+                <div class="field">
+                    <input type="text"  placeholder="Confirm password">
+                </div>
+            </div>
+        </div>
+        <div class="two fields">
+            <div class="field">
+                <label>Name</label>
+                <input type="text"  placeholder="Your name">
+            </div>
+            <div class="field">
+                <label>Gender</label>
+                <div class="ui fluid search selection dropdown">
+                    <input type="hidden" name="country">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">Select Gender</div>
+                    <div class="menu">
+                        <div class="item" data-value="B"><i class="man icon"></i>Man</div>
+                        <div class="item" data-value="G"><i class="woman icon"></i>Woman</div>
+                        <div class="item" data-value="N"><i class="neuter icon"></i>Neuter</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h4 class="ui dividing header">Skill Information</h4>
+        <div class="field">
+            <label>Skills</label>
+            <select class="ui fluid search dropdown" multiple="">
+                <option value="">Add your own if not here</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </div>
+        <h4 class="ui dividing header">Locations</h4>
+        <div class="field">
+            <label>Where to tool you or be tooled</label>
+            <select class="ui fluid search dropdown" multiple="">
+                <option value="">Add your own if not here</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </div>
+        <h4 class="ui dividing header">Contact</h4>
+        <div class="field">
+            <label>Email</label>
+            <input type="text"  placeholder="Your mail">
+        </div>
+        <div class="ui segment">
+            <div class="field">
+                <div class="ui toggle checkbox">
+                    <input type="checkbox" name="gift" tabindex="0" class="hidden">
+                    <label>Receive notification letters</label>
+                </div>
+            </div>
+        </div>
+        <div class="ui button" tabindex="0">Submit Registration</div>
+    </form>
+</div>
