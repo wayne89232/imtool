@@ -29,7 +29,7 @@
 		<div class="ui mini menu">
 			<a class="item" href="/home">Home</a>
 			<a class="item" href="/discover">Discover</a>
-			<a class="item" href="/create_mission">Start tooling</a>
+			<a class="item" href="/view_mission">Start tooling</a>
 			<a class="item" href="/user_info">Personal Info</a>
 			<a class="item" href="/mission_list">Missions</a>
 			<a class="item" href="/rank_list">Rankings</a>
@@ -47,16 +47,15 @@
 				</div>
 			</div>
 		</div>
-		<div class="ui modal">
+		<div class="ui modal login">
 			<i class="close icon"></i>
-
 			<div class=" content">
 				<div class="ui middle aligned center aligned grid">
 					<div class="column">
 						<h2 class="ui teal image header">
 						<img src="assets/images/tool.png" class="image">
 						<div class="content">
-							Log-in to your account
+							Login to your account
 						</div>
 						</h2>
 						<form class="ui large form">
@@ -86,45 +85,100 @@
 				</div>
 			</div>
 		</div>
-		<!-- 		<div class="ui basic modal">
-				<i class="close icon"></i>
-				<div class="header">
-						Archive Old Messages
+				<div class="ui modal mission">
+			<i class="close icon"></i>
+			<div class=" content">
+				<div class="ui middle aligned center aligned grid">
+					<div class="column">
+						<h2 class="ui teal image header">
+						<img src="assets/images/tool.png" class="image">
+						<div class="content">
+							Start tooling
+						</div>
+						</h2>
+    <form class="ui form">
+        <h4 class="ui dividing header">Mission Title</h4>
+        <div class="field">
+            <div class="fields">
+                <input type="text" placeholder="Account">
+            </div>
+        </div>
+        <div class="field">
+            <label>Description</label>
+                <div class="ui segment">
+                    <!-- <input type="textarea" placeholder="Password"> -->
+                    <textarea></textarea>
+                </div>
+        </div>
+
+        <h4 class="ui dividing header">Locations</h4>
+        <div class="field">
+            <label>Where to tool you or be tooled</label>
+            <select class="ui fluid search dropdown" multiple="">
+                <option value="">Add your own if not here</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </div>
+        <h4 class="ui dividing header">Required skills</h4>
+        <div class="field">
+            <select class="ui fluid search dropdown" multiple="">
+                <option value="">Add your own if not here</option>
+                <option value="1">駝獸</option>
+                <option value="2">修電腦</option>
+                <option value="3">寫作業</option>
+            </select>
+        </div>
+        <h4 class="ui dividing header">Schedule</h4>
+        <div class="field">
+            <input type="text"  placeholder="Your schedule">
+        </div>
+        <div class="ui button" tabindex="0">GO</div>
+    </form>
+					</div>
 				</div>
-				<div class="image content">
+			</div>
+		</div>
+		<!-- 		<div class="ui basic modal">
+			<i class="close icon"></i>
+			<div class="header">
+						Archive Old Messages
+			</div>
+			<div class="image content">
 						<div class="image">
-								<i class="archive icon"></i>
+									<i class="archive icon"></i>
 						</div>
 						<div class="description">
-								<p>Your inbox is getting full, would you like us to enable automatic archiving of old messages?</p>
+									<p>Your inbox is getting full, would you like us to enable automatic archiving of old messages?</p>
 						</div>
-				</div>
-				<div class="actions">
+			</div>
+			<div class="actions">
 						<div class="two fluid ui inverted buttons">
-								<div class="ui cancel red basic inverted button">
-										<i class="remove icon"></i>
-										No
-								</div>
-								<div class="ui ok green basic inverted button">
-										<i class="checkmark icon"></i>
-										Yes
-								</div>
+									<div class="ui cancel red basic inverted button">
+												<i class="remove icon"></i>
+												No
+									</div>
+									<div class="ui ok green basic inverted button">
+												<i class="checkmark icon"></i>
+												Yes
+									</div>
 						</div>
-				</div>
+			</div>
 		</div> -->
 		<!-- The div for partials -->
+							<!-- <div class="overlay">
+			<div class="ui fixed top sticky labeled icon vertical menu ">
+				<a class="item"><i class="twitter icon"></i> Tweet</a>
+			</div>
+		</div>
+		<div class = "container" id="context"> -->
 
-		<div class = "container" id="context">
 			<div ng-view="">
 				
 			</div>
+
 		</div>
-<!-- 			<div class="overlay">
-      <div class="ui labeled icon vertical menu sticky">
-        <a class="item"><i class="twitter icon"></i> Tweet</a>
-        <a class="item"><i class="facebook icon"></i> Share</a>
-        <a class="item"><i class="mail icon"></i> E-mail</a>
-      </div>
-    </div> -->
+
 	</body>
 </html>

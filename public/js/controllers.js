@@ -1,27 +1,17 @@
 'use strict';
 
 angular.module('myApp.controllers', ['ngRoute']).controller('AppCtrl', function ($rootScope, $window, $scope, $http, $location) {
+	$('.ui .dropdown').dropdown({
+    maxSelections: 5,
+    allowAdditions: true
+  });
 
-	// // change language, left to milestone 2
-	// $rootScope.$watch('lang',function(newValue, oldValue){   
-
- //      if(newValue!=oldValue){
- //        localStorage.setItem("lang", newValue);
- //        $http({
- //        	method:"POST", url:'/api/setLocale', 
- //        	data:{ locale: newValue }
- //        }).success(function(result){
- //          location.reload();
- //        });
- //      } 
- //    });
- 	$('.ui.sticky').sticky({
-    context: '#context'
-  })
-;
 	$scope.jump_login = function(){
-		$('.ui.modal').modal('show');
+		$('.ui.modal.login').modal('show');
 	}
+	$scope.create_mission = function(){
+		$('.ui.modal.mission').modal('show');
+	}	
 	$scope.jump_register = function(){
 		$('.ui.modal').modal('hide');
 	}
