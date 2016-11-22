@@ -8,7 +8,6 @@ exports.index = function(req, res){
 };
 
 exports.partials = function (req, res) {
-	// console.log(req.params.name);
   	var name = req.params.name;
   	if (!req.session.user)
   		res.render('partials/' + name, {userInfo: req.session.user});
