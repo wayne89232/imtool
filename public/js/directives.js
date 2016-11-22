@@ -41,7 +41,7 @@ angular.module('myApp.directives', ['ngRoute']).
       $document.off('mouseup', mouseup);
     }
   };
-}]).directive('ModalDemoCtrl', function ($scope, $modal, $log) {
+}]).directive('modalDemoCtrl', function ($scope, $modal, $log) {
 
   $scope.items = ['item1', 'item2', 'item3'];
 
@@ -49,7 +49,7 @@ angular.module('myApp.directives', ['ngRoute']).
 
     var modalInstance = $modal.open({
       templateUrl: 'myModalContent.html',
-      directive: 'ModalInstanceCtrl',
+      directive: 'modalInstanceCtrl',
       size: size,
       resolve: {
         items: function () {
@@ -64,7 +64,7 @@ angular.module('myApp.directives', ['ngRoute']).
       $log.info('Modal dismissed at: ' + new Date());
     });
   };
-}).directive('ModalInstanceCtrl', function ($scope, $modalInstance, items) {
+}).directive('modalInstanceCtrl', function ($scope, $modalInstance, items) {
 
   $scope.items = items;
   $scope.selected = {
