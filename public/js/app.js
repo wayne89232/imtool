@@ -51,7 +51,7 @@ config(function ($routeProvider, $locationProvider) {
     }).
     when('/view_mission', {
       templateUrl: 'partials/view_mission',
-      controller: 'AppCtrl'
+      controller: 'view_mission'
     }).
     otherwise({
       redirectTo: '/home'

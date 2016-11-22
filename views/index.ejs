@@ -15,15 +15,12 @@
 		<script src="/pickadate/lib/picker.js"></script>
 		<script src="/pickadate/lib/picker.date.js"></script>
 		<script src="/pickadate/lib/picker.time.js"></script>
-
 		<script src="js/app.js"></script>
 		<script src="js/services.js"></script>
 		<script src="js/controllers.js"></script>
 		<script src="js/filters.js"></script>
 		<script src="js/directives.js"></script>
-
 		<script src="/js/tablesort.js"></script>
-
 		<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
 		<link rel="stylesheet" type="text/css" href="/pickadate/lib/themes/classic.css">
 		<link rel="stylesheet" type="text/css" href="/pickadate/lib/themes/classic.time.css">
@@ -35,11 +32,10 @@
 		<div class="ui mini menu">
 			<a class="item" href="/home">Home</a>
 			<a class="item" href="/discover">Discover</a>
-			<a class="item" href="/view_mission">Start tooling</a>
+			<a class="item" href="/view_mission">View Mission</a>
 			<a class="item" href="/user_info">Personal Info</a>
 			<a class="item" href="/mission_list">Missions</a>
 			<a class="item" href="/rank_list">Rankings</a>
-			<a class="item" href="/testPopup">testPopup</a>
 			<div class="right menu">
 				<div class="ui dropdown item">
 					Language <i class="dropdown icon"></i>
@@ -53,6 +49,7 @@
 				</div>
 			</div>
 		</div>
+
 		<div class="ui modal login">
 			<i class="close icon"></i>
 			<div class=" content">
@@ -69,16 +66,16 @@
 								<div class="field">
 									<div class="ui left icon input">
 										<i class="user icon"></i>
-										<input type="text" name="email" placeholder="Account">
+										<input type="text" name="email" placeholder="Account" ng-model="account">
 									</div>
 								</div>
 								<div class="field">
 									<div class="ui left icon input">
 										<i class="lock icon"></i>
-										<input type="password" name="password" placeholder="Password">
+										<input type="password" name="password" placeholder="Password" ng-model="password">
 									</div>
 								</div>
-								<div class="ui fluid large teal submit button">Login</div>
+								<div class="ui fluid large teal submit button" ng-click="login()">Login</div>
 							</div>
 							<div class="ui error message"></div>
 						</form>
@@ -91,7 +88,7 @@
 				</div>
 			</div>
 		</div>
-				<div class="ui modal mission">
+		<div class="ui modal mission">
 			<i class="close icon"></i>
 			<div class=" content">
 				<div class="ui middle aligned center aligned grid">
@@ -102,53 +99,52 @@
 							Start tooling
 						</div>
 						</h2>
-    <form class="ui form">
-        <h4 class="ui dividing header">Mission Title</h4>
-        <div class="field">
-            <div class="fields">
-                <input type="text" placeholder="Account">
-            </div>
-        </div>
-        <div class="field">
-            <label>Description</label>
-                <div class="ui segment">
-                    <!-- <input type="textarea" placeholder="Password"> -->
-                    <textarea></textarea>
-                </div>
-        </div>
-
-        <h4 class="ui dividing header">Locations</h4>
-        <div class="field">
-            <label>Where to tool you or be tooled</label>
-            <select class="ui fluid search dropdown" multiple="">
-                <option value="">Add your own if not here</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select>
-        </div>
-        <h4 class="ui dividing header">Required skills</h4>
-        <div class="field">
-            <select class="ui fluid search dropdown" multiple="">
-                <option value="">Add your own if not here</option>
-                <option value="1">駝獸</option>
-                <option value="2">修電腦</option>
-                <option value="3">寫作業</option>
-            </select>
-        </div>
-        <h4 class="ui dividing header">Schedule</h4>
-        <div class="field">
-            <label>Start time</label>
-            <div class="fields">
-                <input type="text" class="datepicker" placeholder="Pick the date the task should start">
-            </div>
-            <label>Deadline</label>
-            <div class="fields">
-                <input type="text" class="datepicker" placeholder="Deadline">
-            </div>
-        </div>
-        <div class="ui button" tabindex="0">GO</div>
-    </form>
+						<form class="ui form">
+							<h4 class="ui dividing header">Mission Title</h4>
+							<div class="field">
+								<div class="fields">
+									<input ng-model="title" type="text" placeholder="title">
+								</div>
+							</div>
+							<div class="field">
+								<label>Description</label>
+								<div class="ui segment">
+									<!-- <input type="textarea" placeholder="Password"> -->
+									<textarea ng-model="content"></textarea>
+								</div>
+							</div>
+							<h4 class="ui dividing header">Locations</h4>
+							<div class="field">
+								<label>Where to tool you or be tooled</label>
+								<select ng-model="location" class="ui fluid search dropdown" multiple="">
+									<option value="">Add your own if not here</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+								</select>
+							</div>
+							<h4 class="ui dividing header">Required skills</h4>
+							<div class="field">
+								<select class="ui fluid search dropdown" multiple="" ng-model="skills">
+									<option value="">Add your own if not here</option>
+									<option value="1">駝獸</option>
+									<option value="2">修電腦</option>
+									<option value="3">寫作業</option>
+								</select>
+							</div>
+							<h4 class="ui dividing header">Schedule</h4>
+							<div class="field">
+								<label>Start time</label>
+								<div class="fields">
+									<input type="text" class="datepicker" placeholder="Pick the date the task should start" ng-model="start_time">
+								</div>
+								<label>Deadline</label>
+								<div class="fields">
+									<input type="text" class="datepicker" placeholder="Deadline" ng-model="expire_time">
+								</div>
+							</div>
+							<div class="ui button" tabindex="0" ng-click="add_mission()">GO</div>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -160,37 +156,35 @@
 			</div>
 			<div class="image content">
 						<div class="image">
-									<i class="archive icon"></i>
+										<i class="archive icon"></i>
 						</div>
 						<div class="description">
-									<p>Your inbox is getting full, would you like us to enable automatic archiving of old messages?</p>
+										<p>Your inbox is getting full, would you like us to enable automatic archiving of old messages?</p>
 						</div>
 			</div>
 			<div class="actions">
 						<div class="two fluid ui inverted buttons">
-									<div class="ui cancel red basic inverted button">
-												<i class="remove icon"></i>
-												No
-									</div>
-									<div class="ui ok green basic inverted button">
-												<i class="checkmark icon"></i>
-												Yes
-									</div>
+										<div class="ui cancel red basic inverted button">
+														<i class="remove icon"></i>
+														No
+										</div>
+										<div class="ui ok green basic inverted button">
+														<i class="checkmark icon"></i>
+														Yes
+										</div>
 						</div>
 			</div>
 		</div> -->
 		<!-- The div for partials -->
-							<!-- <div class="overlay">
+		<!-- <div class="overlay">
 			<div class="ui fixed top sticky labeled icon vertical menu ">
 				<a class="item"><i class="twitter icon"></i> Tweet</a>
 			</div>
 		</div>
 		<div class = "container" id="context"> -->
-
 			<div ng-view="">
 				
 			</div>
-
 		</div>
 	</body>
 </html>
