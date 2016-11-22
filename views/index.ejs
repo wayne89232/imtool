@@ -69,16 +69,16 @@
 								<div class="field">
 									<div class="ui left icon input">
 										<i class="user icon"></i>
-										<input type="text" name="email" placeholder="Account">
+										<input type="text" name="email" placeholder="Account" ng-model="account">
 									</div>
 								</div>
 								<div class="field">
 									<div class="ui left icon input">
 										<i class="lock icon"></i>
-										<input type="password" name="password" placeholder="Password">
+										<input type="password" name="password" placeholder="Password" ng-model="password">
 									</div>
 								</div>
-								<div class="ui fluid large teal submit button">Login</div>
+								<div class="ui fluid large teal submit button" ng-click="login()">Login</div>
 							</div>
 							<div class="ui error message"></div>
 						</form>
