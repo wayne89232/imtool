@@ -36,14 +36,42 @@ angular.module('myApp.controllers', ['ngRoute']).controller('AppCtrl', function 
             // 	$window.location.reload();
             // 	// $location.path("/mission");
             // });
-            console.log(data)
-            $window.location.reload;
+
+            // $window.location.reload();
+                        console.log(data)
         }
         else{
             alert("Fill in all entities!");
         }
     }
-
+	$scope.login = function(){
+		if($scope.account != null && $scope.password != null){
+	            var data = {
+	                account: $scope.account, 
+	                password: $scope.password
+	            };
+	            console.log(data)
+		  //   $http({ 
+		  //   	method:"POST", 
+		  //   	url:'/user/login',
+		  //   	data: data
+		  //    }).then(function(result){
+				// if(result.data.success==true){
+				// 	$window.localStorage.setItem("is_login", true);
+				// 	$window.localStorage.setItem("account", result.data.user);
+				// 	$window.localStorage.setItem("user_id", result.data.user_id);
+				// 	$window.location.reload();
+				// }
+				// else{
+				// 	alert(result.data.msg);
+				// 	$window.location.reload();
+				// }
+		  //   });	
+		}
+		else{
+			alert("Invalid account or password");
+		}
+	}
 }).controller('create_mission', function ($scope, $http, $location) {
 	$('.ui .dropdown').dropdown({
     maxSelections: 5,
