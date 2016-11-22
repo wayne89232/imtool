@@ -5,7 +5,11 @@ angular.module('myApp.controllers', ['ngRoute']).controller('AppCtrl', function 
     maxSelections: 5,
     allowAdditions: true
   });
-	$('.datepicker').pickadate();
+
+    $('.datepicker').pickadate({
+		selectMonths: true, // Creates a dropdown to control month
+		selectYears: 3 // Creates a dropdown of 15 years to control year
+	});
 	$scope.jump_login = function(){
 		$('.ui.modal.login').modal('show');
 	}
