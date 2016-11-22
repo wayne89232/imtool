@@ -7,11 +7,13 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     morgan = require('morgan'),
     expressValidator = require('express-validator'),
+    session = require('express-session');
     routes = require('./routes'),
     api = require('./routes/api'),
     user = require('./routes/user'),
     mission = require('./routes/mission'),
     express_validators = require('./config').express_validators,
+
     
     // import routers
     // example = require('./routes/example'),
@@ -37,6 +39,10 @@ app.use(expressValidator({
 }));
 app.use(express.static(path.join(__dirname, 'bower_components')));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: 'IMTOOL',
+  cookie: { maxAge: 60 * 1000 }
+}))
 
 
 var env = process.env.NODE_ENV || 'development';
@@ -68,8 +74,8 @@ app.get('/getUserMission/:id', user.tooler_mission);
 
 //mission
 app.post('/createMission', mission.create_mission);
-app.get('/getMissions', mission.list_mission);
-app.get('/getMissions/:state', mission.list_mission);
+app.get('/getMissions', mission. list_mission);
+app.get('/viewEvent/:id', mission. view_event);
 
 
 //functions, ex: 

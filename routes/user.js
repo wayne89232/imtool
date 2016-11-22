@@ -7,7 +7,15 @@ var _ = require('underscore');
 var async = require('async');
 
 exports.login = function (req, res){
-    // case for sso login: if found login, if not create one
+    req.checkBody('account').notEmpty();
+    req.checkBody('password').notEmpty();
+
+    var errors = req.validationErrors();
+    if (errors) {
+        return res.status(405).json({
+            errors: errors
+        });
+    }
 
     var searchId = crypto.createHash('md5').update('imtool' + req.body.account + req.body.password).digest('hex');
 
@@ -21,12 +29,48 @@ exports.login = function (req, res){
             });
         }
         else{
+            req.session.user = user.dataValues
             res.json({
                 success: true,
                 user: user.dataValues
             });
         }
     });
+}
+
+exports.logout = function (req, res){
+    // req.checkBody('account').notEmpty();
+    // req.checkBody('password').notEmpty();
+
+    // var errors = req.validationErrors();
+    // if (errors) {
+    //     return res.status(405).json({
+    //         errors: errors
+    //     });
+    // }
+
+    // var searchId = crypto.createHash('md5').update('imtool' + req.body.account + req.body.password).digest('hex');
+
+    // User.find({
+    //     where: {user_id: searchId}
+    // }).then(function(user){
+    //     if(user == null){
+    //         res.json({
+    //             success:false,
+    //             msg: "No such user or Wrong password"
+    //         });
+    //     }
+    //     else{
+    //         req.session.user = user.dataValues
+    //         res.json({
+    //             success: true,
+    //             user: user.dataValues
+    //         });
+    //     }
+    // });
+
+    req.session.user = false;
+    res.redirect('/');
 }
 
 exports.register = function(req, res){

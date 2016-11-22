@@ -63,8 +63,8 @@ exports.list_mission = function(req, res){
 		limit: 20
 	}
 
-	if (req.params.state){
-		req.checkParams('state').isMissionState();
+	if (req.body.state){
+		req.checkBody('state').isMissionState();
 
 		var errors = req.validationErrors();
 		if (errors) {
@@ -74,7 +74,7 @@ exports.list_mission = function(req, res){
 		}
 
 		query.where = {
-			state: req.params.state
+			state: req.body.state
 		}
 
 	}
@@ -88,12 +88,24 @@ exports.list_mission = function(req, res){
 }
 
 exports.view_event = function(req, res){
+
+	req.checkParams('id').notEmpty();
+
+	var errors = req.validationErrors();
+	if (errors) {
+		return res.status(405).json({
+			errors: errors
+		});
+	}
+	
 	Mission.find({ 
 		where:{ 
-			mission_id: req.params.mission_id 
+			mission_id: req.params.id 
 		} 
 	}).then(function(result){
 		res.json({ data: result.dataValues });
+	}).catch(function(err){
+		res.send(err);
 	});
 }
 
