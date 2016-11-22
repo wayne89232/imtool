@@ -2,111 +2,162 @@
 	<div class="ui items ">
 		<div class="item">
 			<div class="image">
-				<img src="/assets/images/image.png">
+				<img src="/assets/images/ee.jpg">
 			</div>
 			<div class="content">
-				<a class="header">Mission Title</a>
+				<h4 class="header">徵女一舍到管院單程前往車夫一名 >< </h4>
 				<div class="meta">
-					<span>User</span>
+					<div class="ui feed">
+						<div class="event">
+							<div class="label">
+								<img src="/assets/images/ee.jpg">
+							</div>
+							<div class="content">
+								<div class="summary">
+									<a class="user">
+										EE
+									</a> hosted the mission on
+									<div class="date">
+										2016/11/22
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="description">
+					徵女一舍到管院單程前往車夫一名 ><
 				</div>
-				<div class="extra">
-					Description
+				<div class="extra bottom ">
+					<div class="ui label">Bike</div>
+					<div class="ui label">Handsome?</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="ui divider"></div>
-	<div class="row ">
-		<h2 class="ui header ">
-		<img src="/assets/images/tool.png" class="ui circular image">
-		Tools
-		</h2>
-	</div>
-	<div class="ui three cards visible container">
-		<div class="ui card">
-			<div class="image dimmable">
-				<div class="ui blurring inverted dimmer">
-					<div class="content">
-						<div class="center">
-							<div class="ui teal button">Add Friend</div>
+	<div>
+		<div class="ui divider" ng-show="identity()"></div>
+		<div class="ui one column grid" ng-show="identity()">
+			<div class="row">
+				<h2 class="ui header ">
+				<img src="/assets/images/tool.png" class="ui circular image">
+				Tool'em all
+				</h2>
+			</div>
+			<div class="row">
+				<div class="ui list selection">
+					<div class="item">
+						<i class="map marker icon"></i>
+						<div class="content">
+							<div class="header">Stop recruiting</div>
+							<div class="description">The mission will then be started and disable toolmans to join.</div>
+						</div>
+					</div>
+										<div class="item">
+						<i class="map marker icon"></i>
+						<div class="content">
+							<div class="header">Fire a toolman</div>
+							<div class="description">Fire him/her if you think he's shit.</div>
+						</div>
+					</div>
+					<div class="item" ng-click="missionCleared()">
+						<i class="map marker icon"></i>
+						<div class="content">
+							<div class="header" >End mission</div>
+							<div class="description">Close the mission.</div>
 						</div>
 					</div>
 				</div>
-				<img src="../assets/images/image.png">
-			</div>
-			<div class="content">
-				<div class="header">Title</div>
-				<div class="meta">
-					<a class="group">Meta</a>
-				</div>
-				<div class="description">One or two sentence description that may go to several lines</div>
-			</div>
-			<div class="extra content">
-				<a class="right floated created">Arbitrary</a>
-				<a class="friends">
-				Arbitrary</a>
 			</div>
 		</div>
-		<div class="ui card">
-			<div class="image dimmable">
-				<div class="ui blurring inverted dimmer">
-					<div class="content">
-						<div class="center">
-							<div class="ui teal button">Add Friend</div>
-						</div>
-					</div>
+		<div class="ui divider"></div>
+		<div class="row ">
+			<h2 class="ui header ">
+			<img src="/assets/images/tool.png" class="ui circular image">
+			Tools
+			</h2>
+		</div>
+		<div class="ui horizontal list selection huge">
+			<div class="item">
+				<img class="ui avatar image" src="/assets/images/pu2.jpg">
+				<div class="content">
+					<div class="header">Tom</div>
+					PM
 				</div>
-				<img src="../assets/images/image.png">
 			</div>
-			<div class="content">
-				<div class="header">Title</div>
-				<div class="meta">
-					<a class="group">Meta</a>
+			<div class="item">
+				<img class="ui avatar image" src="/assets/images/pu2.jpg">
+				<div class="content">
+					<div class="header">Christian Rocha</div>
+					MVP
 				</div>
-				<div class="description">One or two sentence description that may go to several lines</div>
 			</div>
-			<div class="extra content">
-				<a class="right floated created">Arbitrary</a>
-				<a class="friends">
-				Arbitrary</a>
+			<div class="item">
+				<img class="ui avatar image" src="/assets/images/pu2.jpg">
+				<div class="content">
+					<div class="header">Matt</div>
+					Free rider
+				</div>
+			</div>
+			<div class="item" ng-show="identity()">
+				<i class="plus square outline icon"></i>
+				<div class="content">
+					<div class="header">Tool more</div>
+				</div>
+			</div>
+			<div class="item" ng-hide="identity()">
+				<i class="plus square outline icon"></i>
+				<div class="content">
+					<div class="header">Tool me</div>
+				</div>
 			</div>
 		</div>
-<div class="ui card">
-			<div class="image dimmable">
-				<div class="ui blurring inverted dimmer">
-					<div class="content">
-						<div class="center">
-							<div class="ui teal button">Add Friend</div>
-						</div>
-					</div>
-				</div>
-				<img src="../assets/images/add_user.png">
+		<div class="ui divider"></div>
+		<div class="ui one column grid">
+			<div class="row">
+				<h2 class="ui header ">
+				<img src="/assets/images/tool.png" class="ui circular image">
+				Progress
+				</h2>
 			</div>
-			<div class="content">
-				<div class="header">Title</div>
-				<div class="meta">
-					<a class="group">Meta</a>
+			<div class="row">
+				<div class="ui pointing below basic red right label">
+					Mission ends in XXXX/XX/XX
 				</div>
-				<div class="description">One or two sentence description that may go to several lines</div>
-			</div>
-			<div class="extra content">
-				<a class="right floated created">Arbitrary</a>
-				<a class="friends">
-				Arbitrary</a>
 			</div>
 		</div>
+		<div class="ui indicating progress" data-value="150" data-total="200">
+			<div class="bar"></div>
+			<div class="label">Recruiting</div>
+		</div>
 	</div>
-	<div class="ui divider"></div>
-	<div class="row ">
-		<h2 class="ui header ">
-		<img src="/assets/images/tool.png" class="ui circular image">
-		Progress
-		</h2>
+	<div class="ui modal small">
+		<div class="header">Mission Cleared - Rate your toolmans</div>
+		<div class="content">
+			<div class="ui form">
+				<div class="field">
+					<label>Rating</label>
+					<div class="ui star rating" data-max-rating="5"></div>
+				</div>
+				<div class="field">
+					<label>Comment</label>
+					<textarea></textarea>
+				</div>
+			</div>
+			<div class="ui divider"></div>
+			<div class="ui form">
+				<div class="field">
+					<label>Rating</label>
+					<div class="ui star rating" data-max-rating="5"></div>
+				</div>
+				<div class="field">
+					<label>Comment</label>
+					<textarea></textarea>
+				</div>
+			</div>
+		</div>
+		<div class="actions">
+			<div class="ui ok button">Save Comment</div>
+			<div class="ui cancel button">Cancel</div>
+		</div>
 	</div>
-	<div class="ui indicating progress">
-		<div class="bar"></div>
-		<div class="label">Recruiting</div>
-	</div>
-</div>

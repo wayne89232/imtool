@@ -17,7 +17,7 @@ var Skill = require('./skill').Skill(Sequelize,sequelize);
 var Toolship = require('./toolship').Toolship(Sequelize,sequelize);
 var User_location = require('./user_location').User_location(Sequelize,sequelize);
 var User_skill = require('./user_skill').User_skill(Sequelize,sequelize);
-
+var Mission_skill = require('./mission_skill').Mission_skill(Sequelize,sequelize);
 
 
 //add some relations here
@@ -36,6 +36,9 @@ Skill.hasMany(User_skill,{foreignKey: 'skill_id'});
 
 User.hasMany(Toolship,{foreignKey: 'user_id'});
 Mission.hasMany(Toolship,{foreignKey: 'mission_id'});
+
+Skill.hasMany(Mission_skill,{foreignKey: 'skill_id'});
+Mission.hasMany(Mission_skill,{foreignKey: 'mission_id'});
 
 //export for use in other directory
 // exports.Example = Example;

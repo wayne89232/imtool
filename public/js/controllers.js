@@ -7,8 +7,6 @@ angular.module('myApp.controllers', ['ngRoute']).controller('AppCtrl', function 
   });
 
     $('.datepicker').pickadate({
-		selectMonths: true, // Creates a dropdown to control month
-		selectYears: 3 // Creates a dropdown of 15 years to control year
 	});
 	$scope.jump_login = function(){
 		$('.ui.modal.login').modal('show');
@@ -82,6 +80,24 @@ angular.module('myApp.controllers', ['ngRoute']).controller('AppCtrl', function 
     allowAdditions: true
   });
 }).controller('discover', function ($scope, $http, $location) {
+}).controller('view_mission', function ($scope, $http, $location) {
+
+	$('.progress').progress();
+	$('.ui.rating').rating('enable');
+
+	var user = true;
+	var tool = false
+	$scope.identity = function(){
+		if (user) {
+			return (true);
+		}
+		else{
+			return( false );
+		}
+	}
+	$scope.missionCleared = function(){
+		$('.ui.small.modal').modal('show');
+	}
 }).controller('mission_list', function ($scope, $http, $location) {
 
 }).controller('rank_list', function ($scope, $http, $location) {
