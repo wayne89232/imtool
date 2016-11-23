@@ -69,13 +69,18 @@ app.get('/partials/:name', routes.partials);
 //user
 app.post('/register', user.register);
 app.post('/login', user.login);
+app.post('/logout', user.logout);
 app.get('/getUserInfo/:id', user.user_info);
+app.get('/getUserSkill/:id', user.user_skills);
 app.get('/getUserMission/:id', user.tooler_mission);
+app.get('/getToolMission/:id', user.tool_mission);
+
 
 //mission
 app.post('/createMission', mission.create_mission);
-app.get('/getMissions', mission. list_mission);
-app.get('/viewEvent/:id', mission. view_event);
+app.get('/getMissions', mission.list_mission);
+app.get('/viewEvent/:id', mission.view_event);
+app.get('/find_tools/:id', mission.find_tools);
 
 
 //functions, ex: 

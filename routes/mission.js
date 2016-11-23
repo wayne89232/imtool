@@ -4,6 +4,7 @@ var _ = require('underscore');
 var Mission = require('../models').Mission;
 var User = require('../models').User;
 var Toolship = require('../models').Toolship;
+var Mission_skill = require('../models').Mission_skill;
 
 var crypto = require('crypto');
 
@@ -60,7 +61,8 @@ exports.list_mission = function(req, res){
 			['start_time', 'DESC'],
 			['expire_time', 'DESC'],
 		],
-		limit: 20
+		limit: 20,
+		include: [User]
 	}
 
 	if (req.body.state){
@@ -101,10 +103,39 @@ exports.view_event = function(req, res){
 	Mission.find({ 
 		where:{ 
 			mission_id: req.params.id 
-		} 
+		},
+		include: [User,Toolship] 
 	}).then(function(result){
 		res.json({ data: result.dataValues });
 	}).catch(function(err){
+		console.log(err)
+		res.send(err);
+	});
+}
+
+exports.find_tools = function(req, res){
+
+	req.checkParams('id').notEmpty();
+
+	var errors = req.validationErrors();
+	if (errors) {
+		return res.status(405).json({
+			errors: errors
+		});
+	}
+	
+	Toolship.findAll({ 
+		where:{ 
+			mission_id: req.params.id 
+		},
+		include: [User]
+	}).then(function(result){
+		var toolList = _.map(result, function(result){
+			return result.dataValues;
+		});
+		res.json({ data: toolList });
+	}).catch(function(err){
+		console.log(err)
 		res.send(err);
 	});
 }

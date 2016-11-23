@@ -13,9 +13,9 @@ config(function ($routeProvider, $locationProvider) {
       templateUrl: 'partials/home',
       controller: 'AppCtrl'
     }).
-    when('/user_info', {
+    when('/user_info/:id', {
       templateUrl: 'partials/user_info',
-      controller: 'AppCtrl'
+      controller: 'user_info'
     }).
     when('/mission_list', {
       templateUrl: 'partials/mission_list',
@@ -49,7 +49,7 @@ config(function ($routeProvider, $locationProvider) {
       templateUrl: 'partials/register_page',
       controller: 'register_page'
     }).
-    when('/view_mission', {
+    when('/view_mission/:id', {
       templateUrl: 'partials/view_mission',
       controller: 'view_mission'
     }).

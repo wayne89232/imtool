@@ -32,8 +32,6 @@
 		<div class="ui mini menu">
 			<a class="item" href="/home">Home</a>
 			<a class="item" href="/discover">Discover</a>
-			<a class="item" href="/view_mission">View Mission</a>
-			<a class="item" href="/user_info">Personal Info</a>
 			<a class="item" href="/mission_list">Missions</a>
 			<a class="item" href="/rank_list">Rankings</a>
 			<div class="right menu">
@@ -44,8 +42,19 @@
 						<a class="item">TW</a>
 					</div>
 				</div>
-				<div class="item">
+				<div class="item" ng-hide="is_login">
 					<div class="ui primary button" ng-click="jump_login()">Sign In</div>
+				</div>
+				<div class="ui middle aligned list selection">
+				<div class="item " ng-show="is_login" ng-click="user_info()" >
+					<img class="ui avatar image" src="{{photo}}">
+					<div class="content">
+						<div class="header" ng-bind="local_user"></div>
+					</div>
+				</div>
+				</div>
+				<div class="item" ng-show="is_login">
+					<div class="ui primary button" ng-click="logout()">Logout</div>
 				</div>
 			</div>
 		</div>
@@ -149,39 +158,6 @@
 				</div>
 			</div>
 		</div>
-		<!-- 		<div class="ui basic modal">
-			<i class="close icon"></i>
-			<div class="header">
-						Archive Old Messages
-			</div>
-			<div class="image content">
-						<div class="image">
-										<i class="archive icon"></i>
-						</div>
-						<div class="description">
-										<p>Your inbox is getting full, would you like us to enable automatic archiving of old messages?</p>
-						</div>
-			</div>
-			<div class="actions">
-						<div class="two fluid ui inverted buttons">
-										<div class="ui cancel red basic inverted button">
-														<i class="remove icon"></i>
-														No
-										</div>
-										<div class="ui ok green basic inverted button">
-														<i class="checkmark icon"></i>
-														Yes
-										</div>
-						</div>
-			</div>
-		</div> -->
-		<!-- The div for partials -->
-		<!-- <div class="overlay">
-			<div class="ui fixed top sticky labeled icon vertical menu ">
-				<a class="item"><i class="twitter icon"></i> Tweet</a>
-			</div>
-		</div>
-		<div class = "container" id="context"> -->
 			<div ng-view="">
 				
 			</div>
