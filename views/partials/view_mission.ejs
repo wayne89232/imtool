@@ -2,35 +2,33 @@
 	<div class="ui items ">
 		<div class="item">
 			<div class="image">
-				<img src="/assets/images/ee.jpg">
+				<img src="{{mission_info.User.photo_url}}">
 			</div>
 			<div class="content">
-				<h4 class="header">徵女一舍到管院單程前往車夫一名 >< </h4>
+				<h4 class="header" ng-bind="mission_info.title"></h4>
 				<div class="meta">
 					<div class="ui feed">
 						<div class="event">
 							<div class="label">
-								<img src="/assets/images/ee.jpg">
+								<img src="{{mission_info.User.photo_url}}">
 							</div>
 							<div class="content">
 								<div class="summary">
-									<a class="user">
-										EE
+									<a class="user" ng-bind="mission_info.User.user_name">
 									</a> hosted the mission on
 									<div class="date">
-										2016/11/22
+										2016/11/23
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="description">
-					徵女一舍到管院單程前往車夫一名 ><
+				<div class="description" ng-bind="mission_info.content">
 				</div>
 				<div class="extra bottom ">
+				<!-- ng-repeat="tool in mission_info.Toolship" -->
 					<div class="ui label">Bike</div>
-					<div class="ui label">Handsome?</div>
 				</div>
 			</div>
 		</div>
@@ -78,25 +76,11 @@
 			</h2>
 		</div>
 		<div class="ui horizontal list selection huge">
-			<div class="item">
-				<img class="ui avatar image" src="/assets/images/pu2.jpg">
+			<div class="item" ng-repeat="tool in tools">
+				<img class="ui avatar image" src="{{tool.User.photo_url}}">
 				<div class="content">
-					<div class="header">Tom</div>
-					PM
-				</div>
-			</div>
-			<div class="item">
-				<img class="ui avatar image" src="/assets/images/pu2.jpg">
-				<div class="content">
-					<div class="header">Christian Rocha</div>
-					MVP
-				</div>
-			</div>
-			<div class="item">
-				<img class="ui avatar image" src="/assets/images/pu2.jpg">
-				<div class="content">
-					<div class="header">Matt</div>
-					Free rider
+					<div class="header" ng-bind="tool.User.user_name"></div>
+					Nice tool
 				</div>
 			</div>
 			<div class="item" ng-show="identity()">

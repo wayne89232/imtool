@@ -1,20 +1,18 @@
 <div class="ui items container">
 	<div class="item">
 		<div class="image">
-			<img src="/assets/images/pu2.jpg">
+			<img src="{{user_info.photo_url}}">
 		</div>
 		<div class="content">
-			<a class="header">Pu</a>
+			<a class="header" ng-bind="user_info.user_name"></a>
 			<div class="meta">
-				<span>Man</span>
+				<span ng-bind="user_info.gender"></span>
 			</div>
-<!-- 			<div class="description">
-				Contents
-			</div> -->
 			<h4>Skills</h4>
 			<div class="extra">
-									<div class="ui label">Bike</div>
-					<div class="ui label">$$</div>
+					<div class="ui label" ng-repeat="skill in skill_list">
+						<div ng-bind="skill.Skill.skill"></div>
+					</div>
 			</div>
 		</div>
 	</div>
@@ -26,26 +24,16 @@
 			<table class="ui selectable basic table">
 				<thead>
 					<tr>
-						<th>Completed Missions</th>
+						<th>Mission List</th>
 						<th>User</th>
-						<th class="right aligned">Rating</th>
+						<th class="right aligned">Status</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>買早餐</td>
-						<td>A</td>
-						<td class="right aligned">1</td>
-					</tr>
-					<tr>
-						<td>買午餐</td>
-						<td>Ａ</td>
-						<td class="right aligned">1</td>
-					</tr>
-					<tr>
-						<td>買晚餐</td>
-						<td>Ａ</td>
-						<td class="right aligned">1</td>
+					<tr ng-repeat="mission in tool_mission" ng-click="view_mission(mission.mission_id)">
+						<td ng-bind="mission.Mission.title"></td>
+						<td>J</td>
+						<td ng-bind="mission.Mission.state" class="right aligned"> - </td>
 					</tr>
 				</tbody>
 			</table>
@@ -60,15 +48,10 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>修電腦</td>
-						<td>Done</td>
-						<td class="right aligned">1</td>
-					</tr>
-					<tr>
-						<td>修電腦</td>
-						<td>Done</td>
-						<td class="right aligned">1</td>
+					<tr ng-repeat="mission in user_mission" ng-click="view_mission(mission.mission_id)">
+						<td ng-bind="mission.title"></td>
+						<td ng-bind="mission.state"></td>
+						<td class="right aligned">2</td>
 					</tr>
 				</tbody>
 			</table>

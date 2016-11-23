@@ -1,5 +1,25 @@
 <div class="ui divided items container">
-	<div class="item">
+	<div class="item" ng-repeat="mission in missions">
+		<div class="image">
+			<img src="{{mission.User.photo_url}}">
+		</div>
+		<div class="content">
+			<a class="header" ng-bind="mission.title"></a>
+			<div class="meta">
+				<span class="cinema">2016.11.23</span>
+			</div>
+			<div class="description" ng-bind="mission.content">
+			</div>
+			<div class="extra">
+				<!-- <div class="ui label">Bike</div> -->
+				<div class="ui right floated primary button" ng-click="view_mission(mission.mission_id)">
+					View Mission
+					<i class="right chevron icon"></i>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- 	<div class="item">
 		<div class="image">
 			<img src="/assets/images/ee.jpg">
 		</div>
@@ -13,7 +33,6 @@
 			</div>
 			<div class="extra">
 				<div class="ui label">Bike</div>
-				<!-- <div class="ui label"><i class="globe icon"></i> Additional Languages</div> -->
 				<div class="ui label">Handsome?</div>
 				<div class="ui right floated primary button">
 					View Mission
@@ -65,5 +84,5 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 </div>
