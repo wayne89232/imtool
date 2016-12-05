@@ -82,7 +82,7 @@ app.post('/createMission', mission.create_mission);
 app.get('/getMissions', mission.list_mission);
 app.get('/viewEvent/:id', mission.view_event);
 app.get('/find_tools/:id', mission.find_tools);
-
+app.get('/mission_skills/:id', mission.mission_skills);
 
 //functions, ex: 
 // app.post('/api/add_league', api.add_league);
