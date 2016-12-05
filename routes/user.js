@@ -144,3 +144,15 @@ exports.tool_mission = function(req, res){
         res.send(err)
     });
 }
+
+exports.user_list = function(req, res){
+    User.findAll().then(function(result){
+        var user_list = _.map(result, function(result){
+            return result.dataValues;
+        });
+        res.json({ data: user_list });
+    }).catch(function(err){
+        console.log(err)
+        res.send(err)
+    });
+}
