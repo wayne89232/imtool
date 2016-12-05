@@ -5,6 +5,7 @@ var Mission = require('../models').Mission;
 var User = require('../models').User;
 var Toolship = require('../models').Toolship;
 var Mission_skill = require('../models').Mission_skill;
+var Skill = require('../models').Skill;
 
 var crypto = require('crypto');
 
@@ -139,6 +140,35 @@ exports.find_tools = function(req, res){
 		res.send(err);
 	});
 }
+
+exports.mission_skills = function(req, res){
+
+	req.checkParams('id').notEmpty();
+
+	var errors = req.validationErrors();
+	if (errors) {
+		return res.status(405).json({
+			errors: errors
+		});
+	}
+	console.log(123)
+	
+	Mission_skill.findAll({ 
+		where:{ 
+			mission_id: req.params.id 
+		},
+		include: [Skill]
+	}).then(function(result){
+		var skillList = _.map(result, function(result){
+			return result.dataValues;
+		});
+		res.json({ data: skillList });
+	}).catch(function(err){
+		console.log(err)
+		res.send(err);
+	});
+}
+
 
 exports.get_tooled = function(req, res){
 	var new_id = crypto.randomBytes(20).toString('hex');
