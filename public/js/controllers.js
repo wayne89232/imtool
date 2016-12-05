@@ -13,13 +13,24 @@ angular.module('myApp.controllers', ['ngRoute']).controller('AppCtrl', function 
     	allowAdditions: true
   	});
 
+$('.ui.basic.modal')
+  .modal('show')
+;
+$('.ui.sticky')
+  .sticky({
+    context: '#example1'
+  })
+;
     $('.datepicker').pickadate({
 	});
 	$scope.jump_login = function(){
 		$('.ui.modal.login').modal('show');
 	}
 	$scope.create_mission = function(){
-		$('.ui.modal.mission').modal('show');
+		// $('.ui.modal.mission').modal('show');
+			$('.ui.labeled.icon.sidebar').sidebar('setting', 'transition', 'overlay')
+  .sidebar('toggle')
+;
 	}	
 	$scope.jump_register = function(){
 		$('.ui.modal').modal('hide');
