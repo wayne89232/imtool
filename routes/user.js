@@ -1,6 +1,8 @@
 var User = require('../models').User;
 var Mission = require('../models').Mission;
 var Toolship = require('../models').Toolship;
+var User_skill = require('../models').User_skill;
+var Skill = require('../models').Skill;
 var crypto = require('crypto');
 
 var _ = require('underscore');
@@ -18,6 +20,7 @@ exports.login = function (req, res){
     }
 
     var searchId = crypto.createHash('md5').update('imtool' + req.body.account + req.body.password).digest('hex');
+    console.log(searchId)
 
     User.find({
         where: {user_id: searchId}
@@ -39,36 +42,6 @@ exports.login = function (req, res){
 }
 
 exports.logout = function (req, res){
-    // req.checkBody('account').notEmpty();
-    // req.checkBody('password').notEmpty();
-
-    // var errors = req.validationErrors();
-    // if (errors) {
-    //     return res.status(405).json({
-    //         errors: errors
-    //     });
-    // }
-
-    // var searchId = crypto.createHash('md5').update('imtool' + req.body.account + req.body.password).digest('hex');
-
-    // User.find({
-    //     where: {user_id: searchId}
-    // }).then(function(user){
-    //     if(user == null){
-    //         res.json({
-    //             success:false,
-    //             msg: "No such user or Wrong password"
-    //         });
-    //     }
-    //     else{
-    //         req.session.user = user.dataValues
-    //         res.json({
-    //             success: true,
-    //             user: user.dataValues
-    //         });
-    //     }
-    // });
-
     req.session.user = false;
     res.redirect('/');
 }
@@ -129,19 +102,57 @@ exports.user_info = function(req, res){
         res.send(err)
     });
 }
+exports.user_skills = function(req, res){
+    User_skill.findAll({ 
+        where:{ user_id: req.params.id } , 
+        include: [Skill]
+    }).then(function(result){
+        var skillList = _.map(result, function(result){
+            return result.dataValues;
+        });
+        res.json({ data: skillList });
+    }).catch(function(err){
+        console.log(err)
+        res.send(err)
+    });
+}
 exports.tooler_mission = function(req, res){
     Mission.findAll({ 
         where:{ user_id: req.params.id }
     }).then(function(result){
-        res.json({ data: result });
+        var mission_list = _.map(result, function(result){
+            return result.dataValues;
+        });
+        res.json({ data: mission_list });
+    }).catch(function(err){
+        console.log(err)
+        res.send(err)
     });
 }
 
 exports.tool_mission = function(req, res){
     Toolship.findAll({ 
-        where:{ user_id: req.params.user_id },
+        where:{ user_id: req.params.id },
         include: [Mission] 
     }).then(function(result){
-        res.json({ data: result });
+        var mission_list = _.map(result, function(result){
+            return result.dataValues;
+        });
+        res.json({ data: mission_list });
+    }).catch(function(err){
+        console.log(err)
+        res.send(err)
+    });
+}
+
+exports.user_list = function(req, res){
+    User.findAll().then(function(result){
+        var user_list = _.map(result, function(result){
+            return result.dataValues;
+        });
+        res.json({ data: user_list });
+    }).catch(function(err){
+        console.log(err)
+        res.send(err)
     });
 }

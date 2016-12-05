@@ -30,15 +30,24 @@ Location.belongsTo(Mission,{foreignKey: 'location_id'});
 
 User.hasMany(User_location,{foreignKey: 'user_id'});
 Location.hasMany(User_location,{foreignKey: 'location_id'});
+User_location.belongsTo(Location,{foreignKey: 'location_id'});
+User_location.belongsTo(User,{foreignKey: 'user_id'});
 
 User.hasMany(User_skill,{foreignKey: 'user_id'});
 Skill.hasMany(User_skill,{foreignKey: 'skill_id'});
+User_skill.belongsTo(Skill,{foreignKey: 'skill_id'});
+User_skill.belongsTo(User,{foreignKey: 'user_id'});
+
 
 User.hasMany(Toolship,{foreignKey: 'user_id'});
 Mission.hasMany(Toolship,{foreignKey: 'mission_id'});
+Toolship.belongsTo(Mission,{foreignKey: 'mission_id'});
+Toolship.belongsTo(User,{foreignKey: 'user_id'});
 
 Skill.hasMany(Mission_skill,{foreignKey: 'skill_id'});
 Mission.hasMany(Mission_skill,{foreignKey: 'mission_id'});
+Mission_skill.belongsTo(Skill,{foreignKey: 'skill_id'});
+Mission_skill.belongsTo(Mission,{foreignKey: 'mission_id'});
 
 //export for use in other directory
 // exports.Example = Example;
@@ -50,4 +59,5 @@ exports.Skill = Skill;
 exports.Toolship = Toolship;
 exports.User_location = User_location;
 exports.User_skill = User_skill;
+exports.Mission_skill = Mission_skill;
 
