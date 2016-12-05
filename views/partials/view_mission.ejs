@@ -24,11 +24,13 @@
 						</div>
 					</div>
 				</div>
+				<div class="ui  segment">
 				<div class="description" ng-bind="mission_info.content">
+				</div>
 				</div>
 				<div class="extra bottom ">
 					<!-- ng-repeat="tool in mission_info.Toolship" -->
-					<div class="ui label">Bike</div>
+					<div class="ui label" ng-repeat="skill in skills" ng-bind="skill.Skill.skill"></div>
 				</div>
 			</div>
 		</div>

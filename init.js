@@ -17,6 +17,7 @@ var Skill = require('./models').Skill;
 var Toolship = require('./models').Toolship;
 var User_location = require('./models').User_location;
 var User_skill = require('./models').User_skill;
+var Mission_skill = require('./models').Mission_skill;
 
 
 // Sync database with below
@@ -29,3 +30,4 @@ Skill.sync({force: true});
 Toolship.sync({force: true});
 User_location.sync({force: true});
 User_skill.sync({force: true});
+Mission_skill.sync({force: true});
