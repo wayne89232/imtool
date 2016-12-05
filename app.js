@@ -74,6 +74,7 @@ app.get('/getUserInfo/:id', user.user_info);
 app.get('/getUserSkill/:id', user.user_skills);
 app.get('/getUserMission/:id', user.tooler_mission);
 app.get('/getToolMission/:id', user.tool_mission);
+app.get('/user_list', user.user_list);
 
 
 //mission

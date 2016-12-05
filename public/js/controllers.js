@@ -109,24 +109,35 @@ angular.module('myApp.controllers', ['ngRoute']).controller('AppCtrl', function 
 	$http({ method:"GET", url:'/viewEvent/' + $routeParams.id }).then(function(mission){
 		$scope.mission_info = mission.data.data;
 		$http({ method:"GET", url:'/find_tools/' + $scope.mission_info.mission_id }).then(function(tools){
-			$scope.tools = tools.data.data;
-			$scope.identity = function(){
-				if (cur_user == $scope.mission_info.User.user_id) {
-					return (true);
+			$http({ method:"GET", url:'/user_list/' }).then(function(users){
+				$scope.toolmans = users.data.data;
+				$scope.tools = tools.data.data;
+				$scope.identity = function(){
+					if (cur_user == $scope.mission_info.User.user_id) {
+						return (true);
+					}
+					else{
+						return( false );
+					}
 				}
-				else{
-					return( false );
-				}
-			}
+				$('.ui .dropdown').dropdown();
+			});
 		});
 	});
 
 	$('.progress').progress();
 	$('.ui.rating').rating('enable');
+	
 
 	$scope.missionCleared = function(){
-		$('.ui.small.modal').modal('show');
+		$('.ui.small.modal.mission_clear').modal('show');
 	}
+	$scope.add_tool = function(){
+		$('.ui.small.modal.add_tool').modal('show');
+	}
+    $scope.user_info = function(id){
+    	$location.path('/user_info/'+id);
+    }	
 }).controller('mission_list', function ($scope, $http, $location) {
 	$http({ method:"GET", url:'/getMissions/' }).then(function(missions){
 		$scope.missions = missions.data.data;
