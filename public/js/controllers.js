@@ -29,10 +29,7 @@ angular.module('myApp.controllers', ['ngRoute']).controller('AppCtrl', function 
 	}
 	$scope.create_mission = function(){
 		$('.ui.modal.mission').modal('show');
-	}	
-	// $scope.jump_register = function(){
-	// 	$('.ui.modal').modal('hide');
-	// }
+	}
     $scope.add_mission = function(){
     	if($scope.title != null ){
             var data = {
