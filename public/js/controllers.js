@@ -8,33 +8,31 @@ angular.module('myApp.controllers', ['ngRoute']).controller('AppCtrl', function 
 		$scope.photo = $window.localStorage.getItem("photo");
 	} 	
 
+	//initialize ui components
 	$('.ui .dropdown').dropdown({
     	maxSelections: 5,
     	allowAdditions: true
   	});
+	$('.datepicker').pickadate({});
 
-$('.ui.basic.modal')
-  .modal('show')
-;
-$('.ui.sticky')
-  .sticky({
-    context: '#example1'
-  })
-;
-    $('.datepicker').pickadate({
+	$rootScope.$on('$routeChangeStart', function (next, last) {
+   		$('.ui.modal').modal('hide');
 	});
+
+
+    
 	$scope.jump_login = function(){
 		$('.ui.modal.login').modal('show');
 	}
-	$scope.create_mission = function(){
-		// $('.ui.modal.mission').modal('show');
-			$('.ui.labeled.icon.sidebar').sidebar('setting', 'transition', 'overlay')
-  .sidebar('toggle')
-;
-	}	
-	$scope.jump_register = function(){
-		$('.ui.modal').modal('hide');
+	$scope.show_menu = function(){
+		$('.ui.basic.modal').modal('show');
 	}
+	$scope.create_mission = function(){
+		$('.ui.modal.mission').modal('show');
+	}	
+	// $scope.jump_register = function(){
+	// 	$('.ui.modal').modal('hide');
+	// }
     $scope.add_mission = function(){
     	if($scope.title != null ){
             var data = {
@@ -106,7 +104,12 @@ $('.ui.sticky')
 
 	}
     $scope.user_info = function(){
-    	$location.path('/user_info/'+$window.localStorage.getItem("user_id"));
+    	if($window.localStorage.getItem("is_login")){
+    		$location.path('/user_info/'+$window.localStorage.getItem("user_id"));
+    	}
+    	else{
+    		$scope.jump_login();
+    	}
     }	
 }).controller('create_mission', function ($scope, $http, $location) {
 	$('.ui .dropdown').dropdown({

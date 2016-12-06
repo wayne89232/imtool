@@ -34,11 +34,67 @@
 		</style>
 	</head>
 	<body ng-controller="AppCtrl">
+		<!-- menu button -->
+		<div class="ui left internal rail" >
+			<div ng-click="show_menu()" class="ui black big launch right attached fixed button">
+				<i class="content icon"></i>
+			</div>
+		</div>
+		<!-- main menu modal -->
+		<div class="ui basic modal">
+			<div class="ui equal width grid">
+				<div class="row">
+					<div class="column center aligned">
+						<div class="ui cancel basic inverted button mb" >
+							<a href="/home">
+							<div class="row"><i class="massive home icon"></i></div>
+							<div class="row"><h1>Home</h1></div>
+							</a>
+						</div>
+					</div>
+					<div class="column  center aligned" >
+						<div class="ui cancel basic inverted button mb" ng-click="user_info()">
+							<div class="row"><i class="massive user icon"></i></div>
+							<div class="row"><h1>User Info</h1></div>
+						</div>
+					</div>
+					<div class="column  center aligned">
+						<a href="/mission_list">
+						<div class="ui cancel basic inverted button mb">
+							<div class="row"><i class="massive browser icon"></i></div>
+							<div class="row"><h1>Missions</h1></div>
+						</div>
+						</a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="column  center aligned">
+						<div class="ui cancel basic inverted button mb" ng-click="create_mission()">
+							<div class="row"><i class="massive legal icon"></i></div>
+							<div class="row"><h1>Start tooling</h1></div>
+						</div>
+					</div>
+					<div class="column  center aligned" >
+						<div class="ui cancel basic inverted button mb">
+							<a>
+							<div class="row"><i class="massive user icon"></i></div>
+							<div class="row"><h1>Login</h1></div>
+							</a>						
+						</div>
+					</div>
+					<div class="column  center aligned">
+						<a href="/rank_list">
+						<div class="ui cancel basic inverted button mb">
+							<div class="row"><i class="massive sort content ascending  icon"></i></div>
+							<div class="row"><h1>Ranking</h1></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- navbar -->
 		<div class="ui mini menu">
-			<a class="item" href="/home">Home</a>
-			<a class="item" href="/discover">Discover</a>
-			<a class="item" href="/mission_list">Missions</a>
-			<a class="item" href="/rank_list">Rankings</a>
 			<div class="right menu">
 				<div class="ui dropdown item">
 					Language <i class="dropdown icon"></i>
@@ -63,6 +119,8 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- login -->
 		<div class="ui modal login">
 			<i class="close icon"></i>
 			<div class=" content">
@@ -101,6 +159,8 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- add mission -->
 		<div class="ui modal mission">
 			<i class="close icon"></i>
 			<div class=" content">
@@ -161,68 +221,10 @@
 				</div>
 			</div>
 		</div>
-		<div class="ui basic modal ">
-			<div class="ui equal width grid">
-				<div class="row">
-					<div class="column center aligned">
-						<div class="ui cancel basic inverted button mb">
-							<div class="row"><i class="massive home icon"></i></div>
-							<div class="row"><h1>Home</h1></div>
-						</div>
-					</div>
-					<div class="column  center aligned">
-						<div class="ui cancel basic inverted button mb">
-							<div class="row"><i class="massive user icon"></i></div>
-							<div class="row"><h1>User Info</h1></div>
-						</div>
-					</div>
-					<div class="column  center aligned">
-						<div class="ui cancel basic inverted button mb">
-							<div class="row"><i class="massive browser icon"></i></div>
-							<div class="row"><h1>Missions</h1></div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="column  center aligned">
-						<div class="ui cancel basic inverted button mb">
-							<div class="row"><i class="massive legal icon"></i></div>
-							<div class="row"><h1>Start tooling</h1></div>
-						</div>
-					</div>
-					<div class="column  center aligned">
-						<div class="ui cancel basic inverted button mb">
-							<div class="row"><i class="massive sort content ascending  icon"></i></div>
-							<div class="row"><h1>Ranking</h1></div>
-						</div>
-					</div>
-					<div class="column  center aligned">
-						<div class="ui cancel basic inverted button mb">
-							<div class="row"><i class="massive users icon"></i></div>
-							<div class="row"><h1>Community</h1></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		<!-- main container -->
 		<div ng-view="">
 			
 		</div>
-		<div class="ui top horizontal inverted sidebar labeled icon menu ">
-			<a class="item">
-				<i class="home icon"></i>
-				Home
-			</a>
-			<a class="item">
-				<i class="block layout icon"></i>
-				Missions
-			</a>
-			<a class="item">
-				<img class="ui avatar image " src="{{photo}}">
-				User Info
-			</a>
-		</div>
 		
-	</div>
-</body>
+	</body>
 </html>
