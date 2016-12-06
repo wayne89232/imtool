@@ -108,15 +108,18 @@ angular.module('myApp.controllers', ['ngRoute']).controller('AppCtrl', function 
     	else{
     		$scope.jump_login();
     	}
-    }	
+    }
 }).controller('create_mission', function ($scope, $http, $location) {
 	$('.ui .dropdown').dropdown({
     maxSelections: 5,
     allowAdditions: true
   });
 }).controller('discover', function ($scope, $http, $location) {
+
 }).controller('view_mission', function ($scope, $http, $location,$window,$routeParams) {
 	var cur_user = $window.localStorage.getItem("user_id");
+
+}).controller('mission_list', function ($scope, $http, $location) {
 
 	$http({ method:"GET", url:'/viewEvent/' + $routeParams.id }).then(function(mission){
 		$scope.mission_info = mission.data.data;
