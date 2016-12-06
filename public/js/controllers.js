@@ -18,7 +18,9 @@ angular.module('myApp.controllers', ['ngRoute']).controller('AppCtrl', function 
 	$rootScope.$on('$routeChangeStart', function (next, last) {
    		$('.ui.modal').modal('hide');
 	});
-
+	$('.ui.sticky').sticky({
+    	context: '#stick'
+  	});
 
     
 	$scope.jump_login = function(){
@@ -76,7 +78,6 @@ angular.module('myApp.controllers', ['ngRoute']).controller('AppCtrl', function 
 					$window.localStorage.setItem("user_id", user.user_id);
 					$window.localStorage.setItem("photo", user.photo_url);
 					$window.location.reload();
-					// console.log(user)
 					
 				}
 				else{
