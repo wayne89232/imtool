@@ -34,11 +34,14 @@
 		</style>
 	</head>
 	<body ng-controller="AppCtrl">
-		<div class="ui mini menu">
-			<a class="item" href="/home">Home</a>
-			<a class="item" href="/discover">Discover</a>
-			<a class="item" href="/mission_list">Missions</a>
-			<a class="item" href="/rank_list">Rankings</a>
+
+		<!-- <div class="ui text menu">
+			<div class="item">
+				<img src="assets/images/tool.png">
+			</div>
+			<a class="browse item" href="/home">
+				IMTool
+			</a>
 			<div class="right menu">
 				<div class="ui dropdown item">
 					Language <i class="dropdown icon"></i>
@@ -51,178 +54,179 @@
 					<div class="ui primary button" ng-click="jump_login()">Sign In</div>
 				</div>
 				<div class="ui middle aligned list selection">
-					<div class="item " ng-show="is_login" ng-click="user_info()" >
-						<img class="ui avatar image" src="{{photo}}">
-						<div class="content">
-							<div class="header" ng-bind="local_user"></div>
+						<div class="item " ng-show="is_login" ng-click="user_info()" >
+								<img class="ui avatar image" src="{{photo}}">
+								<div class="content">
+										<div class="header" ng-bind="local_user"></div>
+								</div>
 						</div>
-					</div>
 				</div>
 				<div class="item" ng-show="is_login">
-					<div class="ui primary button" ng-click="logout()">Logout</div>
+						<div class="ui primary button" ng-click="logout()">Logout</div>
 				</div>
 			</div>
-		</div>
-		<div class="ui modal login">
-			<i class="close icon"></i>
-			<div class=" content">
-				<div class="ui middle aligned center aligned grid">
-					<div class="column">
-						<h2 class="ui teal image header">
-						<img src="assets/images/tool.png" class="image">
-						<div class="content">
-							Login to your account
-						</div>
-						</h2>
-						<form class="ui large form">
-							<div class="ui stacked segment">
-								<div class="field">
-									<div class="ui left icon input">
-										<i class="user icon"></i>
-										<input type="text" name="email" placeholder="Account" ng-model="account">
-									</div>
-								</div>
-								<div class="field">
-									<div class="ui left icon input">
-										<i class="lock icon"></i>
-										<input type="password" name="password" placeholder="Password" ng-model="password">
-									</div>
-								</div>
-								<div class="ui fluid large teal submit button" ng-click="login()">Login</div>
-							</div>
-							<div class="ui error message"></div>
-						</form>
-					</div>
-				</div>
+		</div> -->
+		<!-- menu button -->
+
+		<!-- <div class="ui right internal rail" >
+			<div ng-click="show_menu()" class="ui black big launch right attached fixed button">
+				<i class="content icon"></i>
 			</div>
-			<div class="actions">
-				<div class="ui message">
-					New to us? <a href="/register_page" ng-click="jump_register()">Sign Up</a>
-				</div>
-			</div>
-		</div>
-		<div class="ui modal mission">
-			<i class="close icon"></i>
-			<div class=" content">
-				<div class="ui middle aligned center aligned grid">
-					<div class="column">
-						<h2 class="ui teal image header">
-						<img src="assets/images/tool.png" class="image">
-						<div class="content">
-							Start tooling
-						</div>
-						</h2>
-						<form class="ui form">
-							<h4 class="ui dividing header">Mission Title</h4>
-							<div class="field">
-								<div class="fields">
-									<input ng-model="title" type="text" placeholder="title">
-								</div>
-							</div>
-							<div class="field">
-								<label>Description</label>
-								<div class="ui segment">
-									<textarea ng-model="content"></textarea>
-								</div>
-							</div>
-							<h4 class="ui dividing header">Locations</h4>
-							<div class="field">
-								<label>Where to tool you or be tooled</label>
-								<select ng-model="location" class="ui fluid search dropdown" multiple="">
-									<option value="">Add your own if not here</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-								</select>
-							</div>
-							<h4 class="ui dividing header">Required skills</h4>
-							<div class="field">
-								<select class="ui fluid search dropdown" multiple="" ng-model="skills">
-									<option value="">Add your own if not here</option>
-									<option value="1">駝獸</option>
-									<option value="2">修電腦</option>
-									<option value="3">寫作業</option>
-								</select>
-							</div>
-							<h4 class="ui dividing header">Schedule</h4>
-							<div class="field">
-								<label>Start time</label>
-								<div class="fields">
-									<input type="text" class="datepicker" placeholder="Pick the date the task should start" ng-model="start_time">
-								</div>
-								<label>Deadline</label>
-								<div class="fields">
-									<input type="text" class="datepicker" placeholder="Deadline" ng-model="expire_time">
-								</div>
-							</div>
-							<div class="ui button" tabindex="0" ng-click="add_mission()">GO</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="ui basic modal ">
+		</div> -->
+		<!-- main menu modal -->
+		<div class="ui basic modal">
 			<div class="ui equal width grid">
 				<div class="row">
 					<div class="column center aligned">
-						<div class="ui cancel basic inverted button mb">
-							<div class="row"><i class="massive home icon"></i></div>
-							<div class="row"><h1>Home</h1></div>
+						<div class="ui cancel basic inverted button mb" >
+							<a href="/home">
+								<div class="row"><i class="massive home icon"></i></div>
+								<div class="row"><h1>Home</h1></div>
+							</a>
 						</div>
 					</div>
-					<div class="column  center aligned">
-						<div class="ui cancel basic inverted button mb">
+					<div class="column  center aligned" >
+						<div class="ui cancel basic inverted button mb" ng-click="user_info()">
 							<div class="row"><i class="massive user icon"></i></div>
 							<div class="row"><h1>User Info</h1></div>
 						</div>
 					</div>
 					<div class="column  center aligned">
-						<div class="ui cancel basic inverted button mb">
-							<div class="row"><i class="massive browser icon"></i></div>
-							<div class="row"><h1>Missions</h1></div>
-						</div>
+						<a href="/mission_list">
+							<div class="ui cancel basic inverted button mb">
+								<div class="row"><i class="massive browser icon"></i></div>
+								<div class="row"><h1>Missions</h1></div>
+							</div>
+						</a>
 					</div>
 				</div>
 				<div class="row">
 					<div class="column  center aligned">
-						<div class="ui cancel basic inverted button mb">
+						<div class="ui cancel basic inverted button mb" ng-click="create_mission()">
 							<div class="row"><i class="massive legal icon"></i></div>
 							<div class="row"><h1>Start tooling</h1></div>
 						</div>
 					</div>
-					<div class="column  center aligned">
-						<div class="ui cancel basic inverted button mb">
-							<div class="row"><i class="massive sort content ascending  icon"></i></div>
-							<div class="row"><h1>Ranking</h1></div>
-						</div>
-					</div>
-					<div class="column  center aligned">
+					<div class="column  center aligned" >
 						<div class="ui cancel basic inverted button mb">
 							<div class="row"><i class="massive users icon"></i></div>
 							<div class="row"><h1>Community</h1></div>
 						</div>
 					</div>
+					<div class="column  center aligned">
+						<a href="/rank_list">
+							<div class="ui cancel basic inverted button mb">
+								<div class="row"><i class="massive sort content ascending  icon"></i></div>
+								<div class="row"><h1>Ranking</h1></div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div ng-view="">
+			<!-- login -->
+			<div class="ui modal login">
+				<i class="close icon"></i>
+				<div class=" content">
+					<div class="ui middle aligned center aligned grid">
+						<div class="column">
+							<h2 class="ui teal image header">
+							<img src="assets/images/tool.png" class="image">
+							<div class="content">
+								Login to your account
+							</div>
+							</h2>
+							<form class="ui large form">
+								<div class="ui stacked segment">
+									<div class="field">
+										<div class="ui left icon input">
+											<i class="user icon"></i>
+											<input type="text" name="email" placeholder="Account" ng-model="account">
+										</div>
+									</div>
+									<div class="field">
+										<div class="ui left icon input">
+											<i class="lock icon"></i>
+											<input type="password" name="password" placeholder="Password" ng-model="password">
+										</div>
+									</div>
+									<div class="ui fluid large teal submit button" ng-click="login()">Login</div>
+								</div>
+								<div class="ui error message"></div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="actions">
+					<div class="ui message">
+						New to us? <a href="/register_page" ng-click="jump_register()">Sign Up</a>
+					</div>
+				</div>
+			</div>
+			<!-- add mission -->
+			<div class="ui modal mission">
+				<i class="close icon"></i>
+				<div class=" content">
+					<div class="ui middle aligned center aligned grid">
+						<div class="column">
+							<h2 class="ui teal image header">
+							<img src="assets/images/tool.png" class="image">
+							<div class="content">
+								Start tooling
+							</div>
+							</h2>
+							<form class="ui form">
+								<h4 class="ui dividing header">Mission Title</h4>
+								<div class="field">
+									<div class="fields">
+										<input ng-model="title" type="text" placeholder="title">
+									</div>
+								</div>
+								<div class="field">
+									<label>Description</label>
+									<div class="ui segment">
+										<textarea ng-model="content"></textarea>
+									</div>
+								</div>
+								<h4 class="ui dividing header">Locations</h4>
+								<div class="field">
+									<label>Where to tool you or be tooled</label>
+									<select ng-model="location" class="ui fluid search dropdown" multiple="">
+										<option value="">Add your own if not here</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+									</select>
+								</div>
+								<h4 class="ui dividing header">Required skills</h4>
+								<div class="field">
+									<select class="ui fluid search dropdown" multiple="" ng-model="skills">
+										<option value="">Add your own if not here</option>
+										<option value="1">駝獸</option>
+										<option value="2">修電腦</option>
+										<option value="3">寫作業</option>
+									</select>
+								</div>
+								<h4 class="ui dividing header">Schedule</h4>
+								<div class="field">
+									<label>Start time</label>
+									<div class="fields">
+										<input type="text" class="datepicker" placeholder="Pick the date the task should start" ng-model="start_time">
+									</div>
+									<label>Deadline</label>
+									<div class="fields">
+										<input type="text" class="datepicker" placeholder="Deadline" ng-model="expire_time">
+									</div>
+								</div>
+								<div class="ui button" tabindex="0" ng-click="add_mission()">GO</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- main container -->
+			<div ng-view="">
+				
+			</div>
 			
-		</div>
-		<div class="ui top horizontal inverted sidebar labeled icon menu ">
-			<a class="item">
-				<i class="home icon"></i>
-				Home
-			</a>
-			<a class="item">
-				<i class="block layout icon"></i>
-				Missions
-			</a>
-			<a class="item">
-				<img class="ui avatar image " src="{{photo}}">
-				User Info
-			</a>
-		</div>
-		
-	</div>
-</body>
-</html>
+		</body>
+	</html>
