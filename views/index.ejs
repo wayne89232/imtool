@@ -36,6 +36,29 @@
 			.rail{
 				margin-top: 7em;
 			}
+			.ui.modal.login{
+				background-color: rgba(138,138,154,0);
+				width: 600;
+			}
+			.ui.teal>.content{
+				color: white;
+			}
+			.ui.modal.login>.content{
+					background-color: rgba(138,138,154,0);
+				color: white;
+			}
+			.ui.modal.login>.content>form{
+					background-color: rgba(138,138,154,0);
+			}
+			.ui.stacked.segment{
+					background-color: rgba(138,138,154,0);
+			}
+			.ui.modal.login>.actions{
+					background-color: rgba(138,138,154,0);
+			}
+			.ui.message{
+					background-color: rgba(138,138,154,0);
+			}
 		</style>
 	</head>
 	<body ng-controller="AppCtrl">
@@ -43,9 +66,13 @@
 			<div class="ui rail">
 				<div class="ui sticky">
 					<div class="ui vertical labeled icon menu center aligned">
-						<a class="item" href="/home">
-							<i class="home icon"></i>
-							Home
+						<a class="item" ng-click="show_menu()">
+							<i class="list layout icon"></i>
+							Menu
+						</a>
+						<a class="item" >
+							<i class="settings icon"></i>
+							Language
 						</a>
 						<a class="item" ng-click="jump_login()" ng-hide="is_login">
 							<i class="street view icon"></i>
@@ -59,46 +86,45 @@
 							<i class="wheelchair icon"></i>
 							Logout
 						</a>
-
 					</div>
 				</div>
 			</div>
 			<!-- 		<div class="ui text menu">
-					<div class="item">
+				<div class="item">
 							<img src="assets/images/tool.png">
-					</div>
-					<a class="browse item" href="/home">
+				</div>
+				<a class="browse item" href="/home">
 							IMTool
-					</a>
-					<div class="right menu">
+				</a>
+				<div class="right menu">
 							<div class="ui dropdown item">
-									Language <i class="dropdown icon"></i>
-									<div class="menu">
-											<a class="item">English</a>
-											<a class="item">TW</a>
-									</div>
+										Language <i class="dropdown icon"></i>
+										<div class="menu">
+													<a class="item">English</a>
+													<a class="item">TW</a>
+										</div>
 							</div>
 							<div class="item" ng-hide="is_login">
-									<div class="ui primary button" ng-click="jump_login()">Sign In</div>
+										<div class="ui primary button" ng-click="jump_login()">Sign In</div>
 							</div>
 							<div class="ui middle aligned list selection">
-									<div class="item " ng-show="is_login" ng-click="user_info()" >
-											<img class="ui avatar image" src="{{photo}}">
-											<div class="content">
-													<div class="header" ng-bind="local_user"></div>
-											</div>
-									</div>
+										<div class="item " ng-show="is_login" ng-click="user_info()" >
+													<img class="ui avatar image" src="{{photo}}">
+													<div class="content">
+																<div class="header" ng-bind="local_user"></div>
+													</div>
+										</div>
 							</div>
 							<div class="item" ng-show="is_login">
-									<div class="ui primary button" ng-click="logout()">Logout</div>
+										<div class="ui primary button" ng-click="logout()">Logout</div>
 							</div>
-					</div>
+				</div>
 			</div> -->
 			<!-- menu button -->
 			<!-- <div class="ui right internal rail" >
-									<div ng-click="show_menu()" class="ui black big launch right attached fixed button">
-															<i class="content icon"></i>
-									</div>
+										<div ng-click="show_menu()" class="ui black big launch right attached fixed button">
+																	<i class="content icon"></i>
+										</div>
 			</div> -->
 			<!-- main menu modal -->
 			<div class="ui basic modal">
@@ -159,24 +185,26 @@
 							<h2 class="ui teal image header">
 							<img src="assets/images/tool.png" class="image">
 							<div class="content">
-								Login to your account
+								Login
 							</div>
-							</h2>
+							<h2>
 							<form class="ui large form">
 								<div class="ui stacked segment">
 									<div class="field">
-										<div class="ui left icon input">
+										<div class="ui left icon  input">
 											<i class="user icon"></i>
-											<input type="text" name="email" placeholder="Account" ng-model="account">
+											<input type="text" name="email" placeholder="Account" ng-model="account" style="background: transparent;
+											border-color: white;">
 										</div>
 									</div>
 									<div class="field">
 										<div class="ui left icon input">
 											<i class="lock icon"></i>
-											<input type="password" name="password" placeholder="Password" ng-model="password">
+											<input type="password" name="password" placeholder="Password" ng-model="password" style="background: transparent;
+											border-color: white;">
 										</div>
 									</div>
-									<div class="ui fluid large teal submit button" ng-click="login()">Login</div>
+									<div class="ui fluid large basic inverted submit button" ng-click="login()">Login</div>
 								</div>
 								<div class="ui error message"></div>
 							</form>
