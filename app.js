@@ -11,7 +11,7 @@ var express = require('express'),
     routes = require('./routes'),
     api = require('./routes/api'),
     user = require('./routes/user'),
-    mission = require('./routes/mission'),
+    mission = require('./routes/mission'), 
     express_validators = require('./config').express_validators,
 
     
@@ -34,9 +34,11 @@ app.set('view engine', 'ejs');
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(expressValidator({
     customValidators: express_validators
 }));
+
 app.use(express.static(path.join(__dirname, 'bower_components')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({

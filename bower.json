@@ -8,6 +8,7 @@
     "angular-route": "^1.5.8",
     "underscore": "^1.8.3",
     "semantic": "semantic-ui#^2.2.6",
-    "semantic-ui-dropdown": "^2.2.6"
+    "semantic-ui-dropdown": "^2.2.6",
+    "angular-file-upload": "^2.4.0"
   }
 }

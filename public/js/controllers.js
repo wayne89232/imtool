@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.controllers', ['ngRoute']).controller('AppCtrl', function ($rootScope, $window, $scope, $http, $location) {
+angular.module('myApp.controllers', ['ngRoute','angularFileUpload']).controller('AppCtrl', function ($rootScope, $window, $scope, $http, $location) {
 	if($window.localStorage.getItem("is_login")){
 		$scope.is_login = true;
 		$scope.local_user = $window.localStorage.getItem("account");
@@ -22,7 +22,6 @@ angular.module('myApp.controllers', ['ngRoute']).controller('AppCtrl', function 
     	context: '#stick'
   	});
 
-    
 	$scope.jump_login = function(){
 		$('.ui.modal.login').modal('show');
 	}
@@ -54,7 +53,7 @@ angular.module('myApp.controllers', ['ngRoute']).controller('AppCtrl', function 
             // 	// $location.path("/mission");
             // });
             // $window.location.reload();
-                        console.log(data)
+            console.log(data)
         }
         else{
             alert("Fill in all entities!");
@@ -62,10 +61,10 @@ angular.module('myApp.controllers', ['ngRoute']).controller('AppCtrl', function 
     }
 	$scope.login = function(){
 		if($scope.account != null && $scope.password != null){
-	            var data = {
-	                account: $scope.account, 
-	                password: $scope.password
-	            };
+            var data = {
+                account: $scope.account, 
+                password: $scope.password
+            };
 		    $http({ 
 		    	method:"POST", 
 		    	url:'/login',
@@ -94,7 +93,7 @@ angular.module('myApp.controllers', ['ngRoute']).controller('AppCtrl', function 
 		$http({ 
 	    	method:"POST", 
 	    	url:'/logout',
-	     }).then(function(result){
+		}).then(function(result){
 			$window.localStorage.clear();
 			$window.location.reload();
         	$location.path('/');
@@ -109,16 +108,6 @@ angular.module('myApp.controllers', ['ngRoute']).controller('AppCtrl', function 
     		$scope.jump_login();
     	}
     }
-}).controller('create_mission', function ($scope, $http, $location) {
-	$('.ui .dropdown').dropdown({
-    maxSelections: 5,
-    allowAdditions: true
-  });
-}).controller('discover', function ($scope, $http, $location) {
-
-}).controller('view_mission', function ($scope, $http, $location,$window,$routeParams) {
-	var cur_user = $window.localStorage.getItem("user_id");
-
 }).controller('mission_list', function ($scope, $http, $location) {
 
 	$http({ method:"GET", url:'/viewEvent/' + $routeParams.id }).then(function(mission){
@@ -131,10 +120,10 @@ angular.module('myApp.controllers', ['ngRoute']).controller('AppCtrl', function 
 					$scope.skills = skills.data.data;
 					$scope.identity = function(){
 						if (cur_user == $scope.mission_info.User.user_id) {
-							return (true);
+							return true;
 						}
 						else{
-							return( false );
+							return false;
 						}
 					}
 					$('.ui .dropdown').dropdown();
@@ -163,77 +152,11 @@ angular.module('myApp.controllers', ['ngRoute']).controller('AppCtrl', function 
 	$scope.view_mission = function(id){
     	$location.path('/view_mission/'+id);
     }	
-}).controller('user_info', function ($scope, $http, $location,$routeParams,$window) {
-	$http({ method:"GET", url:'/getUserInfo/' + $routeParams.id }).then(function(user_info){
-		$http({ method:"GET", url:'/getUserSkill/' + $routeParams.id }).then(function(skills){
-			$http({ method:"GET", url:'/getUserMission/' + $routeParams.id }).then(function(mission1){
-				$http({ method:"GET", url:'/getToolMission/' + $routeParams.id }).then(function(mission2){
-					$scope.skill_list = skills.data.data;
-					$scope.user_info = user_info.data.data;
-					$scope.user_mission = mission1.data.data;
-					$scope.tool_mission = mission2.data.data;
-				});
-			});
-		});
-    });
-    if($routeParams.id==$window.localStorage.getItem("user_id")){
-    	$scope.is_user=false;
-    }
-    else{
-    	$scope.is_user=true;
-    }
-    $scope.view_mission = function(id){
-    	$location.path('/view_mission/'+id);
-    }	
-}).controller('rank_list', function ($scope, $http, $location) {
-	$('.ui.rating').rating('disable');
-	$('.sortable.table').tablesort();
-	$('.tabular.menu .item').tab();
 }).controller('testPopup', function ($scope, $http, $location) {
 	$scope.missionCleared = function(){
 		$('.ui.small.modal').modal('show');
 	}
 	$('.ui.rating').rating('enable');
 
-}).controller('register_page', function ($scope, $http, $location) {
-
-	$('#skills').dropdown({
-    	maxSelections: 5,
-    	allowAdditions: true
-  	});
-
-    $scope.register = function(){
-
-			if($scope.password==$scope.password_confirm){
-	            var data = {
-	                account: $scope.account, 
-	                password: $scope.password,
-	                user_name: $scope.name,
-	                gender: $scope.gender,
-	                email: $scope.mail
-	            };
-	            $http({
-	                method: "POST", 
-	                url: '/register', 
-	                data: data
-	            }).then(function(result){
-	            	if(result.data.success==false){
-	            		alert(result.data.msg);
-	            	}
-	            	else{
-					$window.localStorage.setItem("is_login", true);
-					$window.localStorage.setItem("account", user.account);
-					$window.localStorage.setItem("user_id", user.user_id);
-					$window.localStorage.setItem("photo", user.photo_url);
-						$window.location.reload();       		
-	                	$location.path('/');	            		
-	            	}
-	            });
-        	}
-        	else{
-        		alert("Confirm password");
-        	}
-    }
-});
-
+})
 

@@ -21,29 +21,23 @@
 		        <th></th>
 		      </thead>
 		      <tbody>
-		        <tr>
-		          <td>
-		          	<img src="/assets/images/JianYi.jpg" class="ui circular tiny image middle aligned">
-		          </td>
-		          <td>
-      				ianlee1228
-		          </td>
-		          <td>
-		          	<div class="ui star rating" data-rating="5" data-max-rating="5"></div>
-		          	<div class="ui tiny statistic">
-		          		<div class="value">
-		          			4.8
-		          		</div>
-		          	</div>
-		          </td>
-		          <td>50</td>
-		          <td>
-		          	<div class="ui floated primary button">
-		          		View Profile
-		          	</div>
-		          </td>
+		        <tr ng-repeat="tool in toolTotalList">
+		        <td>
+					<img ng-src="{{tool.imgUrl}}" class="ui circular tiny image middle aligned">
+				</td>
+				<td>{{tool.account}}</td>
+				<td>
+					<div class="ui star rating" data-rating="{{tool.star}}" data-max-rating="5"></div>
+					<div class="ui tiny statistic">
+						<div class="value">{{tool.rank}}</div>
+					</div>
+				</td>
+				<td>{{tool.completedMission}}</td>
+				<td>
+					<div class="ui floated primary button">View Profile</div>
+				</td>
 		        </tr>
-		        <tr>
+		        <!-- <tr>
 		          <td>
 		          	<img src="/assets/images/wei.jpg" class="ui circular tiny image middle aligned">
 		          </td>
@@ -82,7 +76,7 @@
 		          		View Profile
 		          	</div>
 		          </td>
-		        </tr>
+		        </tr> -->
 		      </tbody>
 		    </table>
 
