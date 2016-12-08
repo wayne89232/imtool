@@ -14,3 +14,4 @@ exports.express_validators = {
         return stateList.indexOf(state) >= 0
     }
 }
+

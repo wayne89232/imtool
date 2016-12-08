@@ -8,11 +8,14 @@ var express = require('express'),
     morgan = require('morgan'),
     expressValidator = require('express-validator'),
     session = require('express-session');
+    multer  = require('multer'),
     routes = require('./routes'),
     api = require('./routes/api'),
     user = require('./routes/user'),
     mission = require('./routes/mission'),
+    uploadImage = require('./routes/uploadImage'),
     express_validators = require('./config').express_validators,
+
 
     
     // import routers
@@ -21,7 +24,7 @@ var express = require('express'),
     path = require('path');
 
 var app = module.exports = express();
-
+var upload = multer({ dest: 'public/assets/images' })
 
 /**
  * Configuration
@@ -34,9 +37,11 @@ app.set('view engine', 'ejs');
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(expressValidator({
     customValidators: express_validators
 }));
+
 app.use(express.static(path.join(__dirname, 'bower_components')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
@@ -76,6 +81,7 @@ app.get('/getUserMission/:id', user.tooler_mission);
 app.get('/getToolMission/:id', user.tool_mission);
 app.get('/user_list', user.user_list);
 
+app.post('/upload', upload.single('image') ,uploadImage.upload)
 
 //mission
 app.post('/createMission', mission.create_mission);

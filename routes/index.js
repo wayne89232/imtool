@@ -4,13 +4,24 @@
  */
 
 exports.index = function(req, res){
-  	res.render('index');
+	console.log("ERRRR")
+	if (!req.session.user)
+		var userInfo = "First"
+	else
+		var userInfo = req.session.user
+  	res.render('index', {userInfo: userInfo});
 };
 
 exports.partials = function (req, res) {
+	console.log("HER")
+	// console.log(req.params.name);
+	if (!req.session.user)
+		var userInfo = "First"
+	else
+		var userInfo = req.session.user
   	var name = req.params.name;
   	if (!req.session.user)
-  		res.render('partials/' + name, {userInfo: req.session.user});
+  		res.render('partials/' + name, {userInfo: userInfo});
   	else
-  		res.render('partials/' + name);
+  		res.render('partials/' + name, {userInfo: userInfo});
 };

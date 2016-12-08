@@ -6,23 +6,48 @@
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
 		<base href="/">
+
+		<!-- Front-End Packages -->
 		<script src="/underscore/underscore-min.js"></script>
 		<script src="/jquery/dist/jquery.js"></script>
 		<script src="/angular/angular.min.js"></script>
 		<script src="/angular-route/angular-route.min.js"></script>
+		<!-- <script src="/angular-file-upload/dist/angular-file-upload.min.js"></script> -->
+		<script src="/ng-file-upload-shim/ng-file-upload-shim.min.js"></script>
+		<script src="/ng-file-upload/ng-file-upload.min.js"></script>
+		<script src="/ngSweetAlert/SweetAlert.min.js"></script>
+		<script src="/sweetalert/dist/sweetalert.min.js"></script>
+
+
 		<script src="/semantic/dist/semantic.min.js"></script>
 		<script src="/semantic-ui-dropdown/dropdown.min.js"></script>
 		<script src="/semantic-ui-sticky/sticky.min.js"></script>
 		<script src="/pickadate/lib/picker.js"></script>
 		<script src="/pickadate/lib/picker.date.js"></script>
 		<script src="/pickadate/lib/picker.time.js"></script>
+		
 		<script src="js/app.js"></script>
 		<script src="js/services.js"></script>
+
+		<!-- Controllers -->
 		<script src="js/controllers.js"></script>
+		<script src="js/createMissionController.js"></script>
+		<script src="js/discoverController.js"></script>
+		<script src="js/rankListController.js"></script>
+		<script src="js/registerPageController.js"></script>
+		<script src="js/userInfoController.js"></script>
+		<script src="js/viewMissionController.js"></script>
+
 		<script src="js/filters.js"></script>
 		<script src="js/directives.js"></script>
-		<script src="/js/tablesort.js"></script>
-		<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+		<script src="js/tablesort.js"></script>
+
+		<script>
+		    var content = <%- JSON.stringify(userInfo)%>
+		</script>
+
+		<link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.min.css">
+		<link rel="stylesheet" type="text/css" href="/sweetalert/dist/sweetalert.css">
 		<link rel="stylesheet" type="text/css" href="/pickadate/lib/themes/classic.css">
 		<link rel="stylesheet" type="text/css" href="/pickadate/lib/themes/classic.time.css">
 		<link rel="stylesheet" type="text/css" href="/pickadate/lib/themes/classic.date.css">
