@@ -42,4 +42,49 @@ angular.module('myApp.controllers').controller('register_page', function($scope,
     		alert("Confirm password");
     	}
     }
+	$scope.test = function(){
+		console.log($scope.uploadImage);
+	}
+
+	$scope.uploadImageFile = function(file){
+		// Upload.upload({
+		// 	url 	: '/upload',
+		// 	method 	: 'POST',
+		// 	headers :{
+		// 		'Content-Type': $scope.uploadImage.type
+		// 	},
+		// 	data 	: {file: $scope.uploadImage}
+		// }).then(function(response){
+		// 	console.log(response)
+		// })
+
+		// Upload.http({
+		// 	url 	: '/upload',
+		// 	method	: 'POST',
+		// 	headers :{
+		// 		'Content-Type': 'multipart/form-data'
+		// 	},
+		// 	data: file
+		// }).then(function(response){
+		// 	console.log(response)
+		// });
+		var fd = new FormData();
+		for (var key in $scope.uploadImage){
+			fd.append(key , $scope.uploadImage[key])
+		}
+		$http.post('/upload', fd, {
+			transformRequest: angular.indentity,
+			headers: {'Content-Type': undefined}
+		}).then(function(response){
+			console.log(response)
+		})
+		// ,function (response) {
+		// 	if (response.status > 0)
+		// 		$scope.errorMsg = response.status + ': ' + response.data;
+		// });
+
+		// file.upload.progress(function (evt) {
+		// 	file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+		// });
+	}
 });

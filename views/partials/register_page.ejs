@@ -42,6 +42,13 @@
           </select>
         </div>
         </div>
+        <div class="field">
+            <label>Image</label>
+            <button type="file" ng-model="uploadImage" ngf-select="test()" ngf-max-height="1000" ngf-max-size="1MB">Select File</button>
+            <label>{{uploadImage.name}}</label>
+            <button ng-click="uploadImageFile(uploadImage)">Upload</button>
+            <img ngf-src="uploadImage">
+        </div>
         <h4 class="ui dividing header">Skill Information</h4>
         <div class="field">
             <label>Skills</label>
