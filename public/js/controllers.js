@@ -44,16 +44,14 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload']).controller('AppC
                 content: $scope.content,
                 state: "Recruiting"
             };
-            // $http({
-            //     method: "POST", 
-            //     url: '/mission/create_mission', 
-            //     data: data
-            // }).then(function(result){
-            // 	$window.location.reload();
-            // 	// $location.path("/mission");
-            // });
-            // $window.location.reload();
-            console.log(data)
+            $http({
+				method: "POST", 
+				url: '/createMission',
+				data: $.param(data),
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'} 
+			}).then(function(result){
+				$window.location.reload();
+            });
         }
         else{
             alert("Fill in all entities!");
