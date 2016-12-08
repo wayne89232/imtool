@@ -47,6 +47,7 @@ exports.logout = function (req, res){
 }
 
 exports.register = function(req, res){
+    console.log(123);
 	req.checkBody('account').notEmpty();
 	req.checkBody('password').notEmpty();
 	req.checkBody('user_name').notEmpty();

@@ -1,46 +1,51 @@
-<div class="ui container">
+<br>
+<div class="ui text container">
+    <div class="ui attached icon info message">
+    <i class="help circle icon"></i>
+    <div class="content">
+      <h1>Registeration</h1>
+    </div>
+  </div>
+    <div class="ui segment">
+
     <form class="ui form">
         <h4 class="ui dividing header">User Information</h4>
+
         <div class="field">
             <label>Account</label>
             <div class="fields">
-                <input type="text" placeholder="Account">
+                <input type="text" placeholder="Account" ng-model="account">
             </div>
         </div>
         <div class="field">
             <label>Password</label>
             <div class="two fields">
                 <div class="field">
-                    <input type="text" placeholder="Password">
+                    <input type="text" placeholder="Password" ng-model="password">
                 </div>
                 <div class="field">
-                    <input type="text"  placeholder="Confirm password">
+                    <input type="text"  placeholder="Confirm password" ng-model="password_confirm">
                 </div>
             </div>
         </div>
         <div class="two fields">
             <div class="field">
                 <label>Name</label>
-                <input type="text"  placeholder="Your name">
+                <input type="text"  placeholder="Your name" ng-model="name">
             </div>
-            <div class="field">
-                <label>Gender</label>
-                <div class="ui fluid search selection dropdown">
-                    <input type="hidden" name="country">
-                    <i class="dropdown icon"></i>
-                    <div class="default text">Select Gender</div>
-                    <div class="menu">
-                        <div class="item" data-value="B"><i class="man icon"></i>Man</div>
-                        <div class="item" data-value="G"><i class="woman icon"></i>Woman</div>
-                        <div class="item" data-value="N"><i class="neuter icon"></i>Neuter</div>
-                    </div>
-                </div>
-            </div>
+<div class="field">
+<label>Gender</label>
+          <select class="ui dropdown" id="gender" ng-model="gender">
+            <option value="">Gender</option>
+            <option value="B">Male</option>
+            <option value="G">Female</option>
+          </select>
+        </div>
         </div>
         <h4 class="ui dividing header">Skill Information</h4>
         <div class="field">
             <label>Skills</label>
-            <select class="ui fluid search dropdown" multiple="">
+            <select class="ui fluid search dropdown" id="skills" multiple="" ng-model="skills">
                 <option value="">Add your own if not here</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -60,7 +65,7 @@
         <h4 class="ui dividing header">Contact</h4>
         <div class="field">
             <label>Email</label>
-            <input type="text"  placeholder="Your mail">
+            <input type="text"  placeholder="Your mail" ng-model="mail">
         </div>
         <div class="ui segment">
             <div class="field">
@@ -70,6 +75,7 @@
                 </div>
             </div>
         </div>
-        <div class="ui button" tabindex="0">Submit Registration</div>
+        <div class="ui button" ng-click="register()" tabindex="0">Submit Registration</div>
     </form>
+    </div>
 </div>
