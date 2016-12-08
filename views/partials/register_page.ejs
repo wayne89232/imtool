@@ -35,10 +35,8 @@
             </div>
 <div class="field">
 <label>Gender</label>
-          <select class="ui dropdown" id="gender" ng-model="gender">
+          <select id="gender" ng-model="gender" ng-options="m.value for m in genderModel">
             <option value="">Gender</option>
-            <option value="B">Male</option>
-            <option value="G">Female</option>
           </select>
         </div>
         </div>

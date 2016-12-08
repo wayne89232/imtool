@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.controllers').controller('register_page', function($scope, $http, $location){
+angular.module('myApp.controllers').controller('register_page', function($scope, $http, $location,$window){
 	$('.ui .dropdown').dropdown({
 		maxSelections: 5,
 		allowAdditions: true
@@ -11,15 +11,24 @@ angular.module('myApp.controllers').controller('register_page', function($scope,
     	allowAdditions: true
   	});
 
+  	$scope.genderModel = [{
+  		value 	: "Male",
+  		id 		: "B"
+  	},{
+  		value 	: "Female",
+  		id 		: "G"
+  	}]
+
   	$scope.register = function(){
-		if($scope.password==$scope.password_confirm){
+		if($scope.password==$scope.password_confirm && $scope.password != undefined){
             var data = {
                 account: $scope.account, 
                 password: $scope.password,
                 user_name: $scope.name,
-                gender: $scope.gender,
+                gender: $scope.gender.id,
                 email: $scope.mail
             };
+            console.log(data)
             $http({
                 method: "POST", 
                 url: '/register', 
@@ -36,14 +45,20 @@ angular.module('myApp.controllers').controller('register_page', function($scope,
 					$window.location.reload();       		
                 	$location.path('/');	            		
             	}
+            }).catch(function(err){
+            	console.log(err)
             });
     	}
     	else{
-    		alert("Confirm password");
+    		swal("Confirm password");
     	}
     }
 	$scope.test = function(){
 		console.log($scope.uploadImage);
+	}
+
+	$scope.testSelect = function(){
+		console.log("Gender: ", $scope.gender)
 	}
 
 	$scope.uploadImageFile = function(file){
