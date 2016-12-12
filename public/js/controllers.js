@@ -26,7 +26,7 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload']).controller('AppC
 		$('.ui.modal.login').modal('show');
 	}
 	$scope.show_menu = function(){
-		$('.ui.basic.modal').modal('show');
+		$('.ui.basic.modal.menu').modal('show');
 	}
 	$scope.create_mission = function(){
 		$('.ui.modal.mission').modal('show');

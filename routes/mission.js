@@ -168,14 +168,44 @@ exports.mission_skills = function(req, res){
 
 
 exports.get_tooled = function(req, res){
+
+    req.checkBody('user_id').notEmpty();
+    req.checkBody('mission_id').notEmpty();
+
+    var errors = req.validationErrors();
+    if (errors) {
+        return res.status(405).json({
+            errors: errors
+        });
+    }
+
 	var new_id = crypto.randomBytes(20).toString('hex');
 	Toolship.create({
 		toolship_id: new_id,
-		user_id: req.params.user_id,
-		mission_id: req.params.mission_id,
+		user_id: req.body.user_id,
+		mission_id: req.body.mission_id,
 		rating: 0,
 		feedback: ""
 	}).then(function(result){
 		res.json({ msg: "Success on getting tooled " + result });
+	});
+}
+
+exports.fire_tool = function(req, res){
+    req.checkBody('toolship_id').notEmpty();
+
+    var errors = req.validationErrors();
+    if (errors) {
+        return res.status(405).json({
+            errors: errors
+        });
+    }
+
+	Toolship.destroy({
+		where: {
+			toolship_id: req.body.toolship_id
+		}
+	}).then(function(result){
+		res.json({ msg: "Success on untooling " + result });
 	});
 }
