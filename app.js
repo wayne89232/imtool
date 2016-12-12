@@ -81,7 +81,8 @@ app.get('/getMissions', mission.list_mission);
 app.get('/viewEvent/:id', mission.view_event);
 //toolship
 app.post('/createToolship', toolship.create_toolship);
-app.post('/getToolship', toolship.list_toolship);
+app.get('/getToolship', toolship.list_toolship);
+app.get('/myToolship/:username', toolship.my_toolship)
 app.get('/getMembers/:title', toolship.getmembers);
 //functions, ex: 
 // app.post('/api/add_league', api.add_league);
