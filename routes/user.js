@@ -49,7 +49,6 @@ exports.logout = function (req, res){
 }
 
 exports.register = function(req, res){
-    console.log(123);
 	req.checkBody('account').notEmpty();
 	req.checkBody('password').notEmpty();
 	req.checkBody('user_name').notEmpty();
@@ -72,11 +71,13 @@ exports.register = function(req, res){
         if(user == null){
             var user = {}
             var newUser = {
-                account: req.body.account,
-                password: req.body.password,
-                user_name: req.body.user_name,
-                email: req.body.email,
-                gender: req.body.gender
+                account    : req.body.account,
+                password   : req.body.password,
+                user_name  : req.body.user_name,
+                email      : req.body.email,
+                gender     : req.body.gender,
+                photo_url  : req.body.photoURL || ''
+
             };
 
             newUser.user_id = crypto.createHash('md5').update('imtool' + newUser.account + newUser.password).digest('hex');

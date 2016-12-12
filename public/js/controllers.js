@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.controllers', ['ngRoute','ngFileUpload']).controller('AppCtrl', function ($rootScope, $window, $scope, $http, $location) {
+angular.module('myApp.controllers', ['ngRoute','ngFileUpload','base64']).controller('AppCtrl', function ($rootScope, $window, $scope, $http, $location) {
 	if($window.localStorage.getItem("is_login")){
 		$scope.is_login = true;
 		$scope.local_user = $window.localStorage.getItem("account");
