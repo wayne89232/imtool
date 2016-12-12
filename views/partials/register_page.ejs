@@ -42,8 +42,7 @@
         </div>
         <div class="field">
             <label>Image</label>
-            <button type="file" ng-model="uploadImage" ngf-select="test()" ngf-max-height="1000" ngf-max-size="1MB">Select File</button>
-            <label>{{uploadImage.name}}</label>
+            <input type="file" ng-model="uploadImage" ngf-select="test()" ngf-max-height="1000" ngf-max-size="1MB">
             <button ng-click="uploadImageFile(uploadImage)">Upload</button>
             <img ngf-src="uploadImage">
         </div>
