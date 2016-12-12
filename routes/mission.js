@@ -10,14 +10,11 @@ var Skill = require('../models').Skill;
 var crypto = require('crypto');
 
 exports.create_mission = function(req, res){
-
 	req.checkBody('user_id').notEmpty();
 	req.checkBody('title').notEmpty();
 	req.checkBody('start_time').notEmpty();
-	req.checkBody('expire_time').notEmpty();
 	req.checkBody('recruit_time').notEmpty();
 	req.checkBody('location').notEmpty();
-	req.checkBody('content').notEmpty();
 
 	var errors = req.validationErrors();
 	if (errors) {
@@ -34,10 +31,10 @@ exports.create_mission = function(req, res){
 		title: req.body.title,
 		photo_url: "",
 		start_time: req.body.start_time,
-		expire_time: req.body.expire_time,
+		expire_time: req.body.expire_time || 1,
 		recruit_time: req.body.recruit_time,
 		location_id: req.body.location,
-		content: req.body.content,
+		content: req.body.content || "",
 		state: 'Recruiting'
 	};
 
