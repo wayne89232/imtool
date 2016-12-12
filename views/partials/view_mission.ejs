@@ -1,3 +1,4 @@
+<br>
 <div class="ui container">
 	<div class="ui items ">
 		<div class="item">
@@ -14,7 +15,7 @@
 							</div>
 							<div class="content">
 								<div class="summary">
-									<a class="user" ng-bind="mission_info.User.user_name">
+									<a class="user" ng-bind="mission_info.User.user_name" ng-click="user_info(mission_info.User.user_id)">
 									</a> hosted the mission on
 									<div class="date">
 										2016/11/23
@@ -25,8 +26,8 @@
 					</div>
 				</div>
 				<div class="ui  segment">
-				<div class="description" ng-bind="mission_info.content">
-				</div>
+					<div class="description" ng-bind="mission_info.content">
+					</div>
 				</div>
 				<div class="extra bottom ">
 					<!-- ng-repeat="tool in mission_info.Toolship" -->
@@ -53,11 +54,18 @@
 							<div class="description">The mission will then be started and disable toolmans to join.</div>
 						</div>
 					</div>
-					<div class="item">
+					<div class="item" ng-hide="delete" ng-click="fire()">
 						<i class="map marker icon"></i>
 						<div class="content">
 							<div class="header">Fire a toolman</div>
 							<div class="description">Fire him/her if you think he's shit.</div>
+						</div>
+					</div>
+					<div class="item" ng-show="delete" ng-click="fire()">
+						<i class="map marker icon"></i>
+						<div class="content">
+							<div class="header">Stop firing</div>
+							<div class="description">Stop firing.</div>
 						</div>
 					</div>
 					<div class="item" ng-click="missionCleared()">
@@ -78,11 +86,18 @@
 			</h2>
 		</div>
 		<div class="ui horizontal list selection huge">
-			<div class="item" ng-repeat="tool in tools" ng-click="user_info(tool.User.user_id)">
+			<div class="item" ng-repeat="tool in tools" ng-click="user_info(tool.User.user_id)" ng-hide="delete">
 				<img class="ui avatar image" src="{{tool.User.photo_url}}">
 				<div class="content">
 					<div class="header" ng-bind="tool.User.user_name"></div>
-					Nice tool
+					<div ng-bind="tool.User.account"></div>
+				</div>
+			</div>
+			<div class="item" ng-repeat="tool in tools" ng-click="fire_tool(tool.toolship_id)" ng-show="delete">
+				<i class="ban icon"></i>
+				<div class="content">
+					<div class="header" ng-bind="tool.User.user_name"></div>
+					<div ng-bind="tool.User.account"></div>
 				</div>
 			</div>
 			<div class="item" ng-show="identity()" ng-click="add_tool()">
@@ -147,20 +162,45 @@
 			<div class="ui cancel button">Cancel</div>
 		</div>
 	</div>
-
 	<div class="ui modal small add_tool">
 		<div class="header" >Add a toolman</div>
 		<div class="content">
-			<div class="ui form">
+			<div class="ui form" >
 				<div class="field">
-					<select ng-model="toolman_added" ng-options="m.user_name for m in toolmans" class="ui search dropdown">
+					<select ng-model="new_tool" ng-options="m.user_name for m in toolmans" class="ui search dropdown">
 						<option value="">Toolman</option>
 					</select>
 				</div>
 			</div>
 		</div>
 		<div class="actions">
-			<div class="ui ok button">Add</div>
+			<div class="ui ok button" ng-click="add_toolman()">Add</div>
 			<div class="ui cancel button">Cancel</div>
+		</div>
+	</div>
+	<div class="ui basic modal fire">
+		<i class="close icon"></i>
+		<div class="header">
+			Fire a toolman
+		</div>
+		<div class="image content">
+			<div class="image">
+				<i class="archive icon"></i>
+			</div>
+			<div class="description">
+				<p>Are you sure you want to fire this toolman?</p>
+			</div>
+		</div>
+		<div class="actions">
+			<div class="two fluid ui inverted buttons">
+				<div class="ui cancel red basic inverted button">
+					<i class="remove icon"></i>
+					No
+				</div>
+				<div class="ui ok green basic inverted button" ng-click="go_fire()">
+					<i class="checkmark icon"></i>
+					Yes
+				</div>
+			</div>
 		</div>
 	</div>
