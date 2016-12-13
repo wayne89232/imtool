@@ -29,6 +29,12 @@
 					<div class="description" ng-bind="mission_info.content">
 					</div>
 				</div>
+				<div class="ui  segment" scroll-glue="glued">
+					<div class="description" ng-repeat="m in messages">{{m.message}}</div>
+				</div>
+				<input type="textarea" ng-model="liveMessage">
+				<button ng-click="sendMessage()">Send</button>
+
 				<div class="extra bottom ">
 					<!-- ng-repeat="tool in mission_info.Toolship" -->
 					<div class="ui label" ng-repeat="skill in skills" ng-bind="skill.Skill.skill"></div>

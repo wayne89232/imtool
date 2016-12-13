@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.controllers', ['ngRoute','ngFileUpload']).controller('AppCtrl', function ($rootScope, $window, $scope, $http, $location) {
+angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives']).controller('AppCtrl', function ($rootScope, $window, $scope, $http, $location) {
 	if($window.localStorage.getItem("is_login")){
 		$scope.is_login = true;
 		$scope.local_user = $window.localStorage.getItem("account");
@@ -47,16 +47,14 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload']).controller('AppC
                 content: $scope.content,
                 state: "Recruiting"
             };
-            // $http({
-            //     method: "POST", 
-            //     url: '/mission/create_mission', 
-            //     data: data
-            // }).then(function(result){
-            // 	$window.location.reload();
-            // 	// $location.path("/mission");
-            // });
-            // $window.location.reload();
-            console.log(data)
+            $http({
+				method: "POST", 
+				url: '/createMission',
+				data: $.param(data),
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'} 
+			}).then(function(result){
+				$window.location.reload();
+            });
         }
         else{
             alert("Fill in all entities!");

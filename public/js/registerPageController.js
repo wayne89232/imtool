@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.controllers').controller('register_page', function($scope, $http, $location,$window){
+angular.module('myApp.controllers').controller('register_page', function($scope, $http, $location,$window,$base64,Upload){
 	$('.ui .dropdown').dropdown({
 		maxSelections: 5,
 		allowAdditions: true
@@ -22,13 +22,13 @@ angular.module('myApp.controllers').controller('register_page', function($scope,
   	$scope.register = function(){
 		if($scope.password==$scope.password_confirm && $scope.password != undefined){
             var data = {
-                account: $scope.account, 
-                password: $scope.password,
-                user_name: $scope.name,
-                gender: $scope.gender.id,
-                email: $scope.mail
+                account 	: $scope.account, 
+                password 	: $scope.password,
+                user_name 	: $scope.name,
+                gender 		: $scope.gender.id,
+                email 		: $scope.mail,
+                photoURL 	: $scope.photoURL
             };
-            console.log(data)
             $http({
                 method: "POST", 
                 url: '/register', 
@@ -62,44 +62,21 @@ angular.module('myApp.controllers').controller('register_page', function($scope,
 	}
 
 	$scope.uploadImageFile = function(file){
-		// Upload.upload({
-		// 	url 	: '/upload',
-		// 	method 	: 'POST',
-		// 	headers :{
-		// 		'Content-Type': $scope.uploadImage.type
-		// 	},
-		// 	data 	: {file: $scope.uploadImage}
-		// }).then(function(response){
-		// 	console.log(response)
-		// })
-
-		// Upload.http({
-		// 	url 	: '/upload',
-		// 	method	: 'POST',
-		// 	headers :{
-		// 		'Content-Type': 'multipart/form-data'
-		// 	},
-		// 	data: file
-		// }).then(function(response){
-		// 	console.log(response)
-		// });
-		var fd = new FormData();
-		for (var key in $scope.uploadImage){
-			fd.append(key , $scope.uploadImage[key])
-		}
-		$http.post('/upload', fd, {
-			transformRequest: angular.indentity,
-			headers: {'Content-Type': undefined}
-		}).then(function(response){
-			console.log(response)
-		})
-		// ,function (response) {
-		// 	if (response.status > 0)
-		// 		$scope.errorMsg = response.status + ': ' + response.data;
-		// });
-
-		// file.upload.progress(function (evt) {
-		// 	file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
-		// });
+		Upload.base64DataUrl($scope.uploadImage).then(function(urls){
+			var options = {
+				url 	: '/upload',
+				method 	: 'POST',
+				data 	: {
+					filename: $scope.uploadImage.name,
+					data 	: urls
+				}
+			}
+			$http(options)
+				.then(function(response){
+					$scope.photoURL = response.photoURL;
+				})
+		});
 	}
 });
+
+
