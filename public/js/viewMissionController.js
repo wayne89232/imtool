@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.controllers').controller('view_mission', function($scope, $http, $location,$window,$routeParams){
+angular.module('myApp.controllers').controller('view_mission', function($scope, $http, $location,$window,$routeParams,$timeout){
 	var cur_user = $window.localStorage.getItem("user_id");
 
 	$http({ method:"GET", url:'/viewEvent/' + $routeParams.id }).then(function(mission){
@@ -71,5 +71,38 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
 		}).then(function(result){
 			$window.location.reload();
 		});	
+    }
+
+    var counter = 0
+	function addItem(){
+		var newMessage = new Object()
+		newMessage.user = 123;
+		newMessage.message = ++counter;
+		$scope.messages.push(newMessage)
+		$timeout(addItem, 10000);
+	}
+             
+	$timeout(addItem, 10000);
+
+    $scope.messages = [{
+    	user 	: 123,
+    	message : "Bike"
+    },{
+    	user 	: 123,
+    	message : "Bike1"
+    },{
+    	user 	: 123,
+    	message : "Bike2"
+    },{
+    	user 	: 123,
+    	message : "Bike3"
+    }]
+
+    $scope.sendMessage = function(){
+    	console.log($scope.liveMessage)
+    	var newMessage = new Object()
+    	newMessage.user = 123;
+    	newMessage.message = $scope.liveMessage
+    	$scope.messages.push(newMessage)
     }
 });

@@ -53,6 +53,10 @@ config(function ($routeProvider, $locationProvider) {
       templateUrl: 'partials/view_mission',
       controller: 'view_mission'
     }).
+    when('community', {
+      templateUrl: 'partials/community',
+      controller: 'community'
+    }).
     otherwise({
       redirectTo: '/home'
     });
