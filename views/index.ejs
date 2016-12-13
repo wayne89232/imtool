@@ -6,7 +6,6 @@
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
 		<base href="/">
-
 		<!-- Front-End Packages -->
 		<script src="/underscore/underscore-min.js"></script>
 		<script src="/jquery/dist/jquery.js"></script>
@@ -17,8 +16,6 @@
 		<script src="/ng-file-upload/ng-file-upload.min.js"></script>
 		<script src="/ngSweetAlert/SweetAlert.min.js"></script>
 		<script src="/sweetalert/dist/sweetalert.min.js"></script>
-
-
 		<script src="/semantic/dist/semantic.min.js"></script>
 		<script src="/semantic-ui-dropdown/dropdown.min.js"></script>
 		<script src="/semantic-ui-sticky/sticky.min.js"></script>
@@ -28,7 +25,6 @@
 		
 		<script src="js/app.js"></script>
 		<script src="js/services.js"></script>
-
 		<!-- Controllers -->
 		<script src="js/controllers.js"></script>
 		<script src="js/createMissionController.js"></script>
@@ -37,15 +33,12 @@
 		<script src="js/registerPageController.js"></script>
 		<script src="js/userInfoController.js"></script>
 		<script src="js/viewMissionController.js"></script>
-
 		<script src="js/filters.js"></script>
 		<script src="js/directives.js"></script>
 		<script src="js/tablesort.js"></script>
-
 		<script>
-		    var content = <%- JSON.stringify(userInfo)%>
+		var content = <%- JSON.stringify(userInfo)%>
 		</script>
-
 		<link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.min.css">
 		<link rel="stylesheet" type="text/css" href="/sweetalert/dist/sweetalert.css">
 		<link rel="stylesheet" type="text/css" href="/pickadate/lib/themes/classic.css">
@@ -108,6 +101,10 @@
 						<a class="item" ng-click="user_info()"  ng-show="is_login">
 							<img class="ui avatar image" src="{{photo}}">
 							<div class="" ng-bind="local_user"></div>
+						</a>
+						<a class="item" ng-click="view_notifications()"  ng-show="is_login">
+							<i class="mail view icon"></i>
+							Notifications
 						</a>
 						<a class="item" ng-click="logout()" ng-show="is_login">
 							<i class="wheelchair icon"></i>
@@ -207,6 +204,24 @@
 					</div>
 				</div>
 			</div>
+			<!-- view notifications -->
+			<div class="ui modal notification">
+				<div class="header">Notifications</div>
+				<div class="content">
+					<div class="ui list">
+						<div class="item">
+							<img class="ui avatar image" src="assets/images/tool.png">
+							<div class="content">
+								<a class="header">testMission</a>
+								<div class="description">You're fired!</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="actions">
+					<div class="ui cancel button">Close</div>
+				</div>
+			</div>
 			<!-- add mission -->
 			<div class="ui modal mission">
 				<i class="close icon"></i>
@@ -272,7 +287,7 @@
 			<div id="stick" ng-view="">
 				
 			</div>
-			<div class="ui  vertical footer segment">
+			<div class="ui vertical footer segment container">
 				<div class="ui center aligned container">
 					<div class="ui  section divider"></div>
 					<img src="/assets/images/tool.png" class="ui centered mini image">
