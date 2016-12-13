@@ -18,6 +18,7 @@ var Toolship = require('./toolship').Toolship(Sequelize,sequelize);
 var User_location = require('./user_location').User_location(Sequelize,sequelize);
 var User_skill = require('./user_skill').User_skill(Sequelize,sequelize);
 var Mission_skill = require('./mission_skill').Mission_skill(Sequelize,sequelize);
+var Notification = require('./notification').Notification(Sequelize,sequelize);
 
 
 //add some relations here
@@ -49,6 +50,11 @@ Mission.hasMany(Mission_skill,{foreignKey: 'mission_id'});
 Mission_skill.belongsTo(Skill,{foreignKey: 'skill_id'});
 Mission_skill.belongsTo(Mission,{foreignKey: 'mission_id'});
 
+User.hasMany(Notification,{foreignKey: 'user_id'});
+Mission.hasMany(Notification,{foreignKey: 'mission_id'});
+Notification.belongsTo(Mission,{foreignKey: 'mission_id'});
+Notification.belongsTo(User,{foreignKey: 'user_id'});
+
 //export for use in other directory
 // exports.Example = Example;
 
@@ -60,4 +66,5 @@ exports.Toolship = Toolship;
 exports.User_location = User_location;
 exports.User_skill = User_skill;
 exports.Mission_skill = Mission_skill;
+exports.Notification = Notification;
 

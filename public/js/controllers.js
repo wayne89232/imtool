@@ -31,6 +31,9 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
 	$scope.create_mission = function(){
 		$('.ui.modal.mission').modal('show');
 	}
+	$scope.view_notifications = function(){
+		$('.ui.modal.notification').modal('show');
+	}
     $scope.add_mission = function(){
     	if($scope.title != null ){
             var data = {
