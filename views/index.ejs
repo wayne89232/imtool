@@ -16,6 +16,9 @@
 		<script src="/ng-file-upload/ng-file-upload.min.js"></script>
 		<script src="/ngSweetAlert/SweetAlert.min.js"></script>
 		<script src="/sweetalert/dist/sweetalert.min.js"></script>
+		<script src="/angular-scroll-glue/src/scrollglue.js"></script>
+
+
 
 
 		<script src="/semantic/dist/semantic.min.js"></script>
@@ -36,6 +39,7 @@
 		<script src="js/registerPageController.js"></script>
 		<script src="js/userInfoController.js"></script>
 		<script src="js/viewMissionController.js"></script>
+		<script src="js/communityController.js"></script>
 
 		<script src="js/filters.js"></script>
 		<script src="js/directives.js"></script>
@@ -84,6 +88,12 @@
 			}
 			.ui.message{
 					background-color: rgba(138,138,154,0);
+			}
+
+			[scroll-glue]{
+				height: 100px;
+				overflow-y: scroll;
+				border: 1px solid gray;
 			}
 		</style>
 	</head>
@@ -150,10 +160,12 @@
 							</div>
 						</div>
 						<div class="column  center aligned" >
-							<div class="ui cancel basic inverted button mb">
-								<div class="row"><i class="massive users icon"></i></div>
-								<div class="row"><h1>Community</h1></div>
-							</div>
+							<a href="/community">
+								<div class="ui cancel basic inverted button mb">
+									<div class="row"><i class="massive users icon"></i></div>
+									<div class="row"><h1>Community</h1></div>
+								</div>
+							</a>
 						</div>
 						<div class="column  center aligned">
 							<a href="/rank_list">
