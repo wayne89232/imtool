@@ -12,6 +12,7 @@ var express = require('express'),
     api = require('./routes/api'),
     user = require('./routes/user'),
     mission = require('./routes/mission'),
+    multer  = require('multer'),
     uploadImage = require('./routes/uploadImage'),
     express_validators = require('./config').express_validators,
 
@@ -23,6 +24,7 @@ var express = require('express'),
     path = require('path');
 
 var app = module.exports = express();
+var upload = multer({ dest: 'public/assets/images/' })
 
 /**
  * Configuration
@@ -79,7 +81,7 @@ app.get('/getUserMission/:id', user.tooler_mission);
 app.get('/getToolMission/:id', user.tool_mission);
 app.get('/user_list', user.user_list);
 
-app.post('/upload' , uploadImage.upload)
+app.post('/upload' ,upload.single('photo') ,uploadImage.upload)
 
 //mission
 app.post('/createMission', mission.create_mission);
