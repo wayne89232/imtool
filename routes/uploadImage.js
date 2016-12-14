@@ -29,7 +29,7 @@ exports.upload = function(req,res) {
 	// Generate random string
 	
 	var imageBuffer                      = decodeBase64Image(req.body.data);
-	var userUploadedFeedMessagesLocation = '../public/assets/images/';
+	var userUploadedFeedMessagesLocation = 'assets/images/';
 	var uniqueRandomImageName            = req.body.filename;
 	// This variable is actually an array which has 5 values,
 	// The [1] value is the real image extension
@@ -37,12 +37,17 @@ exports.upload = function(req,res) {
 	var userUploadedImagePath            = userUploadedFeedMessagesLocation+uniqueRandomImageName+'.'+imageTypeDetected[1];
 	
 	// Save decoded binary image to disk
-	fs.writeFile(userUploadedImagePath, imageBuffer.data,function(){
+
+	fs.writeFile("public/" + userUploadedImagePath, imageBuffer.data,function(error){
+		console.log(error)
 		console.log('DEBUG - feed:message: Saved to disk image attached by user:', userUploadedImagePath);
-		res.send({
-			photoURL: userUploadedImagePath
-		})
+		res.json(userUploadedImagePath )
 	});
+
+	fs.open(userUploadedImagePath,'w+',function(err,fd){
+		console.log("err:",err)
+		
+	})
 
 };
 

@@ -24,7 +24,7 @@ angular.module('myApp.controllers').controller('register_page', function($scope,
             var data = {
                 account 	: $scope.account, 
                 password 	: $scope.password,
-                user_name 	: $scope.name,
+                user_name : $scope.name,
                 gender 		: $scope.gender.id,
                 email 		: $scope.mail,
                 photoURL 	: $scope.photoURL
@@ -34,10 +34,12 @@ angular.module('myApp.controllers').controller('register_page', function($scope,
                 url: '/register', 
                 data: data
             }).then(function(result){
+              console.log(result)
             	if(result.data.success==false){
             		alert(result.data.msg);
             	}
             	else{
+                var user = result.data.user
 				$window.localStorage.setItem("is_login", true);
 				$window.localStorage.setItem("account", user.account);
 				$window.localStorage.setItem("user_id", user.user_id);
@@ -67,13 +69,14 @@ angular.module('myApp.controllers').controller('register_page', function($scope,
 				url 	: '/upload',
 				method 	: 'POST',
 				data 	: {
-					filename: $scope.uploadImage.name,
+					filename: $scope.uploadImage.name.split('.')[0],
 					data 	: urls
 				}
 			}
 			$http(options)
 				.then(function(response){
-					$scope.photoURL = response.photoURL;
+          console.log(response)
+					$scope.photoURL = response.data;
 				})
 		});
 	}

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives']).controller('AppCtrl', function ($rootScope, $window, $scope, $http, $location) {
+angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives','base64']).controller('AppCtrl', function ($rootScope, $window, $scope, $http, $location) {
 	if($window.localStorage.getItem("is_login")){
 		$scope.is_login = true;
 		$scope.local_user = $window.localStorage.getItem("account");
@@ -38,8 +38,8 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
     $scope.add_mission = function(){
     	if($scope.title != null ){
             var data = {
-            	user_id: "window storage",
-            	location: "if not started with id segment, create new",
+            	user_id: $window.localStorage.getItem("user_id"),
+            	location: $scope.location,
                 title: $scope.title, 
                 recruit_time: new Date(),
                 skills: $scope.skills,
@@ -48,6 +48,7 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
                 content: $scope.content,
                 state: "Recruiting"
             };
+
             $http({
 				method: "POST", 
 				url: '/createMission',
