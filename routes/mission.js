@@ -14,7 +14,7 @@ exports.create_mission = function(req, res){
 	req.checkBody('title').notEmpty();
 	req.checkBody('start_time').notEmpty();
 	req.checkBody('recruit_time').notEmpty();
-	req.checkBody('location').notEmpty();
+	// req.checkBody('location').notEmpty();
 
 	var errors = req.validationErrors();
 	if (errors) {
@@ -233,7 +233,7 @@ exports.stop_recruit = function(req, res){
 }
 
 exports.end_mission = function(req, res){
-	req.checkParams('mission_id').notEmpty();
+	req.checkParams('id').notEmpty();
 
 
 	var errors = req.validationErrors();
@@ -258,7 +258,7 @@ exports.end_mission = function(req, res){
 }
 
 
-exports.end_mission = function(req, res){
+exports.rate_tool = function(req, res){
 	req.checkBody('mission_id').notEmpty();
 	req.checkBody('user_id').notEmpty();
 

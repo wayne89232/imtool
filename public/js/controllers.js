@@ -58,7 +58,8 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
 				data: $.param(data),
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'} 
 			}).then(function(result){
-				$window.location.reload();
+				// $window.location.reload();
+				console.log(result)
             });
         }
         else{
@@ -155,6 +156,9 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
 }).controller('mission_list', function ($scope, $http, $location) {
 	$http({ method:"GET", url:'/getMissions/' }).then(function(missions){
 		$scope.missions = missions.data.data;
+		$scope.missions = _.reject($scope.missions,function(mission){
+			return mission.state!="Recruiting";
+		});
 	});
 	$scope.view_mission = function(id){
     	$location.path('/view_mission/'+id);

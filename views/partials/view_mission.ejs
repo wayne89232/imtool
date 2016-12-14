@@ -36,244 +36,272 @@
 			</div>
 		</div>
 	</div>
-	<div>
+	<div ng-hide="done()">
 		<div class="ui divider" ng-show="identity()"></div>
-		<div class="ui one column grid" ng-show="identity()">
-			<div class="row">
-				<h2 class="ui header ">
-				<img src="/assets/images/tool.png" class="ui circular image">
-				Tool'em all
-				</h2>
-			</div>
-			<div class="row">
-				<div class="ui list selection" >
-					<div class="item" ng-click="stop_recruit()" ng-show="status()">
-						<i class="map marker icon"></i>
-						<div class="content">
-							<div class="header">Stop recruiting</div>
-							<div class="description">The mission will then be started and disable toolmans to join.</div>
-						</div>
-					</div>
-					<div class="item" ng-hide="delete" ng-click="fire()">
-						<i class="map marker icon"></i>
-						<div class="content">
-							<div class="header">Fire a toolman</div>
-							<div class="description">Fire him/her if you think he's shit.</div>
-						</div>
-					</div>
-					<div class="item" ng-show="delete" ng-click="fire()">
-						<i class="map marker icon"></i>
-						<div class="content">
-							<div class="header">Stop firing</div>
-							<div class="description">Stop firing.</div>
-						</div>
-					</div>
-					<div class="item" ng-click="missionCleared()">
-						<i class="map marker icon"></i>
-						<div class="content">
-							<div class="header" >End mission</div>
-							<div class="description">Close the mission.</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="ui divider"></div>
-		<div class="row ">
-			<h2 class="ui header ">
-			<img src="/assets/images/tool.png" class="ui circular image">
-			Tools
-			</h2>
-		</div>
-		<div class="ui horizontal list selection huge">
-			<div class="item" ng-repeat="tool in tools" ng-click="user_info(tool.User.user_id)" ng-hide="delete">
-				<img class="ui avatar image" src="{{tool.User.photo_url}}">
-				<div class="content">
-					<div class="header" ng-bind="tool.User.user_name"></div>
-					<div ng-bind="tool.User.account"></div>
-				</div>
-			</div>
-			<div class="item" ng-repeat="tool in tools" ng-click="fire_tool(tool.toolship_id)" ng-show="delete">
-				<i class="ban icon"></i>
-				<div class="content">
-					<div class="header" ng-bind="tool.User.user_name"></div>
-					<div ng-bind="tool.User.account"></div>
-				</div>
-			</div>
-			<div class="item" ng-show="identity()" ng-click="add_tool()">
-				<i ng-show="status()" class="plus square outline icon"></i>
-				<div  ng-show="status()" class="content">
-					<div class="header">Tool more</div>
-				</div>
-			</div>
-			<div class="item" ng-hide="identity()">
-				<i ng-show="status()" class="plus square outline icon"></i>
-				<div ng-show="status()" class="content">
-					<div class="header">Tool me</div>
-				</div>
-			</div>
-		</div>
-		<div class="ui divider"></div>
-		
-		<!-- <div class="ui one column grid"> -->
-		<!-- <div class="row"> -->
-		<h2 class="ui header ">
-		<img src="/assets/images/tool.png" class="ui circular image">
-		Chatroom
-		</h2>
-		<!-- </div> -->
-		<!-- <div class="row"> -->
-		<div class="ui segment" scroll-glue="glued">
-			<div class="ui comments">
-				<div class="comment" ng-repeat="chat in chats">
-					<!-- <a class="avatar">
-							<img class="ui mini image" src="assets/images/tool.png">
-					</a> -->
-					<div class="content">
-						<a class="author">{{chat.User.user_name}}</a>
-						<div class="metadata">
-							<span class="date">{{chat.time}}</span>
-						</div>
-						<div class="text">
-							{{chat.content}}
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- </div> -->
-		<div class="row">
-			<div class="ui form">
-				<div class="field">
-					<input type="text" ng-model="liveMessage" placeholder="Say Something">
-				</div>
-				<div class="ui blue labeled submit icon button" ng-click="sendMessage()">
-					<i class="icon edit"></i> Say
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- progress block -->
-	<!-- 		<div class="ui one column grid">
-		<div class="row">
+		<div>
+			<div class="ui one column grid" ng-show="identity()">
+				<div class="row">
 					<h2 class="ui header ">
 					<img src="/assets/images/tool.png" class="ui circular image">
-					Progress
+					Tool'em all
 					</h2>
-		</div>
-		<div class="row">
-					<div class="ui pointing below basic red right label">
-											Mission ends in XXXX/XX/XX
+				</div>
+				<div class="row">
+					<div class="ui list selection" >
+						<div class="item" ng-click="stop_recruit()" ng-show="status()">
+							<i class="map marker icon"></i>
+							<div class="content">
+								<div class="header">Stop recruiting</div>
+								<div class="description">The mission will then be started and disable toolmans to join.</div>
+							</div>
+						</div>
+						<div class="item" ng-hide="delete" ng-click="fire()">
+							<i class="map marker icon"></i>
+							<div class="content">
+								<div class="header">Fire a toolman</div>
+								<div class="description">Fire him/her if you think he's shit.</div>
+							</div>
+						</div>
+						<div class="item" ng-show="delete" ng-click="fire()">
+							<i class="map marker icon"></i>
+							<div class="content">
+								<div class="header">Stop firing</div>
+								<div class="description">Stop firing.</div>
+							</div>
+						</div>
+						<div class="item" ng-click="end_mission()">
+							<i class="map marker icon"></i>
+							<div class="content">
+								<div class="header" >End mission</div>
+								<div class="description">Close the mission.</div>
+							</div>
+						</div>
 					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-	<div class="ui indicating progress" data-value="150" data-total="200">
-		<div class="bar"></div>
-		<div class="label">Recruiting</div>
-	</div> -->
+	<div class="ui divider"></div>
+	<div class="row ">
+		<h2 class="ui header ">
+		<img src="/assets/images/tool.png" class="ui circular image">
+		Tools
+		</h2>
+	</div>
+	<div class="ui horizontal list selection huge">
+		<div class="item" ng-repeat="tool in tools" ng-click="user_info(tool.User.user_id)" ng-hide="delete">
+			<img class="ui avatar image" src="{{tool.User.photo_url}}">
+			<div class="content">
+				<div class="header" ng-bind="tool.User.user_name"></div>
+				<div ng-bind="tool.User.account"></div>
+			</div>
+		</div>
+		<div class="item" ng-repeat="tool in tools" ng-click="fire_tool(tool.toolship_id)" ng-show="delete">
+			<i class="ban icon"></i>
+			<div class="content">
+				<div class="header" ng-bind="tool.User.user_name"></div>
+				<div ng-bind="tool.User.account"></div>
+			</div>
+		</div>
+		<div class="item" ng-show="identity()" ng-click="add_tool()">
+			<i ng-show="status()" class="plus square outline icon"></i>
+			<div  ng-show="status()" class="content">
+				<div class="header">Tool more</div>
+			</div>
+		</div>
+		<div class="item" ng-hide="identity()">
+			<i ng-show="status()" class="plus square outline icon"></i>
+			<div ng-show="status()" class="content">
+				<div class="header">Tool me</div>
+			</div>
+		</div>
+	</div>
+	<div class="ui divider"></div>
+	
+	<!-- <div class="ui one column grid"> -->
+	<!-- <div class="row"> -->
+	<h2 class="ui header ">
+	<img src="/assets/images/tool.png" class="ui circular image">
+	Chatroom
+	</h2>
+	<!-- </div> -->
+	<!-- <div class="row"> -->
+	<div class="ui segment" scroll-glue="glued">
+		<div class="ui comments">
+			<div class="comment" ng-repeat="chat in chats">
+				<!-- <a class="avatar">
+							<img class="ui mini image" src="assets/images/tool.png">
+				</a> -->
+				<div class="content">
+					<a class="author">{{chat.User.user_name}}</a>
+					<div class="metadata">
+						<span class="date">{{chat.time}}</span>
+					</div>
+					<div class="text">
+						{{chat.content}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- </div> -->
+	<div class="row">
+		<div class="ui form">
+			<div class="field">
+				<input type="text" ng-model="liveMessage" placeholder="Say Something">
+			</div>
+			<div class="ui blue labeled submit icon button" ng-click="sendMessage()">
+				<i class="icon edit"></i> Say
+			</div>
+		</div>
+	</div>
+</div>
+<!-- progress block -->
+<!-- 		<div class="ui one column grid">
+	<div class="row">
+				<h2 class="ui header ">
+				<img src="/assets/images/tool.png" class="ui circular image">
+				Progress
+				</h2>
+	</div>
+	<div class="row">
+				<div class="ui pointing below basic red right label">
+											Mission ends in XXXX/XX/XX
+				</div>
+	</div>
+</div>
+<div class="ui indicating progress" data-value="150" data-total="200">
+	<div class="bar"></div>
+	<div class="label">Recruiting</div>
+</div> -->
 </div>
 <div class="ui modal small mission_clear">
-	<div class="header">Mission Cleared - Rate your toolmans</div>
-	<div class="content">
-		<div class="ui form">
-			<div >
+<div class="header">Mission Cleared - Rate your toolmans</div>
+<div class="content">
+	<div class="ui form">
+		<div >
 			<!-- ng-repeat="tool in tools" -->
-<!-- 			<div class="field">
-				<div class="ui feed">
-					<div class="event">
-						<div class="label">
-							<img src="{{tool.User.photo_url}}">
-						</div>
-						<div class="content">
-							<a>{{tool.User.user_name}}</a>
-						</div>
+			<!-- 			<div class="field">
+					<div class="ui feed">
+							<div class="event">
+									<div class="label">
+											<img src="{{tool.User.photo_url}}">
+									</div>
+									<div class="content">
+											<a>{{tool.User.user_name}}</a>
+									</div>
+							</div>
 					</div>
-				</div>
 			</div> -->
-				<div class="field">
-					<label>Rating</label>
-					<div class="ui star rating" data-max-rating="5"></div>
-				</div>
-				<div class="field">
-					<label>Comment</label>
-					<textarea></textarea>
-				</div>
-				<br>
+			<div class="field">
+				<label>Rating</label>
+				<div class="ui star rating" data-max-rating="5"></div>
 			</div>
+			<div class="field">
+				<label>Comment</label>
+				<textarea></textarea>
+			</div>
+			<br>
 		</div>
-		
 	</div>
-	<div class="actions">
-		<div class="ui ok button">Save Comment</div>
-		<div class="ui cancel button">Cancel</div>
-	</div>
+	
+</div>
+<div class="actions">
+	<div class="ui ok button">Save Comment</div>
+	<div class="ui cancel button">Cancel</div>
+</div>
 </div>
 <div class="ui modal small add_tool">
-	<div class="header" >Add a toolman</div>
-	<div class="content">
-		<div class="ui form" >
-			<div class="field">
-				<select ng-model="new_tool" ng-options="m.user_name for m in toolmans" class="ui search dropdown">
-					<option value="">Toolman</option>
-				</select>
-			</div>
+<div class="header" >Add a toolman</div>
+<div class="content">
+	<div class="ui form" >
+		<div class="field">
+			<select ng-model="new_tool" ng-options="m.user_name for m in toolmans" class="ui search dropdown">
+				<option value="">Toolman</option>
+			</select>
 		</div>
 	</div>
-	<div class="actions">
-		<div class="ui ok button" ng-click="add_toolman()">Add</div>
-		<div class="ui cancel button">Cancel</div>
-	</div>
+</div>
+<div class="actions">
+	<div class="ui ok button" ng-click="add_toolman()">Add</div>
+	<div class="ui cancel button">Cancel</div>
+</div>
 </div>
 <div class="ui basic modal fire">
-	<i class="close icon"></i>
-	<div class="header">
-		Fire a toolman
+<i class="close icon"></i>
+<div class="header">
+	Fire a toolman
+</div>
+<div class="image content">
+	<div class="image">
+		<i class="archive icon"></i>
 	</div>
-	<div class="image content">
-		<div class="image">
-			<i class="archive icon"></i>
-		</div>
-		<div class="description">
-			<p>Are you sure you want to fire this toolman?</p>
-		</div>
+	<div class="description">
+		<p>Are you sure you want to fire this toolman?</p>
 	</div>
-	<div class="actions">
-		<div class="two fluid ui inverted buttons">
-			<div class="ui cancel red basic inverted button">
-				<i class="remove icon"></i>
-				No
-			</div>
-			<div class="ui ok green basic inverted button" ng-click="go_fire()">
-				<i class="checkmark icon"></i>
-				Yes
-			</div>
+</div>
+<div class="actions">
+	<div class="two fluid ui inverted buttons">
+		<div class="ui cancel red basic inverted button">
+			<i class="remove icon"></i>
+			No
+		</div>
+		<div class="ui ok green basic inverted button" ng-click="go_fire()">
+			<i class="checkmark icon"></i>
+			Yes
 		</div>
 	</div>
 </div>
-
+</div>
 <div class="ui basic modal recruit">
-	<i class="close icon"></i>
-	<div class="header">
-		Stop recruit
+<i class="close icon"></i>
+<div class="header">
+	Stop recruit
+</div>
+<div class="image content">
+	<div class="image">
+		<i class="archive icon"></i>
 	</div>
-	<div class="image content">
-		<div class="image">
-			<i class="archive icon"></i>
+	<div class="description">
+		<p>Are you sure you want to stop recruit toolmans?</p>
+	</div>
+</div>
+<div class="actions">
+	<div class="two fluid ui inverted buttons">
+		<div class="ui cancel red basic inverted button">
+			<i class="remove icon"></i>
+			No
 		</div>
-		<div class="description">
-			<p>Are you sure you want to stop recruit toolmans?</p>
+		<div class="ui ok green basic inverted button" ng-click="stop_recruit_confirm()">
+			<i class="checkmark icon"></i>
+			Yes
 		</div>
 	</div>
-	<div class="actions">
-		<div class="two fluid ui inverted buttons">
-			<div class="ui cancel red basic inverted button">
-				<i class="remove icon"></i>
-				No
-			</div>
-			<div class="ui ok green basic inverted button" ng-click="stop_recruit_confirm()">
-				<i class="checkmark icon"></i>
-				Yes
-			</div>
+</div>
+</div>
+<div class="ui basic modal end">
+<i class="close icon"></i>
+<div class="header">
+	End Mission
+</div>
+<div class="image content">
+	<div class="image">
+		<i class="archive icon"></i>
+	</div>
+	<div class="description">
+		<p>Are you sure you want to end this mission?</p>
+	</div>
+</div>
+<div class="actions">
+	<div class="two fluid ui inverted buttons">
+		<div class="ui cancel red basic inverted button">
+			<i class="remove icon"></i>
+			No
+		</div>
+		<div class="ui ok green basic inverted button" ng-click="end_mission_confirm()">
+			<i class="checkmark icon"></i>
+			Yes
 		</div>
 	</div>
+</div>
 </div>
