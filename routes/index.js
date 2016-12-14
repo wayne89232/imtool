@@ -4,7 +4,6 @@
  */
 
 exports.index = function(req, res){
-	console.log("ERRRR")
 	if (!req.session.user)
 		var userInfo = "First"
 	else
@@ -13,7 +12,6 @@ exports.index = function(req, res){
 };
 
 exports.partials = function (req, res) {
-	console.log("HER")
 	// console.log(req.params.name);
 	if (!req.session.user)
 		var userInfo = "First"
