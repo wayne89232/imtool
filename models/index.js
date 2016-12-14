@@ -23,37 +23,37 @@ var Notification = require('./notification').Notification(Sequelize,sequelize);
 
 //add some relations here
 
-User.hasMany(Mission, {foreignKey: 'user_id'});
-Mission.belongsTo(User, {foreignKey: 'user_id'});
+// User.hasMany(Mission, {foreignKey: 'user_id'});
+// Mission.belongsTo(User, {foreignKey: 'user_id'});
 
-Mission.hasOne(Location, {foreignKey: 'location_id'});
-Location.belongsTo(Mission,{foreignKey: 'location_id'});
+// Mission.hasOne(Location, {foreignKey: 'location_id'});
+// Location.belongsTo(Mission,{foreignKey: 'location_id'});
 
-User.hasMany(User_location,{foreignKey: 'user_id'});
-Location.hasMany(User_location,{foreignKey: 'location_id'});
-User_location.belongsTo(Location,{foreignKey: 'location_id'});
-User_location.belongsTo(User,{foreignKey: 'user_id'});
+// User.hasMany(User_location,{foreignKey: 'user_id'});
+// Location.hasMany(User_location,{foreignKey: 'location_id'});
+// User_location.belongsTo(Location,{foreignKey: 'location_id'});
+// User_location.belongsTo(User,{foreignKey: 'user_id'});
 
-User.hasMany(User_skill,{foreignKey: 'user_id'});
-Skill.hasMany(User_skill,{foreignKey: 'skill_id'});
-User_skill.belongsTo(Skill,{foreignKey: 'skill_id'});
-User_skill.belongsTo(User,{foreignKey: 'user_id'});
+// User.hasMany(User_skill,{foreignKey: 'user_id'});
+// Skill.hasMany(User_skill,{foreignKey: 'skill_id'});
+// User_skill.belongsTo(Skill,{foreignKey: 'skill_id'});
+// User_skill.belongsTo(User,{foreignKey: 'user_id'});
 
 
-User.hasMany(Toolship,{foreignKey: 'user_id'});
-Mission.hasMany(Toolship,{foreignKey: 'mission_id'});
-Toolship.belongsTo(Mission,{foreignKey: 'mission_id'});
-Toolship.belongsTo(User,{foreignKey: 'user_id'});
+// User.hasMany(Toolship,{foreignKey: 'user_id'});
+// Mission.hasMany(Toolship,{foreignKey: 'mission_id'});
+// Toolship.belongsTo(Mission,{foreignKey: 'mission_id'});
+// Toolship.belongsTo(User,{foreignKey: 'user_id'});
 
-Skill.hasMany(Mission_skill,{foreignKey: 'skill_id'});
-Mission.hasMany(Mission_skill,{foreignKey: 'mission_id'});
-Mission_skill.belongsTo(Skill,{foreignKey: 'skill_id'});
-Mission_skill.belongsTo(Mission,{foreignKey: 'mission_id'});
+// Skill.hasMany(Mission_skill,{foreignKey: 'skill_id'});
+// Mission.hasMany(Mission_skill,{foreignKey: 'mission_id'});
+// Mission_skill.belongsTo(Skill,{foreignKey: 'skill_id'});
+// Mission_skill.belongsTo(Mission,{foreignKey: 'mission_id'});
 
-User.hasMany(Notification,{foreignKey: 'user_id'});
-Mission.hasMany(Notification,{foreignKey: 'mission_id'});
-Notification.belongsTo(Mission,{foreignKey: 'mission_id'});
-Notification.belongsTo(User,{foreignKey: 'user_id'});
+// User.hasMany(Notification,{foreignKey: 'user_id'});
+// Mission.hasMany(Notification,{foreignKey: 'mission_id'});
+// Notification.belongsTo(Mission,{foreignKey: 'mission_id'});
+// Notification.belongsTo(User,{foreignKey: 'user_id'});
 
 //export for use in other directory
 // exports.Example = Example;
