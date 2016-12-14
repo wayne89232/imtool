@@ -26,15 +26,10 @@
 					</div>
 				</div>
 				<div class="ui  segment">
+
 					<div class="description" ng-bind="mission_info.content">
 					</div>
 				</div>
-				<div class="ui  segment" scroll-glue="glued">
-					<div class="description" ng-repeat="m in messages">{{m.message}}</div>
-				</div>
-				<input type="textarea" ng-model="liveMessage">
-				<button ng-click="sendMessage()">Send</button>
-
 				<div class="extra bottom ">
 					<!-- ng-repeat="tool in mission_info.Toolship" -->
 					<div class="ui label" ng-repeat="skill in skills" ng-bind="skill.Skill.skill"></div>
@@ -120,93 +115,133 @@
 			</div>
 		</div>
 		<div class="ui divider"></div>
-		<div class="ui one column grid">
-			<div class="row">
-				<h2 class="ui header ">
-				<img src="/assets/images/tool.png" class="ui circular image">
-				Progress
-				</h2>
-			</div>
-			<div class="row">
-				<div class="ui pointing below basic red right label">
-					Mission ends in XXXX/XX/XX
+		
+		<!-- <div class="ui one column grid"> -->
+		<!-- <div class="row"> -->
+		<h2 class="ui header ">
+		<img src="/assets/images/tool.png" class="ui circular image">
+		Chatroom
+		</h2>
+		<!-- </div> -->
+		<!-- <div class="row"> -->
+		<div class="ui segment" scroll-glue="glued">
+			<div class="ui comments">
+				<div class="comment" ng-repeat="chat in chats">
+					<!-- <a class="avatar">
+						<img class="ui mini image" src="assets/images/tool.png">
+					</a> -->
+					<div class="content">
+						<a class="author">{{chat.User.user_name}}</a>
+						<div class="metadata">
+							<span class="date">{{chat.time}}</span>
+						</div>
+						<div class="text">
+							{{chat.content}}
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="ui indicating progress" data-value="150" data-total="200">
-			<div class="bar"></div>
-			<div class="label">Recruiting</div>
-		</div>
-	</div>
-	<div class="ui modal small mission_clear">
-		<div class="header">Mission Cleared - Rate your toolmans</div>
-		<div class="content">
-			<div class="ui form">
-				<div class="field">
-					<label>Rating</label>
-					<div class="ui star rating" data-max-rating="5"></div>
-				</div>
-				<div class="field">
-					<label>Comment</label>
-					<textarea></textarea>
-				</div>
+		<!-- </div> -->
+		<div class="row">
+		<div class="ui form">
+			<div class="field">
+			<input type="text" ng-model="liveMessage" placeholder="Say Something">
 			</div>
-			<div class="ui divider"></div>
-			<div class="ui form">
-				<div class="field">
-					<label>Rating</label>
-					<div class="ui star rating" data-max-rating="5"></div>
-				</div>
-				<div class="field">
-					<label>Comment</label>
-					<textarea></textarea>
-				</div>
+			<div class="ui blue labeled submit icon button" ng-click="sendMessage()">
+				<i class="icon edit"></i> Say
 			</div>
-		</div>
-		<div class="actions">
-			<div class="ui ok button">Save Comment</div>
-			<div class="ui cancel button">Cancel</div>
-		</div>
-	</div>
-	<div class="ui modal small add_tool">
-		<div class="header" >Add a toolman</div>
-		<div class="content">
-			<div class="ui form" >
-				<div class="field">
-					<select ng-model="new_tool" ng-options="m.user_name for m in toolmans" class="ui search dropdown">
-						<option value="">Toolman</option>
-					</select>
-				</div>
-			</div>
-		</div>
-		<div class="actions">
-			<div class="ui ok button" ng-click="add_toolman()">Add</div>
-			<div class="ui cancel button">Cancel</div>
-		</div>
-	</div>
-	<div class="ui basic modal fire">
-		<i class="close icon"></i>
-		<div class="header">
-			Fire a toolman
-		</div>
-		<div class="image content">
-			<div class="image">
-				<i class="archive icon"></i>
-			</div>
-			<div class="description">
-				<p>Are you sure you want to fire this toolman?</p>
-			</div>
-		</div>
-		<div class="actions">
-			<div class="two fluid ui inverted buttons">
-				<div class="ui cancel red basic inverted button">
-					<i class="remove icon"></i>
-					No
-				</div>
-				<div class="ui ok green basic inverted button" ng-click="go_fire()">
-					<i class="checkmark icon"></i>
-					Yes
-				</div>
 			</div>
 		</div>
 	</div>
+	<!-- progress block -->
+	<!-- 		<div class="ui one column grid">
+		<div class="row">
+					<h2 class="ui header ">
+					<img src="/assets/images/tool.png" class="ui circular image">
+					Progress
+					</h2>
+		</div>
+		<div class="row">
+					<div class="ui pointing below basic red right label">
+										Mission ends in XXXX/XX/XX
+					</div>
+		</div>
+	</div>
+	<div class="ui indicating progress" data-value="150" data-total="200">
+		<div class="bar"></div>
+		<div class="label">Recruiting</div>
+	</div> -->
+</div>
+<div class="ui modal small mission_clear">
+	<div class="header">Mission Cleared - Rate your toolmans</div>
+	<div class="content">
+		<div class="ui form">
+			<div class="field">
+				<label>Rating</label>
+				<div class="ui star rating" data-max-rating="5"></div>
+			</div>
+			<div class="field">
+				<label>Comment</label>
+				<textarea></textarea>
+			</div>
+		</div>
+		<div class="ui divider"></div>
+		<div class="ui form">
+			<div class="field">
+				<label>Rating</label>
+				<div class="ui star rating" data-max-rating="5"></div>
+			</div>
+			<div class="field">
+				<label>Comment</label>
+				<textarea></textarea>
+			</div>
+		</div>
+	</div>
+	<div class="actions">
+		<div class="ui ok button">Save Comment</div>
+		<div class="ui cancel button">Cancel</div>
+	</div>
+</div>
+<div class="ui modal small add_tool">
+	<div class="header" >Add a toolman</div>
+	<div class="content">
+		<div class="ui form" >
+			<div class="field">
+				<select ng-model="new_tool" ng-options="m.user_name for m in toolmans" class="ui search dropdown">
+					<option value="">Toolman</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="actions">
+		<div class="ui ok button" ng-click="add_toolman()">Add</div>
+		<div class="ui cancel button">Cancel</div>
+	</div>
+</div>
+<div class="ui basic modal fire">
+	<i class="close icon"></i>
+	<div class="header">
+		Fire a toolman
+	</div>
+	<div class="image content">
+		<div class="image">
+			<i class="archive icon"></i>
+		</div>
+		<div class="description">
+			<p>Are you sure you want to fire this toolman?</p>
+		</div>
+	</div>
+	<div class="actions">
+		<div class="two fluid ui inverted buttons">
+			<div class="ui cancel red basic inverted button">
+				<i class="remove icon"></i>
+				No
+			</div>
+			<div class="ui ok green basic inverted button" ng-click="go_fire()">
+				<i class="checkmark icon"></i>
+				Yes
+			</div>
+		</div>
+	</div>
+</div>

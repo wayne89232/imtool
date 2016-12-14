@@ -19,6 +19,7 @@ var User_location = require('./user_location').User_location(Sequelize,sequelize
 var User_skill = require('./user_skill').User_skill(Sequelize,sequelize);
 var Mission_skill = require('./mission_skill').Mission_skill(Sequelize,sequelize);
 var Notification = require('./notification').Notification(Sequelize,sequelize);
+var Chat = require('./chat').Chat(Sequelize,sequelize);
 
 
 //add some relations here
@@ -55,6 +56,11 @@ Mission.hasMany(Notification,{foreignKey: 'mission_id'});
 Notification.belongsTo(Mission,{foreignKey: 'mission_id'});
 Notification.belongsTo(User,{foreignKey: 'user_id'});
 
+User.hasMany(Chat,{foreignKey: 'user_id'});
+Mission.hasMany(Chat,{foreignKey: 'mission_id'});
+Chat.belongsTo(Mission,{foreignKey: 'mission_id'});
+Chat.belongsTo(User,{foreignKey: 'user_id'});
+
 //export for use in other directory
 // exports.Example = Example;
 
@@ -67,4 +73,5 @@ exports.User_location = User_location;
 exports.User_skill = User_skill;
 exports.Mission_skill = Mission_skill;
 exports.Notification = Notification;
+exports.Chat = Chat;
 
