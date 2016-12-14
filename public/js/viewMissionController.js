@@ -34,7 +34,14 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
 							return true;
 						}
 					};
-		
+					$scope.done = function(){
+						if ($scope.mission_info.state == "Done") {
+							return true;
+						}
+						else{
+							return false;
+						}
+					};
 					$('.ui .dropdown').dropdown();
 					});	
 				});
@@ -98,6 +105,19 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
 		});	
     }
 
+
+    $scope.end_mission = function(){
+    	$('.ui.basic.modal.end').modal('show');
+    }
+    $scope.end_mission_confirm = function(){
+		$http({ 
+		    	method:"GET", 
+		    	url:'/end_mission/'+$routeParams.id
+		}).then(function(result){
+			$window.location.reload();
+			// console.log(result)
+		});	
+    }
     var counter = 0
 	function addItem(){
 		var newMessage = new Object()

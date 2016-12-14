@@ -95,6 +95,7 @@ app.get('/mission_skills/:id', mission.mission_skills);
 app.post('/get_tooled',mission.get_tooled);
 app.post('/fire_tool',mission.fire_tool);
 app.get('/stop_recruit/:id',mission.stop_recruit);
+app.get('/end_mission/:id',mission.end_mission);
 
 //functions, ex: 
 // app.post('/api/add_league', api.add_league);

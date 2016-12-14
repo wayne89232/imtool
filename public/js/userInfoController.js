@@ -9,6 +9,16 @@ angular.module('myApp.controllers').controller('user_info', function($scope, $ht
 					$scope.user_info = user_info.data.data;
 					$scope.user_mission = mission1.data.data;
 					$scope.tool_mission = mission2.data.data;
+
+					$scope.check_gender = function(){
+						if ($scope.user_info.gender == 'B') {
+							return true;
+						}
+						else{
+							return false;
+						}
+					}
+
 				});
 			});
 		});

@@ -7,7 +7,8 @@
 		<div class="content">
 			<a class="header" ng-bind="user_info.user_name"></a>
 			<div class="meta">
-				<span ng-bind="user_info.gender"></span>
+				<i ng-show="check_gender()" class="man icon"></i>
+				<i ng-hide="check_gender()" class="woman icon"></i>
 			</div>
 			<h4>Skills</h4>
 			<div class="extra">
@@ -50,15 +51,15 @@
 				<thead>
 					<tr>
 						<th>Mission hosted</th>
-						<th>Status</th>
-						<th class="right aligned">Tools</th>
+						<th class="right aligned">Status</th>
+						<!-- <th class="right aligned">Tools</th> -->
 					</tr>
 				</thead>
 				<tbody>
 					<tr ng-repeat="mission in user_mission" ng-click="view_mission(mission.mission_id)">
 						<td ng-bind="mission.title"></td>
-						<td ng-bind="mission.state"></td>
-						<td class="right aligned">2</td>
+						<td class="right aligned" ng-bind="mission.state"></td>
+						<!-- <td class="right aligned">2</td> -->
 					</tr>
 				</tbody>
 			</table>
