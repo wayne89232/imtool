@@ -25,7 +25,15 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
 						else{
 							return false;
 						}
-					}
+					};
+					$scope.status = function(){
+						if ($scope.mission_info.state != "Recruiting") {
+							return false;
+						}
+						else{
+							return true;
+						}
+					};
 		
 					$('.ui .dropdown').dropdown();
 					});	
@@ -72,6 +80,19 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
 		    	method:"POST", 
 		    	url:'/fire_tool',
 		    	data: {toolship_id: $scope.firing}
+		}).then(function(result){
+			$window.location.reload();
+		});	
+    }
+
+    $scope.stop_recruit = function(){
+    	$('.ui.basic.modal.recruit').modal('show');
+    }
+    $scope.stop_recruit_confirm = function(){
+
+		$http({ 
+		    	method:"GET", 
+		    	url:'/stop_recruit/'+$routeParams.id
 		}).then(function(result){
 			$window.location.reload();
 		});	

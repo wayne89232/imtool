@@ -13,11 +13,31 @@
 				<img src="/assets/images/tool.png" class="ui circular image">
 				Missions Completed
 				</h2>
-
 			</div>
 			<div class="ui divider"></div>
 			<div class="row ">
 				<div class="column ">
+					<img class="ui small circular image" src="assets/images/pu2.jpg">
+					<div class="ui statistic">
+						<div class="value">
+							202
+						</div>
+						<div class="label">
+							Missions completed
+						</div>
+					</div>
+				</div>
+				<div class="column"><img class="ui small circular image" src="assets/images/pu2.jpg">
+					<div class="ui statistic">
+						<div class="value">
+							201
+						</div>
+						<div class="label">
+							Missions completed
+						</div>
+					</div>
+				</div>
+				<div class="column">
 					<img class="ui small circular image" src="assets/images/pu2.jpg">
 					<div class="ui statistic">
 						<div class="value">
@@ -28,64 +48,52 @@
 						</div>
 					</div>
 				</div>
-				<div class="column"><img class="ui small circular image" src="assets/images/pu2.jpg">
-					<div class="ui statistic">
-						<div class="value">
-							200
-						</div>
-						<div class="label">
-							Missions completed
-						</div>
-					</div></div>
-				<div class="column"><img class="ui small circular image" src="assets/images/pu2.jpg">	<div class="ui statistic">
-						<div class="value">
-							200
-						</div>
-						<div class="label">
-							Missions completed
-						</div>
-					</div></div>
-				<!-- 			<table class="ui padded celled center aligned sortable table">
-					<thead>
-						<th></th>
-						<th>User ID</th>
-						<th class="sorted descending">Avg Ranking</th>
-						<th>Missions</th>
-						<th></th>
-					</thead>
-					<tbody>
-						<tr ng-repeat="tool in toolTotalList">
-							<td>
-											<img ng-src="{{tool.imgUrl}}" class="ui circular tiny image middle aligned">
-								</td>
-								<td>{{tool.account}}</td>
-								<td>
-											<div class="ui star rating" data-rating="{{tool.star}}" data-max-rating="5"></div>
-											<div class="ui tiny statistic">
-														<div class="value">{{tool.rank}}</div>
-											</div>
-								</td>
-								<td>{{tool.completedMission}}</td>
-								<td>
-											<div class="ui floated primary button">View Profile</div>
-								</td>
-						</tr>
-					</tbody>
-				</table> -->
 			</div>
-		</div>
+		<br>
 		<!-- Tool Tag Rank -->
 		<div class="row">
 			<h2 class="ui header">
 			<img src="/assets/images/tool.png" class="ui circular image">
-Tool Tag Ranking
+			Tool Quality
 			</h2>
-			<select ng-model="toolTag" ng-init="toolTag = tagModel[0]" ng-options="m.value for m in tagModel" ng-change="tagChange()">
-				<!-- <option value="Delivery"> Delivery </option> -->
-			</select>
+			<!-- <select ng-model="toolTag" ng-init="toolTag = tagModel[0]" ng-options="m.value for m in tagModel" ng-change="tagChange()">
+			</select> -->
 		</div>
+		<div class="ui divider"></div>
 		<div class="row">
-			<table class="ui padded celled center aligned sortable table">
+				<div class="column ">
+					<img class="ui small circular image" src="assets/images/pu2.jpg">
+					<div class="ui statistic">
+						<div class="value">
+							5
+						</div>
+						<div class="label">
+							Avg Ranking
+						</div>
+					</div>
+				</div>
+				<div class="column"><img class="ui small circular image" src="assets/images/pu2.jpg">
+					<div class="ui statistic">
+						<div class="value">
+							4
+						</div>
+						<div class="label">
+							Avg Ranking
+						</div>
+					</div>
+				</div>
+				<div class="column">
+					<img class="ui small circular image" src="assets/images/pu2.jpg">
+					<div class="ui statistic">
+						<div class="value">
+							3
+						</div>
+						<div class="label">
+							Avg Ranking
+						</div>
+					</div>
+				</div>
+<!-- 			<table class="ui padded celled center aligned sortable table">
 				<thead>
 					<th></th>
 					<th>User ID</th>
@@ -111,7 +119,8 @@ Tool Tag Ranking
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			</table> -->
+		</div>
 		</div>
 	</div>
 	<div class="ui bottom attached tab segment" data-tab="user">
@@ -148,57 +157,7 @@ Tool Tag Ranking
 							</div>
 						</td>
 					</tr>
-					<tr>
-						<td>wayne89232</td>
-						<td>
-							<div class="ui star rating" data-rating="4" data-max-rating="5"></div>
-							<div class="ui tiny statistic">
-								<div class="value">
-									4.1
-								</div>
-							</div>
-						</td>
-						<td>60</td>
-						<td>
-							<div class="ui floated primary button">
-								View Profile
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>cosrick</td>
-						<td>
-							<div class="ui star rating" data-rating="4" data-max-rating="5"></div>
-							<div class="ui tiny statistic">
-								<div class="value">
-									3.7
-								</div>
-							</div>
-						</td>
-						<td>35</td>
-						<td>
-							<div class="ui floated primary button">
-								View Profile
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>dilmahlee</td>
-						<td>
-							<div class="ui star rating" data-rating="3" data-max-rating="5"></div>
-							<div class="ui tiny statistic">
-								<div class="value">
-									3.2
-								</div>
-							</div>
-						</td>
-						<td>40</td>
-						<td>
-							<div class="ui floated primary button">
-								View Profile
-							</div>
-						</td>
-					</tr>
+
 				</tbody>
 			</table>
 		</div>
@@ -291,3 +250,30 @@ Tool Tag Ranking
 		</div>
 	</div>
 </div>
+<!-- 			<table class="ui padded celled center aligned sortable table">
+	<thead>
+		<th></th>
+		<th>User ID</th>
+		<th class="sorted descending">Avg Ranking</th>
+		<th>Missions</th>
+		<th></th>
+	</thead>
+	<tbody>
+		<tr ng-repeat="tool in toolTotalList">
+			<td>
+										<img ng-src="{{tool.imgUrl}}" class="ui circular tiny image middle aligned">
+				</td>
+				<td>{{tool.account}}</td>
+				<td>
+										<div class="ui star rating" data-rating="{{tool.star}}" data-max-rating="5"></div>
+										<div class="ui tiny statistic">
+																<div class="value">{{tool.rank}}</div>
+										</div>
+				</td>
+				<td>{{tool.completedMission}}</td>
+				<td>
+										<div class="ui floated primary button">View Profile</div>
+				</td>
+		</tr>
+	</tbody>
+</table> -->

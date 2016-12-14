@@ -44,6 +44,7 @@ angular.module('myApp.controllers').controller('register_page', function($scope,
 				$window.localStorage.setItem("account", user.account);
 				$window.localStorage.setItem("user_id", user.user_id);
 				$window.localStorage.setItem("photo", user.photo_url);
+        $window.localStorage.setItem("name", user.user_name);
 					$window.location.reload();       		
                 	$location.path('/');	            		
             	}

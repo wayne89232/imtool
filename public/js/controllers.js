@@ -9,22 +9,26 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
 		$scope.local_user_name = $window.localStorage.getItem("name");
 	} 	
 
-	//initialize ui components
-	$('.ui .dropdown').dropdown({
-    	maxSelections: 5,
-    	allowAdditions: true
-  	});
-	$('.datepicker').pickadate({});
+	$http({ method:"GET", url:'/skill_list/' }).then(function(skills){
+		$scope.skill_list = skills.data.data;
+	
 
-	$rootScope.$on('$routeChangeStart', function (next, last) {
-   		$('.ui.modal').modal('hide');
+		//initialize ui components
+		$('.ui .dropdown').dropdown({
+	    	maxSelections: 5,
+	    	allowAdditions: true
+	  	});
+		$('.datepicker').pickadate({});
+
+		$rootScope.$on('$routeChangeStart', function (next, last) {
+	   		$('.ui.modal').modal('hide');
+		});
+		$('.ui.sticky').sticky({
+	    	context: '#stick'
+	  	});
 	});
-	$('.ui.sticky').sticky({
-    	context: '#stick'
-  	});
-
 	$scope.jump_login = function(){
-		$('.ui.modal.login').modal('show');
+		$('.ui.modal.login2').modal('show');
 	}
 	$scope.show_menu = function(){
 		$('.ui.basic.modal.menu').modal('show');
@@ -48,7 +52,6 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
                 content: $scope.content,
                 state: "Recruiting"
             };
-
             $http({
 				method: "POST", 
 				url: '/createMission',

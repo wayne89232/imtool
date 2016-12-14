@@ -62,7 +62,7 @@
 				height:215px;
 				width:93px;
 			}
-			.ui.modal.login{
+/*			.ui.modal.login{
 				background-color: rgba(138,138,154,0);
 				width: 600;
 			}
@@ -81,7 +81,7 @@
 			}
 			.ui.modal.login>.actions{
 					background-color: rgba(138,138,154,0);
-			}
+			}*/
 			.ui.message{
 					background-color: rgba(138,138,154,0);
 			}
@@ -131,7 +131,7 @@
 					<div class="row">
 						<div class="column center aligned">
 							<div class="ui cancel basic inverted button mb" >
-								<a href="/home">
+								<a href="/home" style="color: white">
 									<div class="row"><i class="massive home icon"></i></div>
 									<div class="row"><h1>Home</h1></div>
 								</a>
@@ -179,7 +179,7 @@
 				</div>
 			</div>
 			<!-- login -->
-			<div class="ui modal login">
+			<div class="ui modal login2">
 				<div class=" content">
 					<div class="ui middle aligned center aligned grid">
 						<div class="column">
@@ -194,18 +194,16 @@
 									<div class="field">
 										<div class="ui left icon  input">
 											<i class="user icon"></i>
-											<input type="text" name="email" placeholder="Account" ng-model="account" style="background: transparent;
-											border-color: white;">
+											<input type="text" name="email" placeholder="Account" ng-model="account" >
 										</div>
 									</div>
 									<div class="field">
 										<div class="ui left icon input">
 											<i class="lock icon"></i>
-											<input type="password" name="password" placeholder="Password" ng-model="password" style="background: transparent;
-											border-color: white;">
+											<input type="password" name="password" placeholder="Password" ng-model="password" >
 										</div>
 									</div>
-									<div class="ui fluid large basic inverted submit button" ng-click="login()">Login</div>
+									<div class="ui fluid large  submit button" ng-click="login()">Login</div>
 								</div>
 								<div class="ui error message"></div>
 							</form>
@@ -275,9 +273,7 @@
 								<div class="field">
 									<select class="ui fluid search dropdown" multiple="" ng-model="skills">
 										<option value="">Add your own if not here</option>
-										<option value="1">駝獸</option>
-										<option value="2">修電腦</option>
-										<option value="3">寫作業</option>
+										<option ng-repeat="s in skill_list" value="{{s.skill_id}}">{{s.skill}}</option>
 									</select>
 								</div>
 								<h4 class="ui dividing header">Schedule</h4>

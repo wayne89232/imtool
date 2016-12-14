@@ -83,6 +83,7 @@ app.get('/user_list', user.user_list);
 
 // app.post('/upload' , uploadImage.upload);
 app.post('/save_chat',api.save_chat);
+app.get('/skill_list',api.skill_list);
 app.get('/get_mission_chat/:id',api.get_mission_chat);
 app.post('/upload' ,upload.single('photo') ,uploadImage.upload)
 //mission
@@ -93,6 +94,7 @@ app.get('/find_tools/:id', mission.find_tools);
 app.get('/mission_skills/:id', mission.mission_skills);
 app.post('/get_tooled',mission.get_tooled);
 app.post('/fire_tool',mission.fire_tool);
+app.get('/stop_recruit/:id',mission.stop_recruit);
 
 //functions, ex: 
 // app.post('/api/add_league', api.add_league);
