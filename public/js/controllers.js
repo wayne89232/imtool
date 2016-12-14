@@ -6,6 +6,7 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
 		$scope.local_user = $window.localStorage.getItem("account");
 		$scope.user_type = $window.localStorage.getItem("user_type");
 		$scope.photo = $window.localStorage.getItem("photo");
+		$scope.local_user_name = $window.localStorage.getItem("name");
 	} 	
 
 	//initialize ui components
@@ -77,6 +78,7 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
 					$window.localStorage.setItem("account", user.account);
 					$window.localStorage.setItem("user_id", user.user_id);
 					$window.localStorage.setItem("photo", user.photo_url);
+					$window.localStorage.setItem("name", user.user_name);
 					$window.location.reload();
 					
 				}

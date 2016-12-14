@@ -79,8 +79,9 @@ app.get('/getUserMission/:id', user.tooler_mission);
 app.get('/getToolMission/:id', user.tool_mission);
 app.get('/user_list', user.user_list);
 
-app.post('/upload' , uploadImage.upload)
-
+app.post('/upload' , uploadImage.upload);
+app.post('/save_chat',api.save_chat);
+app.get('/get_mission_chat/:id',api.get_mission_chat);
 //mission
 app.post('/createMission', mission.create_mission);
 app.get('/getMissions', mission.list_mission);
