@@ -56,10 +56,10 @@ var Chat = require('./chat').Chat(Sequelize,sequelize);
 // Notification.belongsTo(Mission,{foreignKey: 'mission_id'});
 // Notification.belongsTo(User,{foreignKey: 'user_id'});
 
-User.hasMany(Chat,{foreignKey: 'user_id'});
-Mission.hasMany(Chat,{foreignKey: 'mission_id'});
-Chat.belongsTo(Mission,{foreignKey: 'mission_id'});
-Chat.belongsTo(User,{foreignKey: 'user_id'});
+//User.hasMany(Chat,{foreignKey: 'user_id'});
+//Mission.hasMany(Chat,{foreignKey: 'mission_id'});
+//Chat.belongsTo(Mission,{foreignKey: 'mission_id'});
+//Chat.belongsTo(User,{foreignKey: 'user_id'});
 
 //export for use in other directory
 // exports.Example = Example;
