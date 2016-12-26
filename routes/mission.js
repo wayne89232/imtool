@@ -14,7 +14,7 @@ exports.create_mission = function(req, res){
 	req.checkBody('title').notEmpty();
 	req.checkBody('start_time').notEmpty();
 	req.checkBody('recruit_time').notEmpty();
-	req.checkBody('location').notEmpty();
+	// req.checkBody('location').notEmpty();
 
 	var errors = req.validationErrors();
 	if (errors) {
@@ -207,5 +207,79 @@ exports.fire_tool = function(req, res){
 		}
 	}).then(function(result){
 		res.json({ msg: "Success on untooling " + result });
+	});
+}
+
+exports.stop_recruit = function(req, res){
+	req.checkParams('id').notEmpty();
+	var errors = req.validationErrors();
+	if (errors) {
+		return res.status(405).json({
+			errors: errors
+		});
+	}
+	
+	Mission.update(
+		
+			{ state: 'Tooling' },
+			{ where:{ mission_id: req.params.id } }
+		
+	).then(function(result){
+		res.json({ data: result.dataValues });
+	}).catch(function(err){
+		console.log(err)
+		res.send(err);
+	});
+}
+
+exports.end_mission = function(req, res){
+	req.checkParams('id').notEmpty();
+
+
+	var errors = req.validationErrors();
+	if (errors) {
+		return res.status(405).json({
+			errors: errors
+		});
+	}
+	
+	Mission.update(
+		
+			{ state: 'Done' },
+			{ where:{ mission_id: req.params.id } }
+		
+	).then(function(result){
+		// Give out feedbacks & rating
+		res.json({ data: result.dataValues });
+	}).catch(function(err){
+		console.log(err)
+		res.send(err);
+	});
+}
+
+
+exports.rate_tool = function(req, res){
+	req.checkBody('mission_id').notEmpty();
+	req.checkBody('user_id').notEmpty();
+
+
+	var errors = req.validationErrors();
+	if (errors) {
+		return res.status(405).json({
+			errors: errors
+		});
+	}
+	
+	Toolship.update(
+		
+			{ rating: req.body.rating, comment: req.body.comment },
+			{ where:{ mission_id: req.body.mission_id, user_id: req.body.user_id } }
+		
+	).then(function(result){
+		// Give out feedbacks & rating
+		res.json({ data: result.dataValues });
+	}).catch(function(err){
+		console.log(err)
+		res.send(err);
 	});
 }

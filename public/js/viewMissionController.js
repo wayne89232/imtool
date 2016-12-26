@@ -8,6 +8,7 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
 		$http({ method:"GET", url:'/find_tools/' + $scope.mission_info.mission_id }).then(function(tools){
 			$http({ method:"GET", url:'/user_list/' }).then(function(users){
 				$http({ method:"GET", url:'/mission_skills/' + $scope.mission_info.mission_id }).then(function(skills){
+					$http({ method:"GET", url:'/get_mission_chat/'+ $routeParams.id }).then(function(chat){
 					$scope.tools = tools.data.data;
 					$scope.toolmans = users.data.data;
 					$scope.toolmans = _.reject($scope.toolmans,function(toolman){
@@ -16,6 +17,7 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
 					$scope.skills = skills.data.data;
 					$scope.delete = false;
 					$scope.firing = "";
+					$scope.chats = chat.data.data;
 					$scope.identity = function(){
 						if (cur_user == $scope.mission_info.User.user_id) {
 							return true;
@@ -23,8 +25,25 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
 						else{
 							return false;
 						}
-					}
+					};
+					$scope.status = function(){
+						if ($scope.mission_info.state != "Recruiting") {
+							return false;
+						}
+						else{
+							return true;
+						}
+					};
+					$scope.done = function(){
+						if ($scope.mission_info.state == "Done") {
+							return true;
+						}
+						else{
+							return false;
+						}
+					};
 					$('.ui .dropdown').dropdown();
+					});	
 				});
 			});
 		});
@@ -73,6 +92,32 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
 		});	
     }
 
+    $scope.stop_recruit = function(){
+    	$('.ui.basic.modal.recruit').modal('show');
+    }
+    $scope.stop_recruit_confirm = function(){
+
+		$http({ 
+		    	method:"GET", 
+		    	url:'/stop_recruit/'+$routeParams.id
+		}).then(function(result){
+			$window.location.reload();
+		});	
+    }
+
+
+    $scope.end_mission = function(){
+    	$('.ui.basic.modal.end').modal('show');
+    }
+    $scope.end_mission_confirm = function(){
+		$http({ 
+		    	method:"GET", 
+		    	url:'/end_mission/'+$routeParams.id
+		}).then(function(result){
+			$window.location.reload();
+			// console.log(result)
+		});	
+    }
     var counter = 0
 	function addItem(){
 		var newMessage = new Object()
@@ -82,27 +127,31 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
 		$timeout(addItem, 10000);
 	}
              
-	$timeout(addItem, 10000);
+	// $timeout(addItem, 10000);
 
-    $scope.messages = [{
-    	user 	: 123,
-    	message : "Bike"
-    },{
-    	user 	: 123,
-    	message : "Bike1"
-    },{
-    	user 	: 123,
-    	message : "Bike2"
-    },{
-    	user 	: 123,
-    	message : "Bike3"
-    }]
+
 
     $scope.sendMessage = function(){
-    	console.log($scope.liveMessage)
-    	var newMessage = new Object()
-    	newMessage.user = 123;
-    	newMessage.message = $scope.liveMessage
-    	$scope.messages.push(newMessage)
+    	var name = $window.localStorage.getItem("name");
+    	var time = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');;
+    	var new_message = {
+    		User:{
+    			user_name: name
+    		},
+    		content: $scope.liveMessage,
+    		time: time
+    	}
+    	$scope.chats.push(new_message);
+    	$http({ 
+		    	method:"POST", 
+		    	url:'/save_chat',
+		    	data: {
+		    		user_id: cur_user,
+		    		mission_id: $routeParams.id,
+		    		content: $scope.liveMessage
+		    	}
+		}).then(function(result){
+    		$scope.liveMessage = "";
+		});	
     }
 });

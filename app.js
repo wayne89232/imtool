@@ -12,6 +12,7 @@ var express = require('express'),
     api = require('./routes/api'),
     user = require('./routes/user'),
     mission = require('./routes/mission'),
+    multer  = require('multer'),
     uploadImage = require('./routes/uploadImage'),
     express_validators = require('./config').express_validators,
 
@@ -23,6 +24,7 @@ var express = require('express'),
     path = require('path');
 
 var app = module.exports = express();
+var upload = multer({ dest: 'public/assets/images/' })
 
 /**
  * Configuration
@@ -79,8 +81,11 @@ app.get('/getUserMission/:id', user.tooler_mission);
 app.get('/getToolMission/:id', user.tool_mission);
 app.get('/user_list', user.user_list);
 
-app.post('/upload' , uploadImage.upload)
-
+// app.post('/upload' , uploadImage.upload);
+app.post('/save_chat',api.save_chat);
+app.get('/skill_list',api.skill_list);
+app.get('/get_mission_chat/:id',api.get_mission_chat);
+app.post('/upload' ,upload.single('photo') ,uploadImage.upload)
 //mission
 app.post('/createMission', mission.create_mission);
 app.get('/getMissions', mission.list_mission);
@@ -89,6 +94,8 @@ app.get('/find_tools/:id', mission.find_tools);
 app.get('/mission_skills/:id', mission.mission_skills);
 app.post('/get_tooled',mission.get_tooled);
 app.post('/fire_tool',mission.fire_tool);
+app.get('/stop_recruit/:id',mission.stop_recruit);
+app.get('/end_mission/:id',mission.end_mission);
 
 //functions, ex: 
 // app.post('/api/add_league', api.add_league);

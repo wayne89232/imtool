@@ -19,6 +19,7 @@ var User_location = require('./models').User_location;
 var User_skill = require('./models').User_skill;
 var Mission_skill = require('./models').Mission_skill;
 var Notification = require('./models').Notification;
+var Chat = require('./models').Chat;
 
 
 // Sync database with below
@@ -33,3 +34,4 @@ User_location.sync({force: true});
 User_skill.sync({force: true});
 Notification.sync({force: true});
 Mission_skill.sync({force: true});
+Chat.sync({force: true});

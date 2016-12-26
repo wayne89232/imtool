@@ -1,29 +1,34 @@
 'use strict';
 
-angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives']).controller('AppCtrl', function ($rootScope, $window, $scope, $http, $location) {
+angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives','base64']).controller('AppCtrl', function ($rootScope, $window, $scope, $http, $location) {
 	if($window.localStorage.getItem("is_login")){
 		$scope.is_login = true;
 		$scope.local_user = $window.localStorage.getItem("account");
 		$scope.user_type = $window.localStorage.getItem("user_type");
 		$scope.photo = $window.localStorage.getItem("photo");
+		$scope.local_user_name = $window.localStorage.getItem("name");
 	} 	
 
-	//initialize ui components
-	$('.ui .dropdown').dropdown({
-    	maxSelections: 5,
-    	allowAdditions: true
-  	});
-	$('.datepicker').pickadate({});
+	$http({ method:"GET", url:'/skill_list/' }).then(function(skills){
+		$scope.skill_list = skills.data.data;
+	
 
-	$rootScope.$on('$routeChangeStart', function (next, last) {
-   		$('.ui.modal').modal('hide');
+		//initialize ui components
+		$('.ui .dropdown').dropdown({
+	    	maxSelections: 5,
+	    	allowAdditions: true
+	  	});
+		$('.datepicker').pickadate({});
+
+		$rootScope.$on('$routeChangeStart', function (next, last) {
+	   		$('.ui.modal').modal('hide');
+		});
+		$('.ui.sticky').sticky({
+	    	context: '#stick'
+	  	});
 	});
-	$('.ui.sticky').sticky({
-    	context: '#stick'
-  	});
-
 	$scope.jump_login = function(){
-		$('.ui.modal.login').modal('show');
+		$('.ui.modal.login2').modal('show');
 	}
 	$scope.show_menu = function(){
 		$('.ui.basic.modal.menu').modal('show');
@@ -37,8 +42,8 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
     $scope.add_mission = function(){
     	if($scope.title != null ){
             var data = {
-            	user_id: "window storage",
-            	location: "if not started with id segment, create new",
+            	user_id: $window.localStorage.getItem("user_id"),
+            	location: $scope.location,
                 title: $scope.title, 
                 recruit_time: new Date(),
                 skills: $scope.skills,
@@ -53,7 +58,8 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
 				data: $.param(data),
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'} 
 			}).then(function(result){
-				$window.location.reload();
+				// $window.location.reload();
+				console.log(result)
             });
         }
         else{
@@ -77,6 +83,7 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
 					$window.localStorage.setItem("account", user.account);
 					$window.localStorage.setItem("user_id", user.user_id);
 					$window.localStorage.setItem("photo", user.photo_url);
+					$window.localStorage.setItem("name", user.user_name);
 					$window.location.reload();
 					
 				}
@@ -149,6 +156,9 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
 }).controller('mission_list', function ($scope, $http, $location) {
 	$http({ method:"GET", url:'/getMissions/' }).then(function(missions){
 		$scope.missions = missions.data.data;
+		$scope.missions = _.reject($scope.missions,function(mission){
+			return mission.state!="Recruiting";
+		});
 	});
 	$scope.view_mission = function(id){
     	$location.path('/view_mission/'+id);

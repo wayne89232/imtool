@@ -9,6 +9,16 @@ angular.module('myApp.controllers').controller('user_info', function($scope, $ht
 					$scope.user_info = user_info.data.data;
 					$scope.user_mission = mission1.data.data;
 					$scope.tool_mission = mission2.data.data;
+
+					$scope.check_gender = function(){
+						if ($scope.user_info.gender == 'B') {
+							return true;
+						}
+						else{
+							return false;
+						}
+					}
+
 				});
 			});
 		});
@@ -19,7 +29,47 @@ angular.module('myApp.controllers').controller('user_info', function($scope, $ht
     else{
     	$scope.is_user=true;
     }
-    $scope.view_mission = function(id){
-    	$location.path('/view_mission/'+id);
+
+
+    $scope.genderModel = [{
+    	value 	: "Male",
+    	id 		: "B"
+    },{
+    	value 	: "Female",
+    	id 		: "G"
+    }]
+
+	$scope.editUserInfo = function(){
+
+		$scope.skills = _.map($scope.skill_list,function(element){
+			return element.Skill.skill_id;
+		})
+
+		$scope.gender = findGenderInit($scope.user_info.gender)
+
+		angular.element(document).ready(function () {
+			$('.ui.modal.editUserInfo').modal('show');
+			$('#skills').dropdown({
+				maxSelections: 5,
+				allowAdditions: true
+			});
+			$('.ui .dropdown').dropdown({
+				maxSelections: 5,
+				allowAdditions: true
+			});
+		});
+
+
     }
+	$scope.view_mission = function(id){
+		$location.path('/view_mission/'+id);
+	}
+	$scope.edit = function(){
+		$scope.user_info.gender = $scope.gender.id;
+		$('.ui.modal.editUserInfo').modal('hide');
+		console.log($scope.user_info.gender)
+	}
+	function findGenderInit(nowGender){
+		return $scope.genderModel[0].id == nowGender ? $scope.genderModel[0] : $scope.genderModel[1]
+	}
 });
