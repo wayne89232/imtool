@@ -15,6 +15,7 @@ var express = require('express'),
     multer  = require('multer'),
     uploadImage = require('./routes/uploadImage'),
     express_validators = require('./config').express_validators,
+    ranking = require('./routes/ranking')
 
 
     
@@ -100,9 +101,13 @@ app.get('/end_mission/:id',mission.end_mission);
 //functions, ex: 
 // app.post('/api/add_league', api.add_league);
 
+//ranking
+app.get('/ranking', ranking.tool_ranking);
+app.get('/function_ranking', ranking.function_ranking);
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);
+
 
 
 /**
