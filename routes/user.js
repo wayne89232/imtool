@@ -76,8 +76,7 @@ exports.register = function(req, res){
                 user_name  : req.body.user_name,
                 email      : req.body.email,
                 gender     : req.body.gender,
-                photo_url  : req.body.photoURL || ''
-
+                photo_url  : req.body.photoURL || '/assets/images/tool.png'
             };
 
             newUser.user_id = crypto.createHash('md5').update('imtool' + newUser.account + newUser.password).digest('hex');

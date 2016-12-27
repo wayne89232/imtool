@@ -30,7 +30,7 @@ angular.module('myApp.controllers').controller('register_page', function($scope,
 
 	$scope.register = function(){
 		if (confirmData() == 1)
-			swal("Make Sure All The Collunm Done");
+			swal("Make Sure All The Column Done");
 		else if (confirmData() == 0)
 			swal("Confirm password");
 		else{
