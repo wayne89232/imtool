@@ -73,6 +73,7 @@ app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
 
 //user
+app.post('/sendVerMail', user.sendVerMail);
 app.post('/register', user.register);
 app.post('/login', user.login);
 app.post('/logout', user.logout);

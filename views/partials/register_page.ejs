@@ -71,6 +71,16 @@
             <label>Email</label>
             <input type="text"  placeholder="Your mail" ng-model="mail">
         </div>
+        <div class="two fields">
+            <div class="field">
+            	<label>Verification</label>
+            	<input type="text"  placeholder="Your Verification String" ng-model="mail">
+            </div>
+            <div class="field">
+            	<label>&nbsp</label>
+            	<button ng-click="sendVerMail()">Send Verification String</button>
+            </div>
+        </div>
         <div class="ui segment">
             <div class="field">
                 <div class="ui toggle checkbox">

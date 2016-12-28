@@ -19,6 +19,8 @@ angular.module('myApp.controllers').controller('register_page', function($scope,
   		id 		: "G"
   	}]
 
+  	$scope.verCode = ""
+
 	function confirmData(){
 		if ($scope.password != $scope.password_confirm || $scope.password != undefined)
 			return 0
@@ -27,6 +29,20 @@ angular.module('myApp.controllers').controller('register_page', function($scope,
 		else 
 			return 2
 	};
+
+	$scope.sendVerMail = function(){
+		if ($scope.mail == undefined){
+			swal("Please Input Email")
+		}else{
+			$http({
+				method: "POST", 
+				url: '/sendVerMail', 
+				data: {email: $scope.mail}
+			}).then(function(verCode){
+				$scope.verCode = verCode
+			})
+		}
+	}
 
 	$scope.register = function(){
 		if (confirmData() == 1)
