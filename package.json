@@ -24,6 +24,7 @@
     "semantic-ui": "^2.2.6",
     "semantic-ui-dropdown": "^2.2.3",
     "sequelize": "^2.0.0-rc4",
+    "socket.io": "^1.7.2",
     "underscore": "^1.7.0"
   }
 }
