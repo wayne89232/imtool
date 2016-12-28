@@ -8,7 +8,8 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
 		$scope.photo = $window.localStorage.getItem("photo");
 		$scope.local_user_name = $window.localStorage.getItem("name");
 	} 	
-
+	// var socket = io.connect('http://localhost:3000');
+	// socket.emit('comment added', "hiiiii");
 	$http({ method:"GET", url:'/skill_list/' }).then(function(skills){
 		$scope.skill_list = skills.data.data;
 	
@@ -91,6 +92,7 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
 					alert(result.data.msg);
 					$window.location.reload();
 				}
+
 		    });	
 		}
 		else{

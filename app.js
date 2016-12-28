@@ -21,6 +21,7 @@ var express = require('express'),
     // import routers
     // example = require('./routes/example'),
     http = require('http'),
+    io = require('socket.io')(http),
     path = require('path');
 
 var app = module.exports = express();
@@ -111,4 +112,23 @@ app.get('*', routes.index);
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
+});
+
+// For realtime motification
+io.on('connection',function(socket){
+    console.log('We have user connected !');
+        // This event will be emitted from Client when some one add comments.
+    socket.on('comment added',function(data){
+        console.log("got emit comment");
+        console.log(data);
+                // Add the comment in database.
+        // db.addComment(data.user,data.comment,mysql,pool,function(error,result){
+        //     if (error) {
+        //         io.emit('error');
+        //     } else {
+        //         // On successful addition, emit event for client.
+        //         socket.broadcast.emit("notify everyone",{user : data.user,comment : data.comment});
+        //     }
+        // });
+    });
 });
