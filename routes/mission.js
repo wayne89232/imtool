@@ -16,6 +16,8 @@ exports.create_mission = function(req, res){
 	req.checkBody('recruit_time').notEmpty();
 	// req.checkBody('location').notEmpty();
 
+	console.log(req.body)
+
 	var errors = req.validationErrors();
 	if (errors) {
     	return res.status(405).json({

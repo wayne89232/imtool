@@ -58,9 +58,9 @@ angular.module('myApp.controllers').controller('user_info', function($scope, $ht
 				allowAdditions: true
 			});
 		});
-
-
     }
+
+
 	$scope.view_mission = function(id){
 		$location.path('/view_mission/'+id);
 	}

@@ -24,6 +24,7 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
 	$http({ method:"GET", url:'/skill_list/' }).then(function(skills){
 		$scope.skill_list = skills.data.data;
 
+		$window.localStorage.setItem("skill_list", JSON.stringify($scope.skill_list));
 
 		//initialize ui components
 		$('.ui .dropdown').dropdown({
