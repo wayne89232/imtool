@@ -9,7 +9,6 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
 		$scope.local_user_name = $window.localStorage.getItem("name");
 	} 	
 
-
 	
 	$rootScope.socket = io();
 

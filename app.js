@@ -22,6 +22,7 @@ var express = require('express'),
     // import routers
     // example = require('./routes/example'),
     http = require('http'),
+    io = require('socket.io')(http),
     path = require('path');
 
 var app = module.exports = express();
