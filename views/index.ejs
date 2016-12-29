@@ -18,6 +18,8 @@
 		<script src="/angular-scroll-glue/src/scrollglue.js"></script>
 		<script src="/angular-base64/angular-base64.min.js"></script>
 		<script src="/underscore/underscore-min.js"></script>
+		<!-- <script src="/socket.io-client/dist/socket.io.js"></script> -->
+		<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 
 		<script src="/angular-scroll-glue/src/scrollglue.js"></script>
 		<script src="/semantic/dist/semantic.min.js"></script>
@@ -94,6 +96,7 @@
 		</style>
 	</head>
 	<body ng-controller="AppCtrl">
+
 		<div id="stick">
 			<div class="ui rail">
 				<div class="ui sticky">
@@ -293,7 +296,12 @@
 					</div>
 				</div>
 			</div>
-
+<div class="ui inline nag">
+  <span class="title">
+    New notification
+  </span>
+  <i class="close icon"></i>
+</div>
 			<!-- main container -->
 			<div id="stick" ng-view="">
 				

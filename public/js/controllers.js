@@ -9,10 +9,22 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
 		$scope.local_user_name = $window.localStorage.getItem("name");
 	} 	
 
+	
+	$rootScope.socket = io();
+
+	// copy this line whenever u need to notify others
+	// $rootScope.socket.emit('send notify',{})
+
+
+	//pop out notification
+    $rootScope.socket.on('got notification',function(data){
+		$('.nag').nag('show');
+    });
+
 	$http({ method:"GET", url:'/skill_list/' }).then(function(skills){
 		$scope.skill_list = skills.data.data;
+
 		$window.localStorage.setItem("skill_list", JSON.stringify($scope.skill_list));
-	
 
 		//initialize ui components
 		$('.ui .dropdown').dropdown({
@@ -60,7 +72,7 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'} 
 			}).then(function(result){
 				$window.location.reload();
-				console.log(result)
+				// console.log(result)
             });
         }
         else{
@@ -92,6 +104,7 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
 					alert(result.data.msg);
 					$window.location.reload();
 				}
+
 		    });	
 		}
 		else{
