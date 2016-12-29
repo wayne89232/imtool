@@ -51,10 +51,21 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
 
 	$('.progress').progress();
 	$('.ui.rating').rating('enable');
-	
 
+	
+	$scope.testClick = function(index){
+		console.log("HI", index)
+		var currentValue = $('#'+index).rating('get rating');
+		$scope.tools[index].rating = currentValue;
+
+	}
 	$scope.missionCleared = function(){
 		$('.ui.small.modal.mission_clear').modal('show');
+	}
+	$scope.saveComment = function(){
+		$('.ui.small.modal.mission_clear').modal('hide');
+		console.log($scope.tools)
+
 	}
 	$scope.add_tool = function(){
 		$('.ui.small.modal.add_tool').modal('show');
@@ -107,7 +118,9 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
 
 
     $scope.end_mission = function(){
-    	$('.ui.basic.modal.end').modal('show');
+    	$('.ui.small.modal.mission_clear').modal('show');
+		$('.ui.rating').rating('enable');
+
     }
     $scope.end_mission_confirm = function(){
 		$http({ 

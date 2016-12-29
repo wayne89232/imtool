@@ -177,29 +177,28 @@
 </div>
 <div class="ui modal small mission_clear">
 <div class="header">Mission Cleared - Rate your toolmans</div>
-<div class="content">
+<div class="content" ng-repeat="tool in tools">
 	<div class="ui form">
 		<div >
-			<!-- ng-repeat="tool in tools" -->
-			<!-- 			<div class="field">
-					<div class="ui feed">
-							<div class="event">
-									<div class="label">
-											<img src="{{tool.User.photo_url}}">
-									</div>
-									<div class="content">
-											<a>{{tool.User.user_name}}</a>
-									</div>
-							</div>
+			<div class="field">
+				<div class="ui feed">
+					<div class="event">
+						<div class="label">
+							<img src="{{tool.User.photo_url}}">
+						</div>
+						<div class="content">
+							<a>{{tool.User.user_name}}</a>
+						</div>
 					</div>
-			</div> -->
+				</div>
+			</div>
 			<div class="field">
 				<label>Rating</label>
-				<div class="ui star rating" data-max-rating="5"></div>
+				<div id="{{$index}}" class="ui star rating" data-max-rating="5" data-rating="{{tool.rating}}" ng-click="testClick($index)"></div>
 			</div>
 			<div class="field">
 				<label>Comment</label>
-				<textarea></textarea>
+				<textarea ng-model="tool.feedback"></textarea>
 			</div>
 			<br>
 		</div>
@@ -207,7 +206,7 @@
 	
 </div>
 <div class="actions">
-	<div class="ui ok button">Save Comment</div>
+	<div class="ui ok button" ng-click="saveComment()">Save Comment</div>
 	<div class="ui cancel button">Cancel</div>
 </div>
 </div>
