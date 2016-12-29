@@ -119,7 +119,7 @@ exports.function_ranking = function(req, res){
 		    		var data = response.dataValues;
 		    		// console.log("UserID: ", data);
 		    		resultData.userPhoto = data.photo_url
-		    		resultData.userSkill = data.User_skill
+		    		resultData.userSkill = data.User_skill 
 		    		console.log(resultData)
 		    	}
 		    	resultDatas.push(resultData);
