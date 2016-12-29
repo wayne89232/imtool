@@ -42,6 +42,34 @@ exports.login = function (req, res){
     });
 }
 
+exports.updateUser = function(req,res){
+
+    req.checkBody('account').notEmpty();
+    req.checkBody('password').notEmpty();
+    req.checkBody('user_name').notEmpty();
+    req.checkBody('email').notEmpty().isEmail();
+    req.checkBody('gender').notEmpty().isGender();
+
+    var errors = req.validationErrors();
+    if (errors) {
+        return res.status(405).json({
+            errors: errors
+        });
+    }
+
+    var newUserData = _.omit(req.body, ["createdAt","updatedAt"]);
+    var query = {
+        where:{
+            account: req.body.account
+        }
+    }
+
+    User.update(newUserData,query).then(function(response){
+        console.log(response)
+        res.json({data: "OK"});
+    })
+
+}
 
 
 exports.logout = function (req, res){
