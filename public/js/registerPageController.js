@@ -1,15 +1,20 @@
 'use strict';
 
 angular.module('myApp.controllers').controller('register_page', function($scope, $http, $location,$window,$base64,Upload){
-	$('.ui .dropdown').dropdown({
-		maxSelections: 5,
-		allowAdditions: true
+	
+	angular.element(document).ready(function () {
+		$('.ui .dropdown').dropdown({
+			maxSelections: 5,
+			allowAdditions: true
+		});
+
+		$('#skills').dropdown({
+	    	maxSelections: 5,
+	    	allowAdditions: true
+	  	});
 	});
 
-	$('#skills').dropdown({
-    	maxSelections: 5,
-    	allowAdditions: true
-  	});
+	
 
   	$scope.genderModel = [{
   		value 	: "Male",
@@ -18,8 +23,13 @@ angular.module('myApp.controllers').controller('register_page', function($scope,
   		value 	: "Female",
   		id 		: "G"
   	}]
+	
+	$scope.verCode = ""
+	$scope.skill_list = JSON.parse($window.localStorage.getItem("skill_list"));
+	$scope.skill_list.forEach(function(element,index){
+		console.log(element)
+	})
 
-  	$scope.verCode = ""
 
 	function confirmData(){
 		if ($scope.password != $scope.password_confirm || $scope.password != undefined)
@@ -42,6 +52,9 @@ angular.module('myApp.controllers').controller('register_page', function($scope,
 				$scope.verCode = verCode
 			})
 		}
+	}
+	$scope.selectSkill = function(){
+		console.log($scope.skills)
 	}
 
 	$scope.register = function(){

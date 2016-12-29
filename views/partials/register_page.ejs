@@ -35,7 +35,7 @@
             </div>
 <div class="field">
 <label>Gender</label>
-          <select id="gender" ng-model="gender" ng-options="m.value for m in genderModel">
+          <select class="ui fluid search dropdown" id="gender" ng-model="gender" ng-options="m.value for m in genderModel">
             <option value="">Gender</option>
           </select>
         </div>
@@ -49,11 +49,7 @@
         <h4 class="ui dividing header">Skill Information</h4>
         <div class="field">
             <label>Skills</label>
-            <select class="ui fluid search dropdown" id="skills" multiple="" ng-model="skills">
-                <option value="">Add your own if not here</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
+            <select class="ui fluid search dropdown" id="skills" multiple="" ng-model="skills" ng-options="s for s in skill_list" ng-change="selectSkill()">
             </select>
         </div>
         <h4 class="ui dividing header">Locations</h4>
