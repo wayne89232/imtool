@@ -11,6 +11,7 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
 
 	$http({ method:"GET", url:'/skill_list/' }).then(function(skills){
 		$scope.skill_list = skills.data.data;
+		$window.localStorage.setItem("skill_list", JSON.stringify($scope.skill_list));
 	
 
 		//initialize ui components
@@ -58,7 +59,7 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
 				data: $.param(data),
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'} 
 			}).then(function(result){
-				// $window.location.reload();
+				$window.location.reload();
 				console.log(result)
             });
         }
