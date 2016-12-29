@@ -22,6 +22,7 @@ var express = require('express'),
     // import routers
     // example = require('./routes/example'),
     http = require('http'),
+    io = require('socket.io')(http),
     path = require('path');
 
 var app = module.exports = express();
@@ -73,6 +74,7 @@ app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
 
 //user
+app.post('/sendVerMail', user.sendVerMail);
 app.post('/register', user.register);
 app.post('/login', user.login);
 app.post('/logout', user.logout);
@@ -108,12 +110,34 @@ app.get('/function_ranking', ranking.function_ranking);
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);
 
+http = http.createServer(app);
+
+var io = require('socket.io')(http);
+
+
 
 
 /**
  * Start Server
  */
 
-http.createServer(app).listen(app.get('port'), function () {
+http.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
+});
+
+
+
+// For realtime motification
+io.on('connection',function(socket){
+    console.log('\nWe have user connected !');
+    // This event will be emitted from Client when some one add comments.
+
+    socket.on('add message',function(data){
+        console.log("server got message")
+        io.emit('add message',data);
+    });
+
+    socket.on('send notify',function(data){
+        io.emit('got notification',data);
+    })
 });
