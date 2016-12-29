@@ -6,6 +6,7 @@ var User = require('../models').User;
 var Toolship = require('../models').Toolship;
 var Mission_skill = require('../models').Mission_skill;
 var Skill = require('../models').Skill;
+var async = require('async');
 
 var crypto = require('crypto');
 
@@ -15,6 +16,7 @@ exports.create_mission = function(req, res){
 	req.checkBody('start_time').notEmpty();
 	req.checkBody('recruit_time').notEmpty();
 	// req.checkBody('location').notEmpty();
+
 
 	var errors = req.validationErrors();
 	if (errors) {
@@ -37,14 +39,56 @@ exports.create_mission = function(req, res){
 		content: req.body.content || "",
 		state: 'Recruiting'
 	};
-
 	Mission.create(newMission).then(function(result){
 		var succesMsg = "User " + result.dataValues.user_id + " Success on creating mission " + result.dataValues.title;
 
-		res.json({
-			success: true,
-			msg: succesMsg
+
+		//find or create skills
+		async.each(req.body.skills, function(element, callback) {
+
+
+		    var new_id2 = crypto.randomBytes(20).toString('hex');
+		    Skill.findOrCreate({
+		    	where: {
+		    		skill: element
+		    	},
+		    	defaults: { // set the default properties if it doesn't exist
+        			skill_id: new_id2,
+        			skill: element
+      			}
+		    }).then(function(response){
+		    	var link_skill = response[0].dataValues;
+		    	// create relations here
+				var new_id3 = crypto.randomBytes(20).toString('hex');
+				Mission_skill.create({
+					mission_skill_id: new_id3,
+					skill_id: link_skill.skill_id,
+					mission_id: new_id
+				}).then(function(result){
+					console.log("linked skill " + link_skill.skill)
+				});		    	
+
+
+		    	callback();
+		    }).catch(function(error){
+		    	callback(error);
+		    })
+		}, function(err) {
+			// if any of the file processing produced an error, err would equal that error
+			 if( err ) {
+				// One of the iterations produced an error.
+				// All processing will now stop.
+				console.log('A skill failed to find on create');
+		    } else {
+		    	console.log('All skill have been processed successfully');
+		    	res.json({ data: "success" });
+			}
 		});
+
+		// res.json({
+		// 	success: true,
+		// 	msg: succesMsg
+		// });
 	}).catch(function(err){
 		res.send(err);
 	});
@@ -148,7 +192,6 @@ exports.mission_skills = function(req, res){
 			errors: errors
 		});
 	}
-	console.log(123)
 	
 	Mission_skill.findAll({ 
 		where:{ 
@@ -156,6 +199,7 @@ exports.mission_skills = function(req, res){
 		},
 		include: [Skill]
 	}).then(function(result){
+
 		var skillList = _.map(result, function(result){
 			return result.dataValues;
 		});

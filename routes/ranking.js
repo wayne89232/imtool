@@ -7,7 +7,6 @@ var async = require('async');
 
 //calculate by completed mission's rating
 exports.tool_ranking = function(req, res){
-	console.log("123")
 
 	Toolship.findAll({
 		//SELECT toolship.user_id, toolship.AVG(rating),  															
@@ -42,7 +41,7 @@ exports.tool_ranking = function(req, res){
 
 		    // Perform operation on file here.
 		    var resultData = element.dataValues;
-		    // console.log(resultData);
+
 
 		    User.findOne({
 		    	where: {

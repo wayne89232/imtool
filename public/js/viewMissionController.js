@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.controllers').controller('view_mission', function($scope, $http, $location,$window,$routeParams,$timeout){
+angular.module('myApp.controllers').controller('view_mission', function($scope, $http, $location,$window,$routeParams,$timeout,$rootScope){
 	var cur_user = $window.localStorage.getItem("user_id");
 
 	$http({ method:"GET", url:'/viewEvent/' + $routeParams.id }).then(function(mission){
@@ -141,7 +141,7 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
     		content: $scope.liveMessage,
     		time: time
     	}
-    	$scope.chats.push(new_message);
+    	
     	$http({ 
 		    	method:"POST", 
 		    	url:'/save_chat',
@@ -151,7 +151,11 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
 		    		content: $scope.liveMessage
 		    	}
 		}).then(function(result){
-    		$scope.liveMessage = "";
+			$scope.liveMessage = "";
+        	$rootScope.socket.emit('add message',new_message)
 		});	
     }
+    $rootScope.socket.on('add message',function(data){
+        $scope.chats.push(data);
+    });
 });

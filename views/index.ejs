@@ -18,6 +18,8 @@
 		<script src="/angular-scroll-glue/src/scrollglue.js"></script>
 		<script src="/angular-base64/angular-base64.min.js"></script>
 		<script src="/underscore/underscore-min.js"></script>
+		<!-- <script src="/socket.io-client/dist/socket.io.js"></script> -->
+		<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 
 		<script src="/angular-scroll-glue/src/scrollglue.js"></script>
 		<script src="/semantic/dist/semantic.min.js"></script>
@@ -94,6 +96,7 @@
 		</style>
 	</head>
 	<body ng-controller="AppCtrl">
+
 		<div id="stick">
 			<div class="ui rail">
 				<div class="ui sticky">
@@ -224,7 +227,7 @@
 						<div class="item">
 							<img class="ui avatar image" src="assets/images/tool.png">
 							<div class="content">
-								<a class="header">testMission</a>
+								<a class="header">RickWantU</a>
 								<div class="description">You're fired!</div>
 							</div>
 						</div>
@@ -273,7 +276,7 @@
 								<div class="field">
 									<select class="ui fluid search dropdown" multiple="" ng-model="skills">
 										<option value="">Add your own if not here</option>
-										<option ng-repeat="s in skill_list" value="{{s.skill_id}}">{{s.skill}}</option>
+										<option ng-repeat="s in skill_list" value="{{s}}">{{s}}</option>
 									</select>
 								</div>
 								<h4 class="ui dividing header">Schedule</h4>
@@ -293,7 +296,12 @@
 					</div>
 				</div>
 			</div>
-
+<div class="ui inline nag">
+  <span class="title">
+    New notification
+  </span>
+  <i class="close icon"></i>
+</div>
 			<!-- main container -->
 			<div id="stick" ng-view="">
 				
