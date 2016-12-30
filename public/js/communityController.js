@@ -8,7 +8,10 @@ angular.module('myApp.controllers').controller('community', function($scope, $ht
 	$scope.view_community = function(id){
     	$location.path('/view_community/'+id);
     }	
-}).controller('view_community', function($scope, $http, $location){
+    $scope.create = function(){
+    	$location.path('/create_community');
+    }
+}).controller('view_community', function($scope, $http, $location,$window,$routeParams,$rootScope){
 	var cur_user = $window.localStorage.getItem("user_id");		
 	$http({ method:"GET", url:'/viewCommunity/' + $routeParams.id }).then(function(community){
 		$scope.community_info = community.data.data;
@@ -49,7 +52,7 @@ angular.module('myApp.controllers').controller('community', function($scope, $ht
     }
     $rootScope.socket.on('add message community',function(data){
     	$scope.$apply(function(){
-    		$scope.chats.push(data);
+    		$scope.chatlogs.push(data);
     	})
         
     });
@@ -60,9 +63,11 @@ angular.module('myApp.controllers').controller('community', function($scope, $ht
 		$('#members').dropdown({
 	  	});
 	});
-
+	$http({ method:"GET", url:'/user_list/' }).then(function(users){
+		$scope.users = users.data.data;
+	});
 	function confirmData(){
-		if ($scope.group_name == undefined || $scope.description == undefined || $scope.members == undefined )
+		if ($scope.name == undefined || $scope.members == undefined )
 			return 1
 		else 
 			return 2
@@ -73,9 +78,10 @@ angular.module('myApp.controllers').controller('community', function($scope, $ht
 			swal("Make Sure All The Column Done");
 		else{
 			var data = {
-				description 	: $scope.description, 
-				name 	: $scope.group_name,
-				photoURL 	: $scope.photoURL
+				description 	: $scope.description || "temp", 
+				name 	: $scope.name,
+				photoURL 	: $scope.photoURL,
+				members: $scope.members
 			};
 			$http({
 				method: "POST", 
