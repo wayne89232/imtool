@@ -1,18 +1,20 @@
-	
+<div class="ui container">	
 	<!-- <div class="ui one column grid"> -->
 	<!-- <div class="row"> -->
+	<br>
 	<h2 class="ui header ">
 		<img src="/assets/images/tool.png" class="ui circular image">
 		<span>{{community_info.name}}</span>
 	</h2>
 	<!-- </div> -->
 	<!-- <div class="row"> -->
+
 	<div class="ui segment" scroll-glue="glued">
+	  <div class="ui top attached label">
+        <i class="hotel icon"></i> Chatroom
+      </div>
 		<div class="ui comments">
 			<div class="comment" ng-repeat="chat in chatlogs | orderBy:'time'">
-				<!-- <a class="avatar">
-							<img class="ui mini image" src="assets/images/tool.png">
-				</a> -->
 				<div class="content">
 					<a class="author">{{chat.User.user_name}}</a>
 					<div class="metadata">
@@ -35,4 +37,5 @@
 				<i class="icon edit"></i> Say
 			</div>
 		</div>
+	</div>
 	</div>

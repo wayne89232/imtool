@@ -12,10 +12,9 @@ var Community_chatlog = require('../models').Community_chatlog;
 var crypto = require('crypto');
 
 exports.create_community = function(req, res){
-	req.checkBody('users').notEmpty();
+	req.checkBody('members').notEmpty();
 	req.checkBody('name').notEmpty();
 	req.checkBody('description').notEmpty();
-	req.checkBody('photo_url').notEmpty();
 	// req.checkBody('location').notEmpty();
 
 
@@ -41,7 +40,7 @@ exports.create_community = function(req, res){
 
 
 		//find or create skills
-		async.each(req.body.users, function(element, callback) {
+		async.each(req.body.members, function(element, callback) {
 
 
 		    var new_id2 = crypto.randomBytes(20).toString('hex');

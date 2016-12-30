@@ -6,18 +6,23 @@
   <img src="assets/images/tool.png">
   <div class="content">
     Communities
-    <div class="sub header">Check out the communities</div>
+    <div class="sub header">Create groups with other toolmans</div>
   </div>
+
 </h2>
+<div class="ui button" ng-click="create()">
+<i class="large icons">
+  <i class="big thin circle icon"></i>
+  <i class="users icon"></i>
+</i>
+Form a group
+</div>
 	<div class="item" ng-repeat="community in communities">
 		<div class="image">
 			<img src="{{community.photo_url}}">
 		</div>
 		<div class="content">
 			<a class="header" ng-bind="community.name"></a>
-			<div class="meta">
-				<span class="cinema">2016.11.23</span>
-			</div>
 			<div class="description" ng-bind="community.description">
 			</div>
 			<div class="extra">
