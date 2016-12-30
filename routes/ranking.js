@@ -3,6 +3,7 @@ var Mission = require('../models').Mission;
 var User = require('../models').User;
 var Toolship = require('../models').Toolship;
 var User_skill = require('../models').User_skill;
+var Skill = require('../models').Skill;
 var async = require('async');
 
 //calculate by completed mission's rating
@@ -42,18 +43,16 @@ exports.tool_ranking = function(req, res){
 		    // Perform operation on file here.
 		    var resultData = element.dataValues;
 
-
 		    User.findOne({
 		    	where: {
 		    		user_id: resultData.user_id
-
 		    	}
 		    }).then(function(response){
 		    	if (response){
 		    		var data = response.dataValues;
-		    		// console.log("UserID: ", data);
+		    		console.log("UserID: ", data);
 		    		resultData.userPhoto = data.photo_url
-		    		// console.log(resultData)
+		    		console.log(resultData)
 		    	}
 		    	resultDatas.push(resultData);
 		    	callback();
@@ -113,14 +112,24 @@ exports.function_ranking = function(req, res){
 		    	where: {
 		    		user_id: resultData.user_id
 		    	},
-				include:[User_skill]
+				include:[{
+					model:User_skill, 
+					attributes: ['skill_id'],
+					include:[{
+						model:Skill, 
+						attributes: ['skill']
+					}]
+				}]
 		    }).then(function(response){
 		    	if (response){
+		    		// console.log(response)
 		    		var data = response.dataValues;
 		    		// console.log("UserID: ", data);
 		    		resultData.userPhoto = data.photo_url
-		    		resultData.userSkill = data.User_skill 
-		    		console.log(resultData)
+		    		resultData.userSkill = _.map(data.User_skills,function(element){
+		    			return element.Skill.skill
+		    		})
+		    		// console.log(resultData)
 		    	}
 		    	resultDatas.push(resultData);
 		    	callback();
