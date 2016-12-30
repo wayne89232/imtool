@@ -109,7 +109,7 @@
 				<div class="header">Tool more</div>
 			</div>
 		</div>
-		<div class="item" ng-hide="identity()">
+		<div class="item" ng-hide="identity()" ng-click="tool_me()">
 			<i ng-show="status()" class="plus square outline icon"></i>
 			<div ng-show="status()" class="content">
 				<div class="header">Tool me</div>
@@ -128,7 +128,7 @@
 	<!-- <div class="row"> -->
 	<div class="ui segment" scroll-glue="glued">
 		<div class="ui comments">
-			<div class="comment" ng-repeat="chat in chats">
+			<div class="comment" ng-repeat="chat in chats | orderBy:'time'">
 				<!-- <a class="avatar">
 							<img class="ui mini image" src="assets/images/tool.png">
 				</a> -->
@@ -177,29 +177,28 @@
 </div>
 <div class="ui modal small mission_clear">
 <div class="header">Mission Cleared - Rate your toolmans</div>
-<div class="content">
+<div class="content" ng-repeat="tool in tools">
 	<div class="ui form">
 		<div >
-			<!-- ng-repeat="tool in tools" -->
-			<!-- 			<div class="field">
-					<div class="ui feed">
-							<div class="event">
-									<div class="label">
-											<img src="{{tool.User.photo_url}}">
-									</div>
-									<div class="content">
-											<a>{{tool.User.user_name}}</a>
-									</div>
-							</div>
+			<div class="field">
+				<div class="ui feed">
+					<div class="event">
+						<div class="label">
+							<img src="{{tool.User.photo_url}}">
+						</div>
+						<div class="content">
+							<a>{{tool.User.user_name}}</a>
+						</div>
 					</div>
-			</div> -->
+				</div>
+			</div>
 			<div class="field">
 				<label>Rating</label>
-				<div class="ui star rating" data-max-rating="5"></div>
+				<div id="{{$index}}" class="ui star rating" data-max-rating="5" data-rating="{{tool.rating}}" ng-click="testClick($index)"></div>
 			</div>
 			<div class="field">
 				<label>Comment</label>
-				<textarea></textarea>
+				<textarea ng-model="tool.feedback"></textarea>
 			</div>
 			<br>
 		</div>
@@ -207,7 +206,7 @@
 	
 </div>
 <div class="actions">
-	<div class="ui ok button">Save Comment</div>
+	<div class="ui ok button" ng-click="saveComment()">Save Comment</div>
 	<div class="ui cancel button">Cancel</div>
 </div>
 </div>
@@ -253,6 +252,34 @@
 	</div>
 </div>
 </div>
+
+<div class="ui basic modal tool_me">
+<i class="close icon"></i>
+<div class="header">
+	Get tooled
+</div>
+<div class="image content">
+	<div class="image">
+		<i class="archive icon"></i>
+	</div>
+	<div class="description">
+		<p>Are you sure you want to get tooled?</p>
+	</div>
+</div>
+<div class="actions">
+	<div class="two fluid ui inverted buttons">
+		<div class="ui cancel red basic inverted button">
+			<i class="remove icon"></i>
+			No
+		</div>
+		<div class="ui ok green basic inverted button" ng-click="tool_me_go()">
+			<i class="checkmark icon"></i>
+			Yes
+		</div>
+	</div>
+</div>
+</div>
+
 <div class="ui basic modal recruit">
 <i class="close icon"></i>
 <div class="header">

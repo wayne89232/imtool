@@ -3,6 +3,7 @@ var Mission = require('../models').Mission;
 var Toolship = require('../models').Toolship;
 var User_skill = require('../models').User_skill;
 var Skill = require('../models').Skill;
+var sendMail = require('../scripts/sendmail');
 var crypto = require('crypto');
 
 var _ = require('underscore');
@@ -41,11 +42,52 @@ exports.login = function (req, res){
     });
 }
 
+exports.updateUser = function(req,res){
+
+    req.checkBody('account').notEmpty();
+    req.checkBody('password').notEmpty();
+    req.checkBody('user_name').notEmpty();
+    req.checkBody('email').notEmpty().isEmail();
+    req.checkBody('gender').notEmpty().isGender();
+
+    var errors = req.validationErrors();
+    if (errors) {
+        return res.status(405).json({
+            errors: errors
+        });
+    }
+
+    var newUserData = _.omit(req.body, ["createdAt","updatedAt"]);
+    var query = {
+        where:{
+            account: req.body.account
+        }
+    }
+
+    User.update(newUserData,query).then(function(response){
+        console.log(response)
+        res.json({data: "OK"});
+    })
+
+}
 
 
 exports.logout = function (req, res){
     req.session.user = false;
     res.redirect('/');
+}
+
+exports.sendVerMail = function(req,res){
+    req.checkBody('email').notEmpty().isEmail();
+    var errors = req.validationErrors();
+    if (errors) {
+        return res.status(405).json({
+            errors: errors
+        });
+    }
+    sendMail(req.body.email).then(function(verStr){
+        res.status(200).json({msg: "mail send", verStr: verStr});
+    })
 }
 
 exports.register = function(req, res){
@@ -76,8 +118,7 @@ exports.register = function(req, res){
                 user_name  : req.body.user_name,
                 email      : req.body.email,
                 gender     : req.body.gender,
-                photo_url  : req.body.photoURL || ''
-
+                photo_url  : req.body.photoURL || '/assets/images/tool.png'
             };
 
             newUser.user_id = crypto.createHash('md5').update('imtool' + newUser.account + newUser.password).digest('hex');

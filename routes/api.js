@@ -12,7 +12,7 @@ var User = require('../models').User;
 exports.skill_list = function(req, res){
     Skill.findAll().then(function(result){
     	skill_list = _.map(result, function(result){
-			return result.dataValues;
+			return result.dataValues.skill;
 		});
         res.json({ data: skill_list });
     });

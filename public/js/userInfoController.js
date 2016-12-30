@@ -5,6 +5,10 @@ angular.module('myApp.controllers').controller('user_info', function($scope, $ht
 		$http({ method:"GET", url:'/getUserSkill/' + $routeParams.id }).then(function(skills){
 			$http({ method:"GET", url:'/getUserMission/' + $routeParams.id }).then(function(mission1){
 				$http({ method:"GET", url:'/getToolMission/' + $routeParams.id }).then(function(mission2){
+					console.log("Skill: ", skills)
+					console.log("user_info: ", user_info)
+					console.log("mission1: ", mission1)
+					console.log("mission2: ", mission2)
 					$scope.skill_list = skills.data.data;
 					$scope.user_info = user_info.data.data;
 					$scope.user_mission = mission1.data.data;
@@ -58,16 +62,24 @@ angular.module('myApp.controllers').controller('user_info', function($scope, $ht
 				allowAdditions: true
 			});
 		});
-
-
     }
+
+
 	$scope.view_mission = function(id){
 		$location.path('/view_mission/'+id);
 	}
 	$scope.edit = function(){
 		$scope.user_info.gender = $scope.gender.id;
 		$('.ui.modal.editUserInfo').modal('hide');
-		console.log($scope.user_info.gender)
+		console.log($scope.user_info)
+
+		$http({
+			method: "POST", 
+			url: '/updateUser', 
+			data: $scope.user_info
+		}).then(function(response){
+			console.log(response)
+		})
 	}
 	function findGenderInit(nowGender){
 		return $scope.genderModel[0].id == nowGender ? $scope.genderModel[0] : $scope.genderModel[1]
