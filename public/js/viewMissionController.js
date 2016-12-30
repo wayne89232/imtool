@@ -51,10 +51,23 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
 
 	$('.progress').progress();
 	$('.ui.rating').rating('enable');
-	
+	$scope.glued = true
 
+	
+	$scope.testClick = function(index){
+		console.log("HI", index)
+		var currentValue = $('#'+index).rating('get rating');
+		$scope.tools[index].rating = currentValue;
+
+	}
 	$scope.missionCleared = function(){
 		$('.ui.small.modal.mission_clear').modal('show');
+	}
+	$scope.saveComment = function(){
+		$('.ui.small.modal.mission_clear').modal('hide');
+		console.log($scope.tools)
+		$scope.end_mission_confirm()
+
 	}
 	$scope.add_tool = function(){
 		$('.ui.small.modal.add_tool').modal('show');
@@ -107,12 +120,15 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
 
 
     $scope.end_mission = function(){
-    	$('.ui.basic.modal.end').modal('show');
+    	$('.ui.small.modal.mission_clear').modal('show');
+		$('.ui.rating').rating('enable');
+
     }
     $scope.end_mission_confirm = function(){
 		$http({ 
-		    	method:"GET", 
-		    	url:'/end_mission/'+$routeParams.id
+	    	method:"POST", 
+	    	url:'/end_mission/'+$routeParams.id,
+	    	data: $scope.tools
 		}).then(function(result){
 			$window.location.reload();
 			// console.log(result)
@@ -143,19 +159,22 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
     	}
     	
     	$http({ 
-		    	method:"POST", 
-		    	url:'/save_chat',
-		    	data: {
-		    		user_id: cur_user,
-		    		mission_id: $routeParams.id,
-		    		content: $scope.liveMessage
-		    	}
+	    	method:"POST", 
+	    	url:'/save_chat',
+	    	data: {
+	    		user_id: cur_user,
+	    		mission_id: $routeParams.id,
+	    		content: $scope.liveMessage
+	    	}
 		}).then(function(result){
 			$scope.liveMessage = "";
         	$rootScope.socket.emit('add message',new_message)
 		});	
     }
     $rootScope.socket.on('add message',function(data){
-        $scope.chats.push(data);
+    	$scope.$apply(function(){
+    		$scope.chats.push(data);
+    	})
+        
     });
 });

@@ -75,6 +75,7 @@ app.get('/partials/:name', routes.partials);
 
 //user
 app.post('/sendVerMail', user.sendVerMail);
+app.post('/updateUser', user.updateUser);
 app.post('/register', user.register);
 app.post('/login', user.login);
 app.post('/logout', user.logout);
@@ -98,7 +99,7 @@ app.get('/mission_skills/:id', mission.mission_skills);
 app.post('/get_tooled',mission.get_tooled);
 app.post('/fire_tool',mission.fire_tool);
 app.get('/stop_recruit/:id',mission.stop_recruit);
-app.get('/end_mission/:id',mission.end_mission);
+app.post('/end_mission/:id',mission.end_mission);
 
 //functions, ex: 
 // app.post('/api/add_league', api.add_league);
