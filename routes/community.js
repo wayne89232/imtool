@@ -142,3 +142,40 @@ exports.get_community_chat = function(req,res){
         res.json({ data: chat_list });
     });
 }
+
+exports.get_community_member = function(req,res){
+    Community_user.findAll({
+        where: {
+            community_id: req.params.id
+        },
+        include: [User]
+    }).then(function(result){
+        user_list = _.map(result, function(result){
+            return result.dataValues;
+        });
+        res.json({ data: user_list });
+    });
+}
+
+exports.view_community = function(req, res){
+
+	req.checkParams('id').notEmpty();
+
+	var errors = req.validationErrors();
+	if (errors) {
+		return res.status(405).json({
+			errors: errors
+		});
+	}
+	
+	Community.find({ 
+		where:{ 
+			community_id: req.params.id 
+		}
+	}).then(function(result){
+		res.json({ data: result.dataValues });
+	}).catch(function(err){
+		console.log(err)
+		res.send(err);
+	});
+}
