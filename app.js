@@ -12,6 +12,7 @@ var express = require('express'),
     api = require('./routes/api'),
     user = require('./routes/user'),
     mission = require('./routes/mission'),
+    community = require('./routes/community'),
     multer  = require('multer'),
     uploadImage = require('./routes/uploadImage'),
     express_validators = require('./config').express_validators,
@@ -100,6 +101,17 @@ app.post('/get_tooled',mission.get_tooled);
 app.post('/fire_tool',mission.fire_tool);
 app.get('/stop_recruit/:id',mission.stop_recruit);
 app.post('/end_mission/:id',mission.end_mission);
+
+//community related
+app.post('/createCommunity', community.create_community);
+app.post('/save_comchat', community.save_community_chat);
+app.get('/list_community',community.list_community);
+app.get('/list_ur_community/:id',community.list_ur_community);
+app.get('/get_community_chat/:id',community.get_community_chat);
+
+
+
+
 
 //functions, ex: 
 // app.post('/api/add_league', api.add_league);
