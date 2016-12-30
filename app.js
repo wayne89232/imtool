@@ -163,6 +163,11 @@ io.on('connection',function(socket){
         console.log("server got message")
         io.emit('add message',data);
     });
+    
+    socket.on('add message community',function(data){
+        console.log("server got message")
+        io.emit('add message community',data);
+    });
 
     socket.on('send notify',function(data){
         io.emit('got notification',data);
