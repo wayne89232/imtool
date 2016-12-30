@@ -109,7 +109,7 @@
 				<div class="header">Tool more</div>
 			</div>
 		</div>
-		<div class="item" ng-hide="identity()">
+		<div class="item" ng-hide="identity()" ng-click="tool_me()">
 			<i ng-show="status()" class="plus square outline icon"></i>
 			<div ng-show="status()" class="content">
 				<div class="header">Tool me</div>
@@ -252,6 +252,34 @@
 	</div>
 </div>
 </div>
+
+<div class="ui basic modal tool_me">
+<i class="close icon"></i>
+<div class="header">
+	Get tooled
+</div>
+<div class="image content">
+	<div class="image">
+		<i class="archive icon"></i>
+	</div>
+	<div class="description">
+		<p>Are you sure you want to get tooled?</p>
+	</div>
+</div>
+<div class="actions">
+	<div class="two fluid ui inverted buttons">
+		<div class="ui cancel red basic inverted button">
+			<i class="remove icon"></i>
+			No
+		</div>
+		<div class="ui ok green basic inverted button" ng-click="tool_me_go()">
+			<i class="checkmark icon"></i>
+			Yes
+		</div>
+	</div>
+</div>
+</div>
+
 <div class="ui basic modal recruit">
 <i class="close icon"></i>
 <div class="header">
