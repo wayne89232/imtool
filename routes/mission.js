@@ -39,7 +39,10 @@ exports.create_mission = function(req, res){
 		content: req.body.content || "",
 		state: 'Recruiting'
 	};
+	console.log("New: ", newMission)
 	Mission.create(newMission).then(function(result){
+		console.log("result: ", result)
+
 		var succesMsg = "User " + result.dataValues.user_id + " Success on creating mission " + result.dataValues.title;
 
 
@@ -66,6 +69,8 @@ exports.create_mission = function(req, res){
 					mission_id: new_id
 				}).then(function(result){
 					console.log("linked skill " + link_skill.skill)
+				}).catch(function(error){
+					callback(error)
 				});		    	
 
 
@@ -90,6 +95,7 @@ exports.create_mission = function(req, res){
 		// 	msg: succesMsg
 		// });
 	}).catch(function(err){
+		console.log(err)
 		res.send(err);
 	});
 }
@@ -286,6 +292,10 @@ exports.end_mission = function(req, res){
 			errors: errors
 		});
 	}
+
+	var feedbackData = _.map(req.body,function(element){
+		return _.pick(element,['rating','feedback','toolship_id'])
+	})
 	
 	Mission.update(
 		
@@ -294,7 +304,26 @@ exports.end_mission = function(req, res){
 		
 	).then(function(result){
 		// Give out feedbacks & rating
-		res.json({ data: result.dataValues });
+
+		async.each(feedbackData,function(element,callback){
+			var query = {
+				where: {toolship_id: element.toolship_id}
+			}
+			Toolship.update(element,query).then(function(result){
+				callback()
+			}).catch(function(error){
+				callback(error)
+			})
+		},function(err){
+			if(err)
+				res.json({ data: result.dataValues });
+			else{
+				console.log(err)
+				res.send(err);
+			}
+
+		})
+		
 	}).catch(function(err){
 		console.log(err)
 		res.send(err);

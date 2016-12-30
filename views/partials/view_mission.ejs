@@ -128,7 +128,7 @@
 	<!-- <div class="row"> -->
 	<div class="ui segment" scroll-glue="glued">
 		<div class="ui comments">
-			<div class="comment" ng-repeat="chat in chats">
+			<div class="comment" ng-repeat="chat in chats | orderBy:'time'">
 				<!-- <a class="avatar">
 							<img class="ui mini image" src="assets/images/tool.png">
 				</a> -->
