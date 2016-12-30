@@ -1,0 +1,32 @@
+<br>
+
+
+<div class="ui divided items container">
+<h2 class="ui header">
+  <img src="assets/images/tool.png">
+  <div class="content">
+    Communities
+    <div class="sub header">Check out the communities</div>
+  </div>
+</h2>
+	<div class="item" ng-repeat="community in communities">
+		<div class="image">
+			<img src="{{community.photo_url}}">
+		</div>
+		<div class="content">
+			<a class="header" ng-bind="community.name"></a>
+			<div class="meta">
+				<span class="cinema">2016.11.23</span>
+			</div>
+			<div class="description" ng-bind="community.description">
+			</div>
+			<div class="extra">
+				<!-- <div class="ui label">Bike</div> -->
+				<div class="ui right floated primary button" ng-click="view_community(community.community_id)">
+					View Community
+					<i class="right chevron icon"></i>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

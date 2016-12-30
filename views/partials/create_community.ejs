@@ -1,0 +1,32 @@
+<br>
+<div class="ui text container">
+    <div class="ui attached icon info message">
+        <i class="help circle icon"></i>
+        <div class="content">
+            <h1>Form your group</h1>
+        </div>
+    </div>
+    <div class="ui segment">
+        <form class="ui form">
+            <h4 class="ui dividing header">Group Information</h4>
+                <div class="field">
+                    <label>Name</label>
+                    <input type="text"  placeholder="Your name" ng-model="name">
+                </div>
+            <div class="field">
+                <label>Group photo</label>
+                <input type="file" ng-model="uploadImage" ngf-select="test()" ngf-max-height="1000" ngf-max-size="1MB">
+                <button ng-click="uploadImageFile(uploadImage)">Upload</button>
+                <img ngf-src="uploadImage">
+            </div>
+            <h4 class="ui dividing header">Member Information</h4>
+            <div class="field">
+                <label>Members</label>
+                <select class="ui fluid search dropdown" id="skills" multiple="" ng-model="skills" ng-options="s for s in skill_list" ng-change="selectSkill()">
+                </select>
+            </div>
+
+            <div class="ui button" ng-click="create_group()" tabindex="0">Form Group</div>
+        </form>
+    </div>
+</div>
