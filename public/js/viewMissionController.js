@@ -30,6 +30,9 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
 						if ($scope.mission_info.state != "Recruiting") {
 							return false;
 						}
+						else if(_.contains(_.pluck($scope.tools,"user_id"),cur_user)){
+							return false;
+						}
 						else{
 							return true;
 						}
@@ -69,6 +72,8 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
 		$scope.end_mission_confirm()
 
 	}
+
+	//for tool more
 	$scope.add_tool = function(){
 		$('.ui.small.modal.add_tool').modal('show');
 	}
@@ -85,6 +90,25 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
 				$window.location.reload();
 		});	
 	}
+
+	//for tool me
+	$scope.tool_me = function(){
+		$('.ui.basic.modal.tool_me').modal('show');
+	}
+	$scope.tool_me_go = function(){
+		var data = {
+            user_id: cur_user,
+            mission_id: $routeParams.id
+        };
+		$http({ 
+		    	method:"POST", 
+		    	url:'/get_tooled',
+		    	data: data
+		}).then(function(result){
+				$window.location.reload();
+		});	
+	}
+
     $scope.user_info = function(id){
     	$location.path('/user_info/'+id);
     }	
