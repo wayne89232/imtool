@@ -108,7 +108,8 @@ app.post('/save_comchat', community.save_community_chat);
 app.get('/list_community',community.list_community);
 app.get('/list_ur_community/:id',community.list_ur_community);
 app.get('/get_community_chat/:id',community.get_community_chat);
-
+app.get('/get_community_member/:id',community.get_community_member);
+app.get('/viewCommunity/:id', community.view_community);
 
 
 
