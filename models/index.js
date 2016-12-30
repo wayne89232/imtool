@@ -69,10 +69,10 @@ Community.hasMany(Community_user,{foreignKey: 'community_id'});
 Community_user.belongsTo(Community,{foreignKey: 'community_id'});
 Community_user.belongsTo(User,{foreignKey: 'user_id'});
 
-User.hasMany(COmmunity_chatlog,{foreignKey: 'user_id'});
-Community.hasMany(COmmunity_chatlog,{foreignKey: 'community_id'});
-COmmunity_chatlog.belongsTo(Community,{foreignKey: 'community_id'});
-COmmunity_chatlog.belongsTo(User,{foreignKey: 'user_id'});
+User.hasMany(Community_chatlog,{foreignKey: 'user_id'});
+Community.hasMany(Community_chatlog,{foreignKey: 'community_id'});
+Community_chatlog.belongsTo(Community,{foreignKey: 'community_id'});
+Community_chatlog.belongsTo(User,{foreignKey: 'user_id'});
 
 //export for use in other directory
 // exports.Example = Example;
