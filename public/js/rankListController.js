@@ -71,6 +71,15 @@ angular.module('myApp.controllers').controller('rank_list', function($scope, $ht
 		$('.menu .item').tab();
 	});
 
+	$scope.showDetail = function(){
+		$scope.modalList = $scope.missionClearedList
+		$('.ui.missionCompleted.modal').modal('show');
+	};
+	$scope.showRanking = function(){
+		$scope.modalList = $scope.totalQuality
+		$('.ui.ranking.modal').modal('show');
+	};
+
 	$scope.tagModel = [{
 		value 	: "Delivery",
 		id 		: "Delivery"
