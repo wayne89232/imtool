@@ -120,11 +120,21 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
     	$('.ui.basic.modal.fire').modal('show');
     }
     $scope.go_fire = function(){
+    	var new_message = {
+    		title: $scope.mission_info.title,
+    		event: "You're Fired"
+    	}
+    	$scope.mission_info.Toolships.forEach(function(toolship){
+    		if (toolship.toolship_id == $scope.firing)
+    			new_message.fired = toolship.user_id	
+    	})
 		$http({ 
 		    	method:"POST", 
 		    	url:'/fire_tool',
 		    	data: {toolship_id: $scope.firing}
 		}).then(function(result){
+
+			$rootScope.socket.emit('send notify',new_message)
 			$window.location.reload();
 		});	
     }
@@ -199,6 +209,13 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
     	$scope.$apply(function(){
     		$scope.chats.push(data);
     	})
+        
+    });
+
+    $rootScope.socket.on('send notify',function(data){
+    	console.log(data, cur_user)
+    	if (data.fired == cur_user)
+    		$('.nag').nag('show');
         
     });
 });

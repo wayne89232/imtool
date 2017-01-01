@@ -172,6 +172,7 @@ io.on('connection',function(socket){
     });
 
     socket.on('send notify',function(data){
-        io.emit('got notification',data);
+        console.log('got notification',data)
+        io.emit('send notify',data);
     })
 });
