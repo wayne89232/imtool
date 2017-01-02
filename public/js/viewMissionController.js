@@ -76,6 +76,12 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
 		$('.ui.small.modal.add_tool').modal('show');
 	}
 	$scope.add_toolman = function(){
+
+		var new_message = {
+			mission_title: $scope.mission_info.title,
+			user: $scope.new_tool.user_id,
+			type: "employed"
+		}
 		var data = {
             user_id: $scope.new_tool.user_id,
             mission_id: $routeParams.id
@@ -85,7 +91,9 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
 		    	url:'/get_tooled',
 		    	data: data
 		}).then(function(result){
-				$window.location.reload();
+
+			$rootScope.socket.emit('send notify',new_message)
+			$window.location.reload();
 		});	
 	}
 
@@ -94,16 +102,25 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
 		$('.ui.basic.modal.tool_me').modal('show');
 	}
 	$scope.tool_me_go = function(){
+
+		var new_message = {
+			mission_title: $scope.mission_info.title,
+			user: $scope.mission_info.User.user_id,
+			type: "volunteer"
+		}
+
 		var data = {
             user_id: cur_user,
-            mission_id: $routeParams.id
+            mission_id: $routeParams.id,
+            mission_user_id: $scope.mission_info.User.user_id
         };
 		$http({ 
 		    	method:"POST", 
 		    	url:'/get_tooled',
 		    	data: data
 		}).then(function(result){
-				$window.location.reload();
+			$rootScope.socket.emit('send notify',new_message)
+			$window.location.reload();
 		});	
 	}
 
@@ -119,17 +136,21 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
     }
     $scope.go_fire = function(){
     	var new_message = {
-    		title: $scope.mission_info.title,
-    		event: "You're Fired"
+    		mission_title: $scope.mission_info.title,
+    		type: "fired"
     	}
     	$scope.mission_info.Toolships.forEach(function(toolship){
     		if (toolship.toolship_id == $scope.firing)
-    			new_message.fired = toolship.user_id	
+    			new_message.user = toolship.user_id	
     	})
 		$http({ 
 		    	method:"POST", 
 		    	url:'/fire_tool',
-		    	data: {toolship_id: $scope.firing}
+		    	data: {
+		    		toolship_id: $scope.firing,
+		    		mission_id : $scope.mission_info.mission_id,
+		    		user_id : new_message.user
+		    	}
 		}).then(function(result){
 
 			$rootScope.socket.emit('send notify',new_message)
@@ -210,10 +231,4 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
         
     });
 
-    $rootScope.socket.on('send notify',function(data){
-    	console.log(data, cur_user)
-    	if (data.fired == cur_user)
-    		$('.nag').nag('show');
-        
-    });
 });

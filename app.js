@@ -12,6 +12,7 @@ var express = require('express'),
     api = require('./routes/api'),
     user = require('./routes/user'),
     mission = require('./routes/mission'),
+    notification = require('./routes/notification'),
 
     community = require('./routes/community'),
     multer  = require('multer'),
@@ -130,6 +131,8 @@ app.get('/get_community_chat/:id',community.get_community_chat);
 app.get('/get_community_member/:id',community.get_community_member);
 app.get('/viewCommunity/:id', community.view_community);
 
+//notification
+app.get('/notificationsList/:id', notification.get_notifications);
 
 app.get('/locales', i18nController.locales);
 app.post('/setLocale', i18nController.setLocale);
