@@ -6,61 +6,49 @@ angular.module('myApp.controllers').controller('rank_list', function($scope, $ht
 		method: 'GET',
 		url: 	'/missionCleared'
 	}).then(function(response){
-		console.log(response)
 		$scope.missionClearedList = response.data
 		// angular.element(document).ready(function () {
 		// 	$('.ui.rating').rating('disable');
 		// 	$('.sortable.table').tablesort();
 		// 	$('.tabular.menu .item').tab();
 		// });
-		
+		$http({
+			method: 'GET',
+			url: 	'/function_ranking'
+		}).then(function(response){
+			response.data.data.forEach(function(element){
+				console.log(element)
+				if(element.Skill == "Bike")
+					$scope.bikeQuality = parseToArray(element.user)
+				else if (element.Skill == "handsome")
+					$scope.homeworkQuality = parseToArray(element.user)
+
+			})
+			$http({
+				method: 'GET',
+				url: 	'/ranking'
+			}).then(function(response){
+				$scope.totalQuality = response.data.data
+			})
+			
+		})
 	})
+
+	function parseToArray(object){
+		var resultArray = []
+		for (var key in object){
+			resultArray.push(object[key])
+		}
+		return resultArray
+	}
+
+
 
 	$scope.tagChange = function(){
 		var newTag = $scope.toolTag.id
 		console.log(newTag)
 		// $scope.toolTagList = $scope.toolAllTagList[newTag]
 	}
-	
-	$scope.toolTotalList = [{
-		photo_url 		: '/assets/images/JianYi.jpg',
-		account 		: 'ianlee1228',
-		ranking 		: 4.8,
-		star 			: 5,
-		completedMission: 50
-	},{
-		photo_url 		: '/assets/images/wei.jpg',
-		account 		: 'wayne89232',
-		ranking 		: 4.1,
-		star 			: 4,
-		completedMission: 60
-	},{
-		photo_url 		: '/assets/images/hong.jpg',
-		account 		: 'dilmahlee',
-		ranking 		: 3.7,
-		star 			: 4,
-		completedMission: 35
-	}];
-
-	$scope.toolTagList = [{
-		photo_url 		: '/assets/images/JianYi.jpg',
-		account 		: 'ianlee1228',
-		ranking 		: 4.8,
-		star 			: 5,
-		completedMission: 50
-	},{
-		imgUrl 			: '/assets/images/wei.jpg',
-		account 		: 'wayne89232',
-		rank 			: 4.1,
-		star 			: 4,
-		completedMission: 60
-	},{
-		imgUrl 			: '/assets/images/hong.jpg',
-		account 		: 'dilmahlee',
-		rank 			: 3.7,
-		star 			: 4,
-		completedMission: 35
-	}];
 
 	$scope.totalQuality = $scope.toolTotalList
 	console.log($scope.totalQuality)
@@ -76,7 +64,13 @@ angular.module('myApp.controllers').controller('rank_list', function($scope, $ht
 		$('.ui.missionCompleted.modal').modal('show');
 	};
 	$scope.showRanking = function(){
-		$scope.modalList = $scope.totalQuality
+		var selected = $('.item.active').index();
+		if (selected == 0)
+			$scope.modalList = $scope.totalQuality
+		else if (selected == 1)
+			$scope.modalList = $scope.bikeQuality
+		else
+			$scope.modalList = $scope.homeworkQuality
 		$('.ui.ranking.modal').modal('show');
 	};
 

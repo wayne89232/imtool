@@ -59,7 +59,7 @@
 		<div class="ui bottom attached tab segment" data-tab="Bike">
 			<div class="ui middle aligned centered four column grid">
 				<div class="row">
-					<div class="column" ng-repeat="user in totalQuality" ng-if="$index < 3">
+					<div class="column" ng-repeat="user in bikeQuality | orderBy:'-ranking'" ng-if="$index < 3">
 						<img class="ui small circular image" src="{{user.photo_url}}">
 						<div class="ui statistic">
 							<div class="value" ng-bind="user.ranking"></div>
@@ -70,22 +70,24 @@
 					</div>
 				</div>
 			</div>
+			<button ng-click="showRanking()">More</button>
 		</div>
 
 		<div class="ui bottom attached tab segment" data-tab="Homework">
 			<div class="ui middle aligned centered four column grid">
 				<div class="row">
-					<div class="column" ng-repeat="user in totalQuality" ng-if="$index < 3">
+					<div class="column" ng-repeat="user in homeworkQuality | orderBy:'-ranking'" ng-if="$index < 3">
 						<img class="ui small circular image" src="{{user.photo_url}}">
 						<div class="ui statistic">
 							<div class="value" ng-bind="user.ranking"></div>
 							<div class="label">
-								Avg Ranking2
+								Avg Ranking
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			<button ng-click="showRanking()">More</button>
 		</div>
 
 
@@ -100,7 +102,6 @@
 			<th></th>
 			<th>User ID</th>
 			<th>Missions</th>
-			<th></th>
 		</thead>
 		<tbody>
 			<tr ng-repeat="tool in modalList">
@@ -127,10 +128,9 @@
 			<th></th>
 			<th>User ID</th>
 			<th>Ranking</th>
-			<th></th>
 		</thead>
 		<tbody>
-			<tr ng-repeat="tool in modalList">
+			<tr ng-repeat="tool in modalList | orderBy: '-ranking' ">
 				<td>
 					<img ng-src="{{tool.photo_url}}" class="ui circular tiny image middle aligned">
 				</td>
