@@ -2,10 +2,14 @@
 	<!-- <div class="ui one column grid"> -->
 	<!-- <div class="row"> -->
 	<br>
-	<h2 class="ui header ">
-		<img src="/assets/images/tool.png" class="ui circular image">
-		<span>{{community_info.name}}</span>
-	</h2>
+<h1 class="ui header">
+  <img src="{{community_info.photo_url}}">
+  <div class="content">
+    <span>{{community_info.name}}</span>
+    <div class="sub header">{{community_info.description}}</div>
+  </div>
+</h1>
+
 	<!-- </div> -->
 	<!-- <div class="row"> -->
 
@@ -35,6 +39,25 @@
 			</div>
 			<div class="ui blue labeled submit icon button" ng-click="sendMessage()">
 				<i class="icon edit"></i> Say
+			</div>
+		</div>
+	</div>
+	<br>
+		<div class="row ">
+<h2 class="ui header">
+  <img src="assets/images/tool.png">
+  <div class="content">
+    Members
+    <div class="sub header">Toolmans</div>
+  </div>
+</h2>
+	</div>
+	<div class="ui horizontal list selection huge">
+		<div class="item" ng-repeat="tool in members" ng-click="user_info(tool.User.user_id)" ng-hide="delete">
+			<img class="ui avatar image" src="{{tool.User.photo_url}}">
+			<div class="content">
+				<div class="header" ng-bind="tool.User.user_name"></div>
+				<div ng-bind="tool.User.account"></div>
 			</div>
 		</div>
 	</div>

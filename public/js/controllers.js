@@ -9,12 +9,11 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
 		$scope.local_user_name = $window.localStorage.getItem("name");
 	} 	
     var lang = localStorage.getItem("lang");
+    console.log(lang)
     if( lang!=null){
-    	console.log(lang)
     	$rootScope.lang = lang;
     }
     else{
-    	console.log(52324234)
         $rootScope.lang = "en";
     } 
 
@@ -47,10 +46,12 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
 	  	});
 	});
 	$scope.change_lang = function(){
-        if($rootScope.lang == "en")
-        	localStorage.setItem("lang", 'zh');
-        else
+        if($rootScope.lang == "en"){
+        	localStorage.setItem("lang", 'zh-TW');
+        }
+        else{
         	localStorage.setItem("lang", 'en');
+        }
         $http({
         	method:"POST", url:'/setLocale', 
         	data:{locale:localStorage.getItem("lang")}
@@ -201,5 +202,7 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
 	}
 	$('.ui.rating').rating('enable');
 
-})
+}).config(function ($httpProvider) {
+	$httpProvider.defaults.headers.common["Accept-Language"] = ""
+});
 

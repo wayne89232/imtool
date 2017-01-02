@@ -64,14 +64,12 @@ app.use(session({
 }))
 
 i18n.configure({
-  locales:['en', 'zh'],
+  locales:['en', 'zh-TW'],
   defaultLocale: 'en',
   directory: __dirname + '/setting/locales'
 });
 
 app.use(i18n.init);
-
-
 
 var env = process.env.NODE_ENV || 'development';
 

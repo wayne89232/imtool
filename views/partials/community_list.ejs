@@ -19,15 +19,15 @@ Form a group
 </div>
 	<div class="item" ng-repeat="community in communities">
 		<div class="image">
-			<img src="{{community.photo_url}}">
+			<img src="{{community.Community.photo_url}}">
 		</div>
 		<div class="content">
-			<a class="header" ng-bind="community.name"></a>
-			<div class="description" ng-bind="community.description">
+			<a class="header" ng-bind="community.Community.name"></a>
+			<div class="description" ng-bind="community.Community.description">
 			</div>
 			<div class="extra">
 				<!-- <div class="ui label">Bike</div> -->
-				<div class="ui right floated primary button" ng-click="view_community(community.community_id)">
+				<div class="ui right floated primary button" ng-click="view_community(community.Community.community_id)">
 					View Community
 					<i class="right chevron icon"></i>
 				</div>

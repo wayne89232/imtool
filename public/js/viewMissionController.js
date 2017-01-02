@@ -58,7 +58,6 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
 
 	
 	$scope.testClick = function(index){
-		console.log("HI", index)
 		var currentValue = $('#'+index).rating('get rating');
 		$scope.tools[index].rating = currentValue;
 
@@ -68,7 +67,6 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
 	}
 	$scope.saveComment = function(){
 		$('.ui.small.modal.mission_clear').modal('hide');
-		console.log($scope.tools)
 		$scope.end_mission_confirm()
 
 	}
