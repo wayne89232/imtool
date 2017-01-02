@@ -3,7 +3,7 @@ var fs = require('fs');
 
 exports.locales = function(req, res) {
     // TODO: automatically get all locale files
-    fs.readdir(__dirname + '/../config/locales', function(err, files) {
+    fs.readdir(__dirname + '/../setting/locales', function(err, files) {
         var locales = files.map(function(file) {
             return file.replace(".json", "");
         });
