@@ -20,8 +20,8 @@ var express = require('express'),
     toolship = require('./routes/toolship'),
 // >>>>>>> Dilmah
     express_validators = require('./config').express_validators,
-    ranking = require('./routes/ranking')
-
+    ranking = require('./routes/ranking'),
+    recommendation = require('./routes/recommendation')
 
     
     // import routers
@@ -135,6 +135,11 @@ app.get('/getMembers/:title', toolship.getmembers);
 app.get('/missionCleared', ranking.missionCleared);
 app.get('/ranking', ranking.tool_ranking);
 app.get('/function_ranking', ranking.function_ranking);
+// app.get('/function_ranking2', ranking.function_ranking2);
+
+//recommendation
+app.get('/recommendation', recommendation.recommend);
+
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);
