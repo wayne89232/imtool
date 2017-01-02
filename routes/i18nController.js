@@ -12,8 +12,12 @@ exports.locales = function(req, res) {
 };
 exports.setLocale = function(req, res) {
     var newLocale = req.body.locale;
+    console.log(newLocale)
+    res.locals.setLocale(newLocale);
     req.setLocale(newLocale);
+    i18n.setLocale(newLocale)
+     i18n.setLocale(req, newLocale);
     res.json({
-            msg: req.getLocale()
+        msg: req.getLocale()
     })
 };
