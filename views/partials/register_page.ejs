@@ -41,8 +41,8 @@
         </div>
         </div>
         <div class="field">
-            <label>Image</label>
-            <input type="file" ng-model="uploadImage" ngf-select="test()" ngf-max-height="1000" ngf-max-size="1MB">
+            <label>Image (MaximumSize: 2MB)</label>
+            <input type="file" ng-model="uploadImage" ngf-select="test()" ngf-max-height="1000" ngf-max-size="2MB">
             <button ng-click="uploadImageFile(uploadImage)">Upload</button>
             <img ngf-src="uploadImage">
         </div>
@@ -70,11 +70,11 @@
         <div class="two fields">
             <div class="field">
             	<label>Verification</label>
-            	<input type="text"  placeholder="Your Verification String" ng-model="mail">
+            	<input type="text"  placeholder="Your Verification String" ng-model="userVerCode">
             </div>
             <div class="field">
             	<label>&nbsp</label>
-            	<button ng-click="sendVerMail()">Send Verification String</button>
+            	<button ng-click="sendVerMail()">Send Verification Code</button>
             </div>
         </div>
         <div class="ui segment">
