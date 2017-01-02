@@ -3,9 +3,10 @@ var Mission = require('../models').Mission;
 var User = require('../models').User;
 var Toolship = require('../models').Toolship;
 var User_skill = require('../models').User_skill;
+var Skill = require('../models').Skill;
 var async = require('async');
 
-exports.tool_ranking = function(req, res){
+exports.recommend = function(req, res){
 Toolship.findAll({
 
 		attributes:['user_id',[Toolship.sequelize.fn('AVG', Toolship.sequelize.col('rating')),'rank'],[Toolship.sequelize.fn('COUNT', Toolship.sequelize.col('user_id')), 'completedMission']],
@@ -50,7 +51,12 @@ Toolship.findAll({
 		    		})
 		    		// console.log(resultData)
 		    	}
-		    	resultDatas.push(resultData);
+		    	// if(_.map(data.User_skills,function(element){if(element.Skill.skill == req.params.skill){return ture}}
+		    	// 	)){
+
+		    	// 	console.log("66666")
+		    		resultDatas.push(resultData);
+		    	// }
 		    	callback();
 		    }).catch(function(error){
 		    	callback(error);
