@@ -1,6 +1,16 @@
 'use strict';
 
 angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives','base64']).controller('AppCtrl', function ($rootScope, $window, $scope, $http, $location) {
+
+	if( navigator.userAgent.match(/Android/i) 
+		|| navigator.userAgent.match(/webOS/i)
+ 		|| navigator.userAgent.match(/iPhone/i)
+ 		|| navigator.userAgent.match(/iPad/i)
+ 		|| navigator.userAgent.match(/iPod/i)
+ 		|| navigator.userAgent.match(/BlackBerry/i)
+ 		|| navigator.userAgent.match(/Windows Phone/i)){
+		$scope.mobile = true
+	}
 	if($window.localStorage.getItem("is_login")){
 		$scope.is_login = true;
 		$scope.local_user = $window.localStorage.getItem("account");
@@ -20,7 +30,6 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
 		})
 	} 	
     var lang = localStorage.getItem("lang");
-    console.log(lang)
     if( lang!=null){
     	$rootScope.lang = lang;
     }
@@ -161,6 +170,12 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
         	$location.path('/');
 	    });	
 
+	}
+	$scope.jump_register = function(){
+		if(!$scope.mobile)
+			$location.path('/register_page')
+		else
+			swal("Pleasr use PC to register")
 	}
     $scope.user_info = function(){
     	if($window.localStorage.getItem("is_login")){
