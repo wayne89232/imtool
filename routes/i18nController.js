@@ -1,5 +1,6 @@
 var i18n = require('i18n');
 var fs = require('fs');
+var _ = require('underscore');
 
 exports.locales = function(req, res) {
     // TODO: automatically get all locale files
@@ -12,11 +13,7 @@ exports.locales = function(req, res) {
 };
 exports.setLocale = function(req, res) {
     var newLocale = req.body.locale;
-    console.log(newLocale)
-    res.locals.setLocale(newLocale);
     req.setLocale(newLocale);
-    i18n.setLocale(newLocale)
-     i18n.setLocale(req, newLocale);
     res.json({
         msg: req.getLocale()
     })

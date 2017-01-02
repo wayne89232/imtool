@@ -1,7 +1,8 @@
 'use strict';
 
-angular.module('myApp.controllers').controller('community', function($scope, $http, $location){
-	$http({ method:"GET", url:'/list_community/' }).then(function(communities){
+angular.module('myApp.controllers').controller('community', function($scope, $http, $location,$window){
+	$http({ method:"GET", url:'/list_ur_community/'+ $window.localStorage.getItem("user_id") }).then(function(communities){
+		console.log(communities)
 		$scope.communities = communities.data.data;
 
 	});
@@ -90,10 +91,10 @@ angular.module('myApp.controllers').controller('community', function($scope, $ht
 			}).then(function(result){
 
 				if(result.data.success==false){
-					swal(result.data.msg);
+					swal("Failed on creating group");
 				}
 				else{
-					$location.path('/view_community/'+result.community_id);	            		
+					$location.path('/view_community/'+result.data.data.community_id);	            		
             	}
             }).catch(function(err){
             	console.log(err)
