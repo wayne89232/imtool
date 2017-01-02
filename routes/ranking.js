@@ -13,7 +13,7 @@ var async = require('async');
 //By the number of mission hosted
 exports.tool_ranking = function(req, res){
 	Toolship.findAll({
-		attributes:['user_id',[Toolship.sequelize.fn('AVG', Toolship.sequelize.col('rating')),'rank'],[Toolship.sequelize.fn('COUNT', Toolship.sequelize.col('user_id')), 'completedMission']],
+		attributes:['user_id',[Toolship.sequelize.fn('AVG', Toolship.sequelize.col('rating')),'ranking'],[Toolship.sequelize.fn('COUNT', Toolship.sequelize.col('user_id')), 'completedMission']],
 
 		group: ['user_id'],
 
@@ -49,7 +49,8 @@ exports.tool_ranking = function(req, res){
 		    		// console.log(response)
 		    		var data = response.dataValues;
 		    		// console.log("UserID: ", data);
-		    		resultData.userPhoto = data.photo_url
+		    		resultData.photo_url = data.photo_url
+		    		resultData.account   = data.account 
 		    		resultData.userSkill = _.map(data.User_skills,function(element){
 		    			return element.Skill.skill
 		    		})
@@ -67,9 +68,9 @@ exports.tool_ranking = function(req, res){
 				// All processing will now stop.
 				console.log('A file failed to process');
 		    } else {
-		    	console.log('All files have been processed successfully');
+		    	var orderResultDatas = _.sortBy(resultDatas,"-rank")
 		    	// console.log("Result: ",resultDatas);
-		    	res.json({ data: resultDatas });
+		    	res.json({ data: orderResultDatas });
 			}
 		});
 	});
@@ -110,7 +111,7 @@ exports.function_ranking = function(req, res){
 				if(toolships){
  					_.map(toolships,function(toolship){
 						// console.log(skill.skill)
-						console.log(toolship.User.account)
+						// console.log(toolship.User.account)
 						// if(!_.contains(_.allKeys(user_list),toolship.dataValues.user_id)){
 						// 	_.extend(user_list,{[toolship.dataValues.user_id]: {
 						// 		count  		: 0,
@@ -121,18 +122,20 @@ exports.function_ranking = function(req, res){
 						if (!user_list[toolship.dataValues.user_id]){
 							user_list[toolship.dataValues.user_id] = {
 								account 	: "",
-								imgurl		: "",
+								photo_url	: "",
 								count  		: 0,
-								avgrating 	: 0,
+								ranking 	: 0,
 							}
 						}
 						user_list[toolship.dataValues.user_id].account = toolship.dataValues.User.account
-						user_list[toolship.dataValues.user_id].imgurl = toolship.dataValues.User.photo_url
-						user_list[toolship.dataValues.user_id].avgrating = (user_list[toolship.dataValues.user_id].avgrating * user_list[toolship.dataValues.user_id].count + toolship.dataValues.rating)/ (user_list[toolship.dataValues.user_id].count + 1);
+						user_list[toolship.dataValues.user_id].photo_url = toolship.dataValues.User.photo_url
+						user_list[toolship.dataValues.user_id].ranking = (user_list[toolship.dataValues.user_id].ranking * user_list[toolship.dataValues.user_id].count + toolship.dataValues.rating)/ (user_list[toolship.dataValues.user_id].count + 1);
 						user_list[toolship.dataValues.user_id].count++
-
 					})	
+						
+
 				}
+
 				
 			})
 
