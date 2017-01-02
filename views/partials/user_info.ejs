@@ -1,32 +1,77 @@
 <br>
+<!-- <div class="ui center aligned container">
+			<div class="ui segment">
+						<h2 class="ui icon header">
+						<img class="ui small circular image" src="{{user_info.photo_url}}">
+						<br>
+						<div class="content">
+									<span ng-bind="user_info.user_name"></span>
+									<div class="sub header" ng-bind="user_info.email"></div>
+						</div>
+						</h2>
+			</div>
+</div> -->
 <div class="ui items container">
 	<div class="item">
 		<div class="image">
 			<img src="{{user_info.photo_url}}">
 		</div>
-		<div class="content">
-			<a class="header" ng-bind="user_info.user_name"></a>
-			<div class="meta">
+		<div class="middle aligned content">
+			<div class="header">
 				<i ng-show="check_gender()" class="man icon"></i>
 				<i ng-hide="check_gender()" class="woman icon"></i>
+				<span ng-bind="user_info.user_name"></span>
 			</div>
-			<h4>Skills</h4>
 			<div class="extra">
-					<div class="ui label" ng-repeat="skill in skill_list">
-						<div ng-bind="skill.Skill.skill"></div>
-					</div>
-			</div>
-			<div class="ui header" ng-click="editUserInfo()">
-				<img class="ui image" src="/assets/images/tool.png">
-				<div class="content">
-				  Edit
-				</div>
+				<div  ng-bind="user_info.email"></div>
 			</div>
 		</div>
+		<!-- <div class="content">
+						<a class="header" ng-bind="user_info.user_name"></a>
+						<div class="meta">
+										<i ng-show="check_gender()" class="man icon"></i>
+										<i ng-hide="check_gender()" class="woman icon"></i>
+						</div>
+						<h4>Skills</h4>
+						<div class="extra">
+											<div class="ui label" ng-repeat="skill in skill_list">
+															<div ng-bind="skill.Skill.skill"></div>
+											</div>
+						</div>
+						<div class="ui header" ng-click="editUserInfo()">
+										<img class="ui image" src="/assets/images/tool.png">
+										<div class="content">
+													Edit
+										</div>
+						</div>
+		</div> -->
 	</div>
+</div>
+<div class="ui middle aligned text container">
+<div class="ui fluid button" ng-click="editUserInfo()">
+	<i class="settings icon"></i>
+	Edit user info
+</div>
 </div>
 <div class="ui divider"></div>
 <div class="ui middle aligned two column centered grid container ">
+	<br>
+	<h2 class="ui dividing header">Skill Information</h2>
+	<div class="row">
+		<div class="ui middle aligned horizontal selection list">
+			<div class="item" ng-repeat="skill in skill_list">
+				<img class="ui avatar image" src="assets/images/tool.png">
+				<div class="content">
+					<div class="header" ng-bind="skill.Skill.skill"></div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+<div class="ui middle aligned two column centered grid container ">
+	<br>
+	<h2 class="ui dividing header">Mission Information</h2>
 	<div class="row">
 		<div class="column">
 			<table class="ui selectable basic table">
@@ -66,78 +111,72 @@
 		</div>
 	</div>
 </div>
-
-
-
-
 <div class="ui modal editUserInfo">
 	<div class="ui text container">
-	    <div class="ui attached icon info message">
-	    <i class="help circle icon"></i>
-	    <div class="content">
-	      <h1>Edit</h1>
-	    </div>
-	  </div>
-	    <div class="ui segment">
-
-	    <form class="ui form">
-	        <h4 class="ui dividing header">User Information</h4>
-
-	        <div class="field">
-	            <label>Account</label>
-	            <div class="fields">
-	                <input type="text" placeholder="Account" ng-model="user_info.account" disabled>
-	            </div>
-	        </div>
-	        <div class="two fields">
-	            <div class="field">
-	                <label>Name</label>
-	                <input type="text"  placeholder="Your name" ng-model="user_info.user_name">
-	            </div>
-	<div class="field">
-	<label>Gender</label>
-	          <select ng-model="gender" ng-options="m.value for m in genderModel">
-	            <!-- <option value="">{{user_info.gender}}</option> -->
-	          </select>
-	        </div>
-	        </div>
-	        <div class="field">
-	            <label>Image</label>
-	            <img ng-src="{{user_info.photo_url}}" class="ui mini image">
-	            <input type="file" ng-model="uploadImage" ngf-select="test()" ngf-max-height="1000" ngf-max-size="1MB">
-	            <button ng-click="uploadImageFile(uploadImage)">Upload</button>
-	            <img ngf-src="uploadImage">
-	        </div>
-	        <h4 class="ui dividing header">Skill Information</h4>
-	        <div class="field">
-	            <label>Skills</label>
-	            <select class="ui fluid search dropdown" id="skills" multiple="" ng-model="skills">
-	                <option value="">Add your own if not here</option>
-	                <option value="1">1</option>
-	                <option value="2">2</option>
-	                <option value="3">3</option>
-	            </select>
-	        </div>
-	        <h4 class="ui dividing header">Locations</h4>
-	        <div class="field">
-	            <label>Where to tool you or be tooled</label>
-	            <select class="ui fluid search dropdown" multiple="">
-	                <option value="">Add your own if not here</option>
-	                <option value="1">1</option>
-	                <option value="2">2</option>
-	                <option value="3">3</option>
-	            </select>
-	        </div>
-	        <div class="ui segment">
-	            <div class="field">
-	                <div class="ui toggle checkbox">
-	                    <input type="checkbox" name="gift" tabindex="0" class="hidden">
-	                    <label>Receive notification letters</label>
-	                </div>
-	            </div>
-	        </div>
-	        <div class="ui button" ng-click="edit()" tabindex="0">Edit Confirm</div>
-	    </form>
-	    </div>
+		<div class="ui attached icon info message">
+			<i class="help circle icon"></i>
+			<div class="content">
+				<h1>Edit</h1>
+			</div>
+		</div>
+		<div class="ui segment">
+			<form class="ui form">
+				<h4 class="ui dividing header">User Information</h4>
+				<div class="field">
+					<label>Account</label>
+					<div class="fields">
+						<input type="text" placeholder="Account" ng-model="user_info.account" disabled>
+					</div>
+				</div>
+				<div class="two fields">
+					<div class="field">
+						<label>Name</label>
+						<input type="text"  placeholder="Your name" ng-model="user_info.user_name">
+					</div>
+					<div class="field">
+						<label>Gender</label>
+						<select ng-model="gender" ng-options="m.value for m in genderModel">
+							<!-- <option value="">{{user_info.gender}}</option> -->
+						</select>
+					</div>
+				</div>
+				<div class="field">
+					<label>Image</label>
+					<img ng-src="{{user_info.photo_url}}" class="ui mini image">
+					<input type="file" ng-model="uploadImage" ngf-select="test()" ngf-max-height="1000" ngf-max-size="1MB">
+					<button ng-click="uploadImageFile(uploadImage)">Upload</button>
+					<img ngf-src="uploadImage">
+				</div>
+				<h4 class="ui dividing header">Skill Information</h4>
+				<div class="field">
+					<label>Skills</label>
+					<select class="ui fluid search dropdown" id="skills" multiple="" ng-model="skills">
+						<option value="">Add your own if not here</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+					</select>
+				</div>
+				<h4 class="ui dividing header">Locations</h4>
+				<div class="field">
+					<label>Where to tool you or be tooled</label>
+					<select class="ui fluid search dropdown" multiple="">
+						<option value="">Add your own if not here</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+					</select>
+				</div>
+				<div class="ui segment">
+					<div class="field">
+						<div class="ui toggle checkbox">
+							<input type="checkbox" name="gift" tabindex="0" class="hidden">
+							<label>Receive notification letters</label>
+						</div>
+					</div>
+				</div>
+				<div class="ui button" ng-click="edit()" tabindex="0">Edit Confirm</div>
+			</form>
+		</div>
 	</div>
 </div>
