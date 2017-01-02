@@ -131,6 +131,8 @@ app.get('/getMembers/:title', toolship.getmembers);
 // app.post('/api/add_league', api.add_league);
 
 //ranking
+
+app.get('/missionCleared', ranking.missionCleared);
 app.get('/ranking', ranking.tool_ranking);
 app.get('/function_ranking', ranking.function_ranking);
 
@@ -170,6 +172,7 @@ io.on('connection',function(socket){
     });
 
     socket.on('send notify',function(data){
-        io.emit('got notification',data);
+        console.log('got notification',data)
+        io.emit('send notify',data);
     })
 });

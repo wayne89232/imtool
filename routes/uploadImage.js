@@ -35,19 +35,13 @@ exports.upload = function(req,res) {
 	// The [1] value is the real image extension
 	var imageTypeDetected                = imageBuffer.type.match(imageTypeRegularExpression);
 	var userUploadedImagePath            = userUploadedFeedMessagesLocation+uniqueRandomImageName+'.'+imageTypeDetected[1];
-	
+	var imageStoragePath 				 = "public/" + userUploadedImagePath
 	// Save decoded binary image to disk
 
-	fs.writeFile("public/" + userUploadedImagePath, imageBuffer.data,function(error){
-		console.log(error)
+	fs.writeFile(imageStoragePath, imageBuffer.data,function(error){
 		console.log('DEBUG - feed:message: Saved to disk image attached by user:', userUploadedImagePath);
 		res.json(userUploadedImagePath )
 	});
-
-	fs.open(userUploadedImagePath,'w+',function(err,fd){
-		console.log("err:",err)
-		
-	})
 
 };
 

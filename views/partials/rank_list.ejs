@@ -1,279 +1,147 @@
 <br>
 <div class="ui middle aligned four column centered  container">
-	<div class="ui top attached tabular menu">
-		<a class="item active" data-tab="tool"> Tool</a>
-		<a class="item" data-tab="user">User</a>
-	</div>
-	
-	<div class="ui bottom attached tab segment active" data-tab="tool">
-		<!-- Tool Total Rank -->
-		<div class="ui middle aligned centered four column grid">
-			<div class="row">
-				<h2 class="ui header">
-				<img src="/assets/images/tool.png" class="ui circular image">
-				Missions Completed
-				</h2>
-			</div>
-			<div class="ui divider"></div>
-			<div class="row ">
-				<div class="column ">
-					<img class="ui small circular image" src="assets/images/pu2.jpg">
-					<div class="ui statistic">
-						<div class="value">
-							9
-						</div>
-						<div class="label">
-							Missions completed
-						</div>
-					</div>
-				</div>
-				<div class="column"><img class="ui small circular image" src="assets/images/JianYi.jpg">
-					<div class="ui statistic">
-						<div class="value">
-							7
-						</div>
-						<div class="label">
-							Missions completed
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<img class="ui small circular image" src="assets/images/wei.jpg">
-					<div class="ui statistic">
-						<div class="value">
-							2
-						</div>
-						<div class="label">
-							Missions completed
-						</div>
-					</div>
-				</div>
-			</div>
-		<br>
-		<!-- Tool Tag Rank -->
+	<div class="ui middle aligned centered four column grid">
 		<div class="row">
 			<h2 class="ui header">
 			<img src="/assets/images/tool.png" class="ui circular image">
-			Tool Quality
+			Missions Completed
 			</h2>
-			<!-- <select ng-model="toolTag" ng-init="toolTag = tagModel[0]" ng-options="m.value for m in tagModel" ng-change="tagChange()">
-			</select> -->
 		</div>
 		<div class="ui divider"></div>
 		<div class="row">
-				<div class="column ">
-					<img class="ui small circular image" src="assets/images/JianYi.jpg">
-					<div class="ui statistic">
-						<div class="value">
-							5
-						</div>
-						<div class="label">
-							Avg Ranking
-						</div>
+			<div class="column" ng-repeat="user in missionClearedList" ng-if="$index < 3">
+				<img class="ui small circular image" src="{{user.photo_url}}">
+				<div class="ui statistic">
+					<div class="value" ng-bind="user.count"></div>
+					<div class="label">
+						Missions completed
 					</div>
 				</div>
-				<div class="column"><img class="ui small circular image" src="assets/images/pu2.jpg">
-					<div class="ui statistic">
-						<div class="value">
-							4
-						</div>
-						<div class="label">
-							Avg Ranking
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<img class="ui small circular image" src="assets/images/wei.jpg">
-					<div class="ui statistic">
-						<div class="value">
-							3
-						</div>
-						<div class="label">
-							Avg Ranking
-						</div>
-					</div>
-				</div>
-<!-- 			<table class="ui padded celled center aligned sortable table">
-				<thead>
-					<th></th>
-					<th>User ID</th>
-					<th class="sorted descending">Avg Ranking</th>
-					<th>Missions</th>
-					<th></th>
-				</thead>
-				<tbody>
-					<tr ng-repeat="tool in toolTagList">
-						<td>
-							<img ng-src="{{tool.imgUrl}}" class="ui circular tiny image middle aligned">
-						</td>
-						<td>{{tool.account}}</td>
-						<td>
-							<div class="ui star rating" data-rating="{{tool.star}}" data-max-rating="5"></div>
-							<div class="ui tiny statistic">
-								<div class="value">{{tool.rank}}</div>
-							</div>
-						</td>
-						<td>{{tool.completedMission}}</td>
-						<td>
-							<div class="ui floated primary button">View Profile</div>
-						</td>
-					</tr>
-				</tbody>
-			</table> -->
+			</div>
 		</div>
-		</div>
+		<br>
+		<button ng-click="showDetail()">More</button>
 	</div>
-	<div class="ui bottom attached tab segment" data-tab="user">
-		<!-- User Total Rank -->
-		<div class="row">
-			<h2 class="ui header">
-			<img src="/assets/images/tool.png" class="ui circular image">
-			User Tool Ranking
-			</h2>
-		</div>
-		<div class="row">
-			<table class="ui padded celled center aligned sortable table">
-				<thead>
-					<th>User ID</th>
-					<th class="sorted descending">Avg Ranking</th>
-					<th>Missions</th>
-					<th></th>
-				</thead>
-				<tbody>
-					<tr>
-						<td>ianlee1228</td>
-						<td>
-							<div class="ui star rating" data-rating="5" data-max-rating="5"></div>
-							<div class="ui tiny statistic">
-								<div class="value">
-									4.8
-								</div>
-							</div>
-						</td>
-						<td>50</td>
-						<td>
-							<div class="ui floated primary button">
-								View Profile
-							</div>
-						</td>
-					</tr>
+	
+	<div class="ui middle aligned centered four column grid">
 
-				</tbody>
-			</table>
-		</div>
-		<!-- User Tag Rank -->
 		<div class="row">
 			<h2 class="ui header">
 			<img src="/assets/images/tool.png" class="ui circular image">
-			User Tag Ranking
+				Tool Quality
 			</h2>
 		</div>
-		<div class="row">
-			<table class="ui padded celled center aligned sortable table">
-				<thead>
-					<th>User ID</th>
-					<th class="sorted descending">Avg Ranking</th>
-					<th>Missions</th>
-					<th></th>
-				</thead>
-				<tbody>
-					<tr>
-						<td>ianlee1228</td>
-						<td>
-							<div class="ui star rating" data-rating="5" data-max-rating="5"></div>
-							<div class="ui tiny statistic">
-								<div class="value">
-									4.8
-								</div>
-							</div>
-						</td>
-						<td>50</td>
-						<td>
-							<div class="ui floated primary button">
-								View Profile
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>wayne89232</td>
-						<td>
-							<div class="ui star rating" data-rating="4" data-max-rating="5"></div>
-							<div class="ui tiny statistic">
-								<div class="value">
-									4.1
-								</div>
-							</div>
-						</td>
-						<td>60</td>
-						<td>
-							<div class="ui floated primary button">
-								View Profile
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>cosrick</td>
-						<td>
-							<div class="ui star rating" data-rating="4" data-max-rating="5"></div>
-							<div class="ui tiny statistic">
-								<div class="value">
-									3.7
-								</div>
-							</div>
-						</td>
-						<td>35</td>
-						<td>
-							<div class="ui floated primary button">
-								View Profile
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>dilmahlee</td>
-						<td>
-							<div class="ui star rating" data-rating="3" data-max-rating="5"></div>
-							<div class="ui tiny statistic">
-								<div class="value">
-									3.2
-								</div>
-							</div>
-						</td>
-						<td>40</td>
-						<td>
-							<div class="ui floated primary button">
-								View Profile
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
+		<div class="ui divider"></div>
+
+		<div class="ui top attached tabular menu">
+		  <a class="item active" data-tab="Tool">Tool</a>
+		  <a class="item" data-tab="Bike">Bike</a>
+		  <a class="item" data-tab="Homework">Homework</a>
 		</div>
+		<!-- Tool Tag Rank -->
+		<div class="ui bottom attached active tab segment" data-tab="Tool">
+			<div class="ui middle aligned centered four column grid">
+				<div class="row">
+					<div class="column" ng-repeat="user in totalQuality" ng-if="$index < 3">
+						<img class="ui small circular image" src="{{user.photo_url}}">
+						<div class="ui statistic">
+							<div class="value" ng-bind="user.ranking"></div>
+							<div class="label">
+								Avg Ranking
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<button ng-click="showRanking()">More</button>
+		</div>
+
+		<div class="ui bottom attached tab segment" data-tab="Bike">
+			<div class="ui middle aligned centered four column grid">
+				<div class="row">
+					<div class="column" ng-repeat="user in totalQuality" ng-if="$index < 3">
+						<img class="ui small circular image" src="{{user.photo_url}}">
+						<div class="ui statistic">
+							<div class="value" ng-bind="user.ranking"></div>
+							<div class="label">
+								Avg Ranking1
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="ui bottom attached tab segment" data-tab="Homework">
+			<div class="ui middle aligned centered four column grid">
+				<div class="row">
+					<div class="column" ng-repeat="user in totalQuality" ng-if="$index < 3">
+						<img class="ui small circular image" src="{{user.photo_url}}">
+						<div class="ui statistic">
+							<div class="value" ng-bind="user.ranking"></div>
+							<div class="label">
+								Avg Ranking2
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
 	</div>
 </div>
-<!-- 			<table class="ui padded celled center aligned sortable table">
-	<thead>
-		<th></th>
-		<th>User ID</th>
-		<th class="sorted descending">Avg Ranking</th>
-		<th>Missions</th>
-		<th></th>
-	</thead>
-	<tbody>
-		<tr ng-repeat="tool in toolTotalList">
-			<td>
-										<img ng-src="{{tool.imgUrl}}" class="ui circular tiny image middle aligned">
+
+<div class="ui missionCompleted modal">
+	<div class="header">Ranking List</div>
+	<div class="content">
+		<table class="ui padded celled center aligned table">
+		<thead>
+			<th></th>
+			<th>User ID</th>
+			<th>Missions</th>
+			<th></th>
+		</thead>
+		<tbody>
+			<tr ng-repeat="tool in modalList">
+				<td>
+					<img ng-src="{{tool.photo_url}}" class="ui circular tiny image middle aligned">
 				</td>
 				<td>{{tool.account}}</td>
+				<td>{{tool.count}}</td>
+			</tr>
+		</tbody>
+		</table>
+	</div>
+
+	<div class="actions">
+	    <div class="ui cancel button">Cancel</div>
+	  </div>
+</div>
+
+<div class="ui ranking modal">
+	<div class="header">Ranking List</div>
+	<div class="content">
+		<table class="ui padded celled center aligned table">
+		<thead>
+			<th></th>
+			<th>User ID</th>
+			<th>Ranking</th>
+			<th></th>
+		</thead>
+		<tbody>
+			<tr ng-repeat="tool in modalList">
 				<td>
-										<div class="ui star rating" data-rating="{{tool.star}}" data-max-rating="5"></div>
-										<div class="ui tiny statistic">
-																<div class="value">{{tool.rank}}</div>
-										</div>
+					<img ng-src="{{tool.photo_url}}" class="ui circular tiny image middle aligned">
 				</td>
-				<td>{{tool.completedMission}}</td>
-				<td>
-										<div class="ui floated primary button">View Profile</div>
-				</td>
-		</tr>
-	</tbody>
-</table> -->
+				<td>{{tool.account}}</td>
+				<td>{{tool.ranking}}</td>
+			</tr>
+		</tbody>
+		</table>
+	</div>
+
+	<div class="actions">
+	    <div class="ui cancel button">Cancel</div>
+	  </div>
+</div>
