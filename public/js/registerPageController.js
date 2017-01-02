@@ -53,7 +53,7 @@ angular.module('myApp.controllers').controller('register_page', function($scope,
 				url: '/sendVerMail', 
 				data: {email: $scope.mail}
 			}).then(function(verCode){
-				$scope.verCode = verCode
+				$scope.verCode = verCode.data.verStr
 			})
 		}
 	}
@@ -71,8 +71,11 @@ angular.module('myApp.controllers').controller('register_page', function($scope,
 		}
 		else if (confirmData() == 2)
 			swal("Press Button to send verification Code");		
-		else if (confirmData() == 3)
+		else if (confirmData() == 3){
+			console.log($scope.userVerCode)
+			console.log($scope.verCode)
 			swal("verification code is wrong");
+		}
 		else{
 			var data = {
 				account 	: $scope.account, 
@@ -80,7 +83,8 @@ angular.module('myApp.controllers').controller('register_page', function($scope,
 				user_name 	: $scope.name,
 				gender 		: $scope.gender.id,
 				email 		: $scope.mail,
-				photoURL 	: $scope.photoURL
+				photoURL 	: $scope.photoURL,
+				skills 		: $scope.skills
 			};
 			$http({
 				method: "POST", 

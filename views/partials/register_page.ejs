@@ -49,7 +49,9 @@
         <h4 class="ui dividing header">Skill Information</h4>
         <div class="field">
             <label>Skills</label>
-            <select class="ui fluid search dropdown" id="skills" multiple="" ng-model="skills" ng-options="s for s in skill_list" ng-change="selectSkill()">
+            <select class="ui fluid search dropdown" id="skills" multiple="" ng-model="skills" ng-change="selectSkill()">
+            <option value="">Add your own if not here</option>
+            <option ng-repeat="s in skill_list" value="{{s}}">{{s}}</option>
             </select>
         </div>
         <h4 class="ui dividing header">Locations</h4>
