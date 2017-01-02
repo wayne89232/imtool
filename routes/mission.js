@@ -7,6 +7,7 @@ var Toolship = require('../models').Toolship;
 var Mission_skill = require('../models').Mission_skill;
 var Skill = require('../models').Skill;
 var async = require('async');
+var notification = require('./notification');
 
 var crypto = require('crypto');
 
@@ -221,6 +222,7 @@ exports.get_tooled = function(req, res){
 
     req.checkBody('user_id').notEmpty();
     req.checkBody('mission_id').notEmpty();
+    console.log(req.body)
 
     var errors = req.validationErrors();
     if (errors) {
@@ -237,12 +239,18 @@ exports.get_tooled = function(req, res){
 		rating: 0,
 		feedback: ""
 	}).then(function(result){
+		if (!req.body.mission_user_id)
+			notification.notify(req.body.mission_id,req.body.user_id,'employed')
+		else
+			notification.notify(req.body.mission_id,req.body.mission_user_id,'volunteer')
+
 		res.json({ msg: "Success on getting tooled " + result });
 	});
 }
 
 exports.fire_tool = function(req, res){
     req.checkBody('toolship_id').notEmpty();
+    // console.log(req.body)
 
     var errors = req.validationErrors();
     if (errors) {
@@ -256,6 +264,7 @@ exports.fire_tool = function(req, res){
 			toolship_id: req.body.toolship_id
 		}
 	}).then(function(result){
+		notification.notify(req.body.mission_id,req.body.user_id,'fired')
 		res.json({ msg: "Success on untooling " + result });
 	});
 }

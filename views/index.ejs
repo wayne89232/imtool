@@ -224,11 +224,11 @@
 				<div class="header">Notifications</div>
 				<div class="content">
 					<div class="ui list">
-						<div class="item">
+						<div class="item" ng-repeat="s in notifications">
 							<img class="ui avatar image" src="assets/images/tool.png">
 							<div class="content">
-								<a class="header">RickWantU</a>
-								<div class="description">You're fired!</div>
+								<a class="header" ng-bind="s.mission_title"></a>
+								<div class="description" ng-bind="s.type"></div>
 							</div>
 						</div>
 					</div>

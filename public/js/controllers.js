@@ -7,6 +7,17 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
 		$scope.user_type = $window.localStorage.getItem("user_type");
 		$scope.photo = $window.localStorage.getItem("photo");
 		$scope.local_user_name = $window.localStorage.getItem("name");
+		var cur_user = $window.localStorage.getItem("user_id");
+
+		$http({
+			method: 'GET',
+			url: 	'/notificationsList/' + cur_user
+		}).then(function(notifications) {
+
+			$scope.notifications = notifications.data.data;
+			console.log($scope.notifications)
+		
+		})
 	} 	
     var lang = localStorage.getItem("lang");
     console.log(lang)
@@ -18,6 +29,16 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
     } 
 
 	$rootScope.socket = io();
+
+	$rootScope.socket.on('send notify',function(data){
+		if (data.user == cur_user){
+			$('.nag').nag('show');
+			$scope.$apply(function(){
+				$scope.notifications.unshift(data);
+			})
+		}
+	    
+	});
 
 	// copy this line whenever u need to notify others
 	// $rootScope.socket.emit('send notify',{})
@@ -31,7 +52,7 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
 	$http({ method:"GET", url:'/skill_list/' }).then(function(skills){
 		$scope.skill_list = skills.data.data;
 		$window.localStorage.setItem("skill_list", JSON.stringify($scope.skill_list));
-
+		
 		//initialize ui components
 		$('.ui .dropdown').dropdown({
 	    	allowAdditions: true

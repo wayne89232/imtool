@@ -6,7 +6,7 @@ exports.Notification = function(Sequelize, sequelize){
     mission_id: Sequelize.STRING,
     type: {
     	type:   Sequelize.ENUM,
-    	values: ['employed', 'fired',"mission start","mission end"]
+    	values: ['employed', 'fired',"mission start","mission end","volunteer"]
     },
     title: Sequelize.STRING,
     content: Sequelize.STRING,
