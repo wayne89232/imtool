@@ -51,7 +51,7 @@
         <h4 class="ui dividing header"><%= __('Skill Information') %></h4>
         <div class="field">
             <label><%= __('Skills') %></label>
-            <select class="ui fluid search dropdown" id="skills" multiple="" ng-model="skills" ng-change="selectSkill()">
+            <select class="ui fluid search dropdown" id="skills" multiple="" ng-model="skills">
             <option value=""><%= __('Add your own if not here') %></option>
             <option ng-repeat="s in skill_list" value="{{s}}">{{s}}</option>
             </select>
@@ -59,11 +59,9 @@
         <h4 class="ui dividing header"><%= __('Locations') %></h4>
         <div class="field">
             <label><%= __('Where to tool you or be tooled') %></label>
-            <select class="ui fluid search dropdown" multiple="">
-                <option value=""><%= __('Add your own if not here') %></option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
+            <select class="ui fluid search dropdown" multiple="" ng-model="locations" ng-change="selectSkill()">
+                <option value="">Add your own if not here</option>
+                <option ng-repeat="l in location_list" value="{{l}}">{{l}}</option>
             </select>
         </div>
         <h4 class="ui dividing header"><%= __('Contact') %></h4>

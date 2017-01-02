@@ -14,6 +14,13 @@ angular.module('myApp.controllers').controller('register_page', function($scope,
 	  	});
 	});
 
+	$scope.location_list = [
+		'Management1&2',
+		'NTUGirlsDorm',
+		'NTUBoysDorm',
+		'NTULibrary'
+	];
+
 	
 
   	$scope.genderModel = [{
@@ -58,7 +65,7 @@ angular.module('myApp.controllers').controller('register_page', function($scope,
 		}
 	}
 	$scope.selectSkill = function(){
-		console.log($scope.skills)
+		console.log($scope.locations)
 	}
 
 	$scope.register = function(){
@@ -84,7 +91,8 @@ angular.module('myApp.controllers').controller('register_page', function($scope,
 				gender 		: $scope.gender.id,
 				email 		: $scope.mail,
 				photoURL 	: $scope.photoURL,
-				skills 		: $scope.skills
+				skills 		: $scope.skills,
+				locations 	: $scope.locations,
 			};
 			$http({
 				method: "POST", 

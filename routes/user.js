@@ -3,6 +3,8 @@ var Mission = require('../models').Mission;
 var Toolship = require('../models').Toolship;
 var User_skill = require('../models').User_skill;
 var Skill = require('../models').Skill;
+var Location = require('../models').Location;
+var User_location = require('../models').User_location;
 var sendMail = require('../scripts/sendmail');
 var crypto = require('crypto');
 
@@ -104,7 +106,7 @@ exports.register = function(req, res){
 		});
 	}
 
-    console.log("Skills: ", req.body.skills)
+    console.log(req.body)
 
     var query = {
         where:{
@@ -126,55 +128,99 @@ exports.register = function(req, res){
             newUser.user_id = crypto.createHash('md5').update('imtool' + newUser.account + newUser.password).digest('hex');
 
             User.create(newUser).then(function(user){
+                async.parallel({
+                    location: function(callback1){
+                        async.each(req.body.locations, function(element, callback) {
 
-
-                async.each(req.body.skills, function(element, callback) {
-                    console.log(element)
-
-
-                    var new_id2 = crypto.randomBytes(20).toString('hex');
-                    Skill.findOrCreate({
-                        where: {
-                            skill: element
-                        },
-                        defaults: { // set the default properties if it doesn't exist
-                            skill_id: new_id2,
-                            skill: element
-                        }
-                    }).then(function(response){
-                        var link_skill = response[0].dataValues;
-                        // create relations here
-                        var new_id3 = crypto.randomBytes(20).toString('hex');
-                        User_skill.create({
-                            user_skill_id: new_id3,
-                            skill_id: link_skill.skill_id,
-                            user_id: newUser.user_id
-                        }).then(function(result){
-                            console.log("linked skill " + link_skill.skill)
-                        }).catch(function(error){
-                            callback(error)
-                        });             
-
-
-                        callback();
-                    }).catch(function(error){
-                        callback(error);
-                    })
-                }, function(err) {
-                    // if any of the file processing produced an error, err would equal that error
-                     if( err ) {
-                        // One of the iterations produced an error.
-                        // All processing will now stop.
-                        console.log(err)
-                        console.log('A skill failed to find on create');
-                    } else {
-                        console.log('All skill have been processed successfully');
-                        res.json({
-                            success: true,
-                            user: user.dataValues
+                            var new_id4 = crypto.randomBytes(20).toString('hex');
+                            Location.findOrCreate({
+                                where: {
+                                    location: element
+                                },
+                                defaults: { // set the default properties if it doesn't exist
+                                    location_id: new_id4,
+                                    location: element
+                                }
+                            }).then(function(response){
+                                var link_location = response[0].dataValues;
+                                // create relations here
+                                var new_id5 = crypto.randomBytes(20).toString('hex');
+                                User_location.create({
+                                    user_location_id: new_id5,
+                                    location_id: link_location.location_id,
+                                    user_id: newUser.user_id
+                                }).then(function(result){
+                                    console.log("linked skill " + link_location.location_id)
+                                    callback();
+                                }).catch(function(error){
+                                    callback(error)
+                                });             
+                                
+                            }).catch(function(error){
+                                callback(error);
+                            })
+                        }, function(err) {
+                             if( err ) {
+                                callback1(err,"fail")
+                            } else {
+                                console.log('All Location have been processed successfully');
+                                callback1(null,"OK")
+                                
+                            }
                         });
+                    },
+                    skill: function(callback1){
+                        async.each(req.body.skills, function(element, callback) {
+
+                            var new_id2 = crypto.randomBytes(20).toString('hex');
+                            Skill.findOrCreate({
+                                where: {
+                                    skill: element
+                                },
+                                defaults: { // set the default properties if it doesn't exist
+                                    skill_id: new_id2,
+                                    skill: element
+                                }
+                            }).then(function(response){
+                                var link_skill = response[0].dataValues;
+                                // create relations here
+                                var new_id3 = crypto.randomBytes(20).toString('hex');
+                                User_skill.create({
+                                    user_skill_id: new_id3,
+                                    skill_id: link_skill.skill_id,
+                                    user_id: newUser.user_id
+                                }).then(function(result){
+                                    console.log("linked skill " + link_skill.skill)
+                                    callback();
+                                }).catch(function(error){
+                                    callback(error)
+                                });             
+
+
+                                
+                            }).catch(function(error){
+                                callback(error);
+                            })
+                        }, function(err) {
+                             if( err ) {
+                                callback1(err,"fail")
+                            } else {
+                                console.log('All skill have been processed successfully');
+                                callback1(null,"OK")
+                                
+                            }
+                        });
+
                     }
-                });
+                },function(error,results){
+                    if(error)
+                        console.log(error)
+
+                    res.json({
+                        success: true,
+                        user: user.dataValues
+                    });
+                })
 
                 
             }).error(function(err){
