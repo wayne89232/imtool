@@ -30,6 +30,9 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
 						if ($scope.mission_info.state != "Recruiting") {
 							return false;
 						}
+						else if(_.contains(_.pluck($scope.tools,"user_id"),cur_user)){
+							return false;
+						}
 						else{
 							return true;
 						}
@@ -51,11 +54,26 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
 
 	$('.progress').progress();
 	$('.ui.rating').rating('enable');
-	
+	$scope.glued = true
 
+	
+	$scope.testClick = function(index){
+		console.log("HI", index)
+		var currentValue = $('#'+index).rating('get rating');
+		$scope.tools[index].rating = currentValue;
+
+	}
 	$scope.missionCleared = function(){
 		$('.ui.small.modal.mission_clear').modal('show');
 	}
+	$scope.saveComment = function(){
+		$('.ui.small.modal.mission_clear').modal('hide');
+		console.log($scope.tools)
+		$scope.end_mission_confirm()
+
+	}
+
+	//for tool more
 	$scope.add_tool = function(){
 		$('.ui.small.modal.add_tool').modal('show');
 	}
@@ -72,6 +90,25 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
 				$window.location.reload();
 		});	
 	}
+
+	//for tool me
+	$scope.tool_me = function(){
+		$('.ui.basic.modal.tool_me').modal('show');
+	}
+	$scope.tool_me_go = function(){
+		var data = {
+            user_id: cur_user,
+            mission_id: $routeParams.id
+        };
+		$http({ 
+		    	method:"POST", 
+		    	url:'/get_tooled',
+		    	data: data
+		}).then(function(result){
+				$window.location.reload();
+		});	
+	}
+
     $scope.user_info = function(id){
     	$location.path('/user_info/'+id);
     }	
@@ -83,11 +120,21 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
     	$('.ui.basic.modal.fire').modal('show');
     }
     $scope.go_fire = function(){
+    	var new_message = {
+    		title: $scope.mission_info.title,
+    		event: "You're Fired"
+    	}
+    	$scope.mission_info.Toolships.forEach(function(toolship){
+    		if (toolship.toolship_id == $scope.firing)
+    			new_message.fired = toolship.user_id	
+    	})
 		$http({ 
 		    	method:"POST", 
 		    	url:'/fire_tool',
 		    	data: {toolship_id: $scope.firing}
 		}).then(function(result){
+
+			$rootScope.socket.emit('send notify',new_message)
 			$window.location.reload();
 		});	
     }
@@ -107,12 +154,15 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
 
 
     $scope.end_mission = function(){
-    	$('.ui.basic.modal.end').modal('show');
+    	$('.ui.small.modal.mission_clear').modal('show');
+		$('.ui.rating').rating('enable');
+
     }
     $scope.end_mission_confirm = function(){
 		$http({ 
-		    	method:"GET", 
-		    	url:'/end_mission/'+$routeParams.id
+	    	method:"POST", 
+	    	url:'/end_mission/'+$routeParams.id,
+	    	data: $scope.tools
 		}).then(function(result){
 			$window.location.reload();
 			// console.log(result)
@@ -143,19 +193,29 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
     	}
     	
     	$http({ 
-		    	method:"POST", 
-		    	url:'/save_chat',
-		    	data: {
-		    		user_id: cur_user,
-		    		mission_id: $routeParams.id,
-		    		content: $scope.liveMessage
-		    	}
+	    	method:"POST", 
+	    	url:'/save_chat',
+	    	data: {
+	    		user_id: cur_user,
+	    		mission_id: $routeParams.id,
+	    		content: $scope.liveMessage
+	    	}
 		}).then(function(result){
 			$scope.liveMessage = "";
         	$rootScope.socket.emit('add message',new_message)
 		});	
     }
     $rootScope.socket.on('add message',function(data){
-        $scope.chats.push(data);
+    	$scope.$apply(function(){
+    		$scope.chats.push(data);
+    	})
+        
+    });
+
+    $rootScope.socket.on('send notify',function(data){
+    	console.log(data, cur_user)
+    	if (data.fired == cur_user)
+    		$('.nag').nag('show');
+        
     });
 });

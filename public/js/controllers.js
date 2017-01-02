@@ -167,10 +167,13 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
     }	
 }).controller('mission_list', function ($scope, $http, $location) {
 	$http({ method:"GET", url:'/getMissions/' }).then(function(missions){
+		
 		$scope.missions = missions.data.data;
 		$scope.missions = _.reject($scope.missions,function(mission){
 			return mission.state!="Recruiting";
 		});
+		console.log($scope.missions)
+		
 	});
 	$scope.view_mission = function(id){
     	$location.path('/view_mission/'+id);

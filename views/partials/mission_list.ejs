@@ -1,13 +1,21 @@
 <br>
 <div class="ui divided items container">
-	<div class="item" ng-repeat="mission in missions">
+<h1 class="ui header">
+  <img src="assets/images/tool.png">
+  <div class="content">
+    Missions
+    <div class="sub header">hello, toolmans</div>
+  </div>
+</h1>
+
+	<div class="item" ng-repeat="mission in missions | orderBy:'-start_time'">
 		<div class="image">
 			<img src="{{mission.User.photo_url}}">
 		</div>
 		<div class="content">
 			<a class="header" ng-bind="mission.title"></a>
 			<div class="meta">
-				<span class="cinema">2016.11.23</span>
+				<span class="cinema" ng-bind="mission.start_time">2016.11.23</span>
 			</div>
 			<div class="description" ng-bind="mission.content">
 			</div>

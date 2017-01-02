@@ -20,6 +20,9 @@ var User_skill = require('./models').User_skill;
 var Mission_skill = require('./models').Mission_skill;
 var Notification = require('./models').Notification;
 var Chat = require('./models').Chat;
+var Community = require('./models').Community;
+var Community_user = require('./models').Community_user;
+var Community_chatlog = require('./models').Community_chatlog;
 
 
 // Sync database with below
@@ -35,3 +38,6 @@ User_skill.sync({force: true});
 Notification.sync({force: true});
 Mission_skill.sync({force: true});
 Chat.sync({force: true});
+Community.sync({force: true});
+Community_user.sync({force: true});
+Community_chatlog.sync({force: true});

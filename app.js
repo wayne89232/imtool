@@ -12,8 +12,13 @@ var express = require('express'),
     api = require('./routes/api'),
     user = require('./routes/user'),
     mission = require('./routes/mission'),
+
+    community = require('./routes/community'),
     multer  = require('multer'),
     uploadImage = require('./routes/uploadImage'),
+// =======
+    toolship = require('./routes/toolship'),
+// >>>>>>> Dilmah
     express_validators = require('./config').express_validators,
     ranking = require('./routes/ranking'),
     recommendation = require('./routes/recommendation')
@@ -48,7 +53,9 @@ app.use(express.static(path.join(__dirname, 'bower_components')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'IMTOOL',
-  cookie: { maxAge: 60 * 1000 }
+  cookie: { maxAge: 60 * 1000 },
+  resave: true,
+  saveUninitialized: true
 }))
 
 
@@ -75,6 +82,7 @@ app.get('/partials/:name', routes.partials);
 
 //user
 app.post('/sendVerMail', user.sendVerMail);
+app.post('/updateUser', user.updateUser);
 app.post('/register', user.register);
 app.post('/login', user.login);
 app.post('/logout', user.logout);
@@ -93,17 +101,38 @@ app.post('/upload' ,upload.single('photo') ,uploadImage.upload)
 app.post('/createMission', mission.create_mission);
 app.get('/getMissions', mission.list_mission);
 app.get('/viewEvent/:id', mission.view_event);
+
 app.get('/find_tools/:id', mission.find_tools);
 app.get('/mission_skills/:id', mission.mission_skills);
 app.post('/get_tooled',mission.get_tooled);
 app.post('/fire_tool',mission.fire_tool);
 app.get('/stop_recruit/:id',mission.stop_recruit);
-app.get('/end_mission/:id',mission.end_mission);
+app.post('/end_mission/:id',mission.end_mission);
 
+//community related
+app.post('/createCommunity', community.create_community);
+app.post('/save_comchat', community.save_community_chat);
+app.get('/list_community',community.list_community);
+app.get('/list_ur_community/:id',community.list_ur_community);
+app.get('/get_community_chat/:id',community.get_community_chat);
+app.get('/get_community_member/:id',community.get_community_member);
+app.get('/viewCommunity/:id', community.view_community);
+
+
+
+
+
+//toolship
+app.post('/createToolship', toolship.create_toolship);
+app.get('/getToolship', toolship.list_toolship);
+app.get('/myToolship/:username', toolship.my_toolship)
+app.get('/getMembers/:title', toolship.getmembers);
 //functions, ex: 
 // app.post('/api/add_league', api.add_league);
 
 //ranking
+
+app.get('/missionCleared', ranking.missionCleared);
 app.get('/ranking', ranking.tool_ranking);
 app.get('/function_ranking', ranking.function_ranking);
 // app.get('/function_ranking2', ranking.function_ranking2);
@@ -141,8 +170,14 @@ io.on('connection',function(socket){
         console.log("server got message")
         io.emit('add message',data);
     });
+    
+    socket.on('add message community',function(data){
+        console.log("server got message")
+        io.emit('add message community',data);
+    });
 
     socket.on('send notify',function(data){
-        io.emit('got notification',data);
+        console.log('got notification',data)
+        io.emit('send notify',data);
     })
 });

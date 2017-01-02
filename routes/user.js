@@ -42,6 +42,34 @@ exports.login = function (req, res){
     });
 }
 
+exports.updateUser = function(req,res){
+
+    req.checkBody('account').notEmpty();
+    req.checkBody('password').notEmpty();
+    req.checkBody('user_name').notEmpty();
+    req.checkBody('email').notEmpty().isEmail();
+    req.checkBody('gender').notEmpty().isGender();
+
+    var errors = req.validationErrors();
+    if (errors) {
+        return res.status(405).json({
+            errors: errors
+        });
+    }
+
+    var newUserData = _.omit(req.body, ["createdAt","updatedAt"]);
+    var query = {
+        where:{
+            account: req.body.account
+        }
+    }
+
+    User.update(newUserData,query).then(function(response){
+        console.log(response)
+        res.json({data: "OK"});
+    })
+
+}
 
 
 exports.logout = function (req, res){
@@ -76,6 +104,8 @@ exports.register = function(req, res){
 		});
 	}
 
+    console.log("Skills: ", req.body.skills)
+
     var query = {
         where:{
             account: req.body.account
@@ -96,10 +126,57 @@ exports.register = function(req, res){
             newUser.user_id = crypto.createHash('md5').update('imtool' + newUser.account + newUser.password).digest('hex');
 
             User.create(newUser).then(function(user){
-                res.json({
-                    success: true,
-                    user: user.dataValues
+
+
+                async.each(req.body.skills, function(element, callback) {
+                    console.log(element)
+
+
+                    var new_id2 = crypto.randomBytes(20).toString('hex');
+                    Skill.findOrCreate({
+                        where: {
+                            skill: element
+                        },
+                        defaults: { // set the default properties if it doesn't exist
+                            skill_id: new_id2,
+                            skill: element
+                        }
+                    }).then(function(response){
+                        var link_skill = response[0].dataValues;
+                        // create relations here
+                        var new_id3 = crypto.randomBytes(20).toString('hex');
+                        User_skill.create({
+                            user_skill_id: new_id3,
+                            skill_id: link_skill.skill_id,
+                            user_id: newUser.user_id
+                        }).then(function(result){
+                            console.log("linked skill " + link_skill.skill)
+                        }).catch(function(error){
+                            callback(error)
+                        });             
+
+
+                        callback();
+                    }).catch(function(error){
+                        callback(error);
+                    })
+                }, function(err) {
+                    // if any of the file processing produced an error, err would equal that error
+                     if( err ) {
+                        // One of the iterations produced an error.
+                        // All processing will now stop.
+                        console.log(err)
+                        console.log('A skill failed to find on create');
+                    } else {
+                        console.log('All skill have been processed successfully');
+                        res.json({
+                            success: true,
+                            user: user.dataValues
+                        });
+                    }
                 });
+
+                
             }).error(function(err){
                 res.send(err);
             })

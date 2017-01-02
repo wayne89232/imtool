@@ -75,6 +75,7 @@ exports.tool_ranking = function(req, res){
 	});
 }
 
+
 exports.function_ranking = function(req, res){
 	Skill.findAll({
 		attributes:['skill'],
@@ -148,3 +149,73 @@ exports.function_ranking = function(req, res){
         res.send(err)
     });
  }
+
+exports.missionCleared = function(req,res){
+	var query = {
+		where: {
+			state: "Done"
+		}
+	};
+	var resultList = {};
+
+	Mission.findAll(query).then(function(response){
+		var doneMissions = _.map(response,function(element){
+			return element.dataValues.mission_id
+		})
+		async.each(doneMissions,function(mission,callback){
+			var query = {
+				where: {
+					mission_id: mission
+				}
+			}
+			Toolship.findAll(query).then(function(response){
+				_.each(response,function(element){
+					var newTool = element.dataValues.user_id;
+					if(resultList[newTool]){
+						resultList[newTool] += 1
+					}else{
+						resultList[newTool] = 1
+					}
+				})
+				callback()
+			}).catch(function(err){
+				callback(err)
+			})
+		},function(error){
+			if(error)
+				res.error(error)
+			var userTotal = []
+			for (var key in resultList){
+				userTotal.push({
+					user_id : key,
+					count 	: resultList[key]
+				})
+			}
+			var count = 0
+			async.each(userTotal,function(user,callback){
+				var query = {
+					where: {
+						user_id: user.user_id
+					}
+				}
+				User.findOne(query).then(function(response){
+					userTotal[count].photo_url = response.dataValues.photo_url;
+					userTotal[count].account = response.dataValues.account;
+					count++
+					callback()
+				}).catch(function(error){
+					callback(error)
+				})
+			},function(error){
+				if (error)
+					res.error(error)
+				else
+					res.json(_.sortBy(userTotal, '-count'))
+			})
+
+
+
+		})
+	})
+}
+

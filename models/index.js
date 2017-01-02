@@ -20,6 +20,9 @@ var User_skill = require('./user_skill').User_skill(Sequelize,sequelize);
 var Mission_skill = require('./mission_skill').Mission_skill(Sequelize,sequelize);
 var Notification = require('./notification').Notification(Sequelize,sequelize);
 var Chat = require('./chat').Chat(Sequelize,sequelize);
+var Community = require('./community').Community(Sequelize,sequelize);
+var Community_user = require('./community_user').Community_user(Sequelize,sequelize);
+var Community_chatlog = require('./community_chatlog').Community_chatlog(Sequelize,sequelize);
 
 
 //add some relations here
@@ -61,6 +64,16 @@ Mission.hasMany(Chat,{foreignKey: 'mission_id'});
 Chat.belongsTo(Mission,{foreignKey: 'mission_id'});
 Chat.belongsTo(User,{foreignKey: 'user_id'});
 
+User.hasMany(Community_user,{foreignKey: 'user_id'});
+Community.hasMany(Community_user,{foreignKey: 'community_id'});
+Community_user.belongsTo(Community,{foreignKey: 'community_id'});
+Community_user.belongsTo(User,{foreignKey: 'user_id'});
+
+User.hasMany(Community_chatlog,{foreignKey: 'user_id'});
+Community.hasMany(Community_chatlog,{foreignKey: 'community_id'});
+Community_chatlog.belongsTo(Community,{foreignKey: 'community_id'});
+Community_chatlog.belongsTo(User,{foreignKey: 'user_id'});
+
 //export for use in other directory
 // exports.Example = Example;
 
@@ -74,4 +87,7 @@ exports.User_skill = User_skill;
 exports.Mission_skill = Mission_skill;
 exports.Notification = Notification;
 exports.Chat = Chat;
+exports.Community = Community;
+exports.Community_user = Community_user;
+exports.Community_chatlog = Community_chatlog;
 
