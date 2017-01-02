@@ -15,7 +15,7 @@
 
 	<div class="ui segment" scroll-glue="glued">
 	  <div class="ui top attached label">
-        <i class="hotel icon"></i> Chatroom
+        <i class="hotel icon"></i> <%= __('Chatroom') %>
       </div>
 		<div class="ui comments">
 			<div class="comment" ng-repeat="chat in chatlogs | orderBy:'time'">
@@ -47,8 +47,8 @@
 <h2 class="ui header">
   <img src="assets/images/tool.png">
   <div class="content">
-    Members
-    <div class="sub header">Toolmans</div>
+    <%= __('Members') %>
+    <div class="sub header"><%= __('Toolmans') %></div>
   </div>
 </h2>
 	</div>

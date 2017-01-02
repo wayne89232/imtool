@@ -5,8 +5,8 @@
 <h2 class="ui header">
   <img src="assets/images/tool.png">
   <div class="content">
-    Communities
-    <div class="sub header">Create groups with other toolmans</div>
+    <%= __('Communities') %>
+    <div class="sub header"><%= __('Create groups with other toolmans') %></div>
   </div>
 
 </h2>
@@ -15,7 +15,7 @@
   <i class="big thin circle icon"></i>
   <i class="users icon"></i>
 </i>
-Form a group
+<%= __('Form a group') %>
 </div>
 	<div class="item" ng-repeat="community in communities">
 		<div class="image">
@@ -28,7 +28,7 @@ Form a group
 			<div class="extra">
 				<!-- <div class="ui label">Bike</div> -->
 				<div class="ui right floated primary button" ng-click="view_community(community.Community.community_id)">
-					View Community
+					<%= __('View Community') %>
 					<i class="right chevron icon"></i>
 				</div>
 			</div>

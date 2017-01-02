@@ -3,22 +3,22 @@
     <div class="ui attached icon info message">
     <i class="help circle icon"></i>
     <div class="content">
-      <h1>Registeration</h1>
+      <h1><%= __('Registeration') %></h1>
     </div>
   </div>
     <div class="ui segment">
 
     <form class="ui form">
-        <h4 class="ui dividing header">User Information</h4>
+        <h4 class="ui dividing header"><%= __('User Information') %></h4>
 
         <div class="field">
-            <label>Account</label>
+            <label><%= __('Account') %></label>
             <div class="fields">
                 <input type="text" placeholder="Account" ng-model="account">
             </div>
         </div>
         <div class="field">
-            <label>Password</label>
+            <label><%= __('Password') %></label>
             <div class="two fields">
                 <div class="field">
                     <input type="password" placeholder="Password" ng-model="password">
@@ -30,66 +30,66 @@
         </div>
         <div class="two fields">
             <div class="field">
-                <label>Name</label>
+                <label><%= __('Name') %></label>
                 <input type="text"  placeholder="Your name" ng-model="name">
             </div>
 <div class="field">
-<label>Gender</label>
+<label><%= __('Gender') %></label>
           <select class="ui fluid search dropdown" id="gender" ng-model="gender" ng-options="m.value for m in genderModel">
-            <option value="">Gender</option>
+            <option value=""><%= __('Gender') %></option>
           </select>
         </div>
         </div>
         <div class="field">
-            <label>Image (MaximumSize: 2MB)</label>
+            <label><%= __('Image (MaximumSize: 2MB)') %></label>
             <div class="ui input">
             <input type="file" ng-model="uploadImage" ngf-select="test()" ngf-max-height="1000" ngf-max-size="2MB">
-            <button class="ui button" ng-click="uploadImageFile(uploadImage)">Upload</button>
+            <button class="ui button" ng-click="uploadImageFile(uploadImage)"><%= __('Upload') %></button>
             </div>
             <img class="ui centered image" ngf-src="uploadImage">
         </div>
-        <h4 class="ui dividing header">Skill Information</h4>
+        <h4 class="ui dividing header"><%= __('Skill Information') %></h4>
         <div class="field">
-            <label>Skills</label>
+            <label><%= __('Skills') %></label>
             <select class="ui fluid search dropdown" id="skills" multiple="" ng-model="skills" ng-change="selectSkill()">
-            <option value="">Add your own if not here</option>
+            <option value=""><%= __('Add your own if not here') %></option>
             <option ng-repeat="s in skill_list" value="{{s}}">{{s}}</option>
             </select>
         </div>
-        <h4 class="ui dividing header">Locations</h4>
+        <h4 class="ui dividing header"><%= __('Locations') %></h4>
         <div class="field">
-            <label>Where to tool you or be tooled</label>
+            <label><%= __('Where to tool you or be tooled') %></label>
             <select class="ui fluid search dropdown" multiple="">
-                <option value="">Add your own if not here</option>
+                <option value=""><%= __('Add your own if not here') %></option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
             </select>
         </div>
-        <h4 class="ui dividing header">Contact</h4>
+        <h4 class="ui dividing header"><%= __('Contact') %></h4>
         <div class="field">
-            <label>Email</label>
+            <label><%= __('Email') %></label>
             <input type="text"  placeholder="Your mail" ng-model="mail">
         </div>
         <div class="two fields">
             <div class="field">
-            	<label>Verification</label>
+            	<label><%= __('Verification') %></label>
             	<input type="text"  placeholder="Your Verification String" ng-model="userVerCode">
             </div>
             <div class="field">
             	<label>&nbsp</label>
-            	<button ng-click="sendVerMail()">Send Verification Code</button>
+            	<button ng-click="sendVerMail()"><%= __('Send Verification Code') %></button>
             </div>
         </div>
         <div class="ui segment">
             <div class="field">
                 <div class="ui toggle checkbox">
                     <input type="checkbox" name="gift" tabindex="0" class="hidden">
-                    <label>Receive notification letters</label>
+                    <label><%= __('Receive notification letters') %></label>
                 </div>
             </div>
         </div>
-        <div class="ui button" ng-click="register()" tabindex="0">Submit Registration</div>
+        <div class="ui button" ng-click="register()" tabindex="0"><%= __('Submit Registration') %></div>
     </form>
     </div>
 </div>

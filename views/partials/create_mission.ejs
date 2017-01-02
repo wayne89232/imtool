@@ -1,41 +1,41 @@
 <div class="ui container">
     <form class="ui form">
-        <h4 class="ui dividing header">Mission Information</h4>
+        <h4 class="ui dividing header"><%= __('Mission Information') %></h4>
         <div class="field">
-            <label>Mission title</label>
+            <label><%= __('Mission title') %></label>
             <div class="fields">
                 <input type="text" placeholder="Account">
             </div>
         </div>
         <div class="field">
-            <label>Description</label>
+            <label><%= __('Description') %></label>
                 <div class="ui segment">
                     <!-- <input type="textarea" placeholder="Password"> -->
                     <textarea></textarea>
                 </div>
         </div>
 
-        <h4 class="ui dividing header">Locations</h4>
+        <h4 class="ui dividing header"><%= __('Locations') %></h4>
         <div class="field">
-            <label>Where to tool you or be tooled</label>
+            <label><%= __('Where to tool you or be tooled') %></label>
             <select class="ui fluid search dropdown" multiple="">
-                <option value="">Add your own if not here</option>
+                <option value=""><%= __('Add your own if not here') %></option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
             </select>
         </div>
-        <h4 class="ui dividing header">Schedule</h4>
+        <h4 class="ui dividing header"><%= __('Schedule') %></h4>
         <div class="field">
-            <label>Start time</label>
+            <label><%= __('Start time') %></label>
             <div class="fields">
                 <input type="text" placeholder="Pick the date the task should start">
             </div>
-            <label>Deadline</label>
+            <label><%= __('Deadline') %></label>
             <div class="fields">
-                <input type="text" placeholder="Deadline">
+                <input type="text" placeholder=Deadline>
             </div>
         </div>
-        <div class="ui button" tabindex="0">Start tooling</div>
+        <div class="ui button" tabindex="0"><%= __('Start tooling') %></div>
     </form>
 </div>

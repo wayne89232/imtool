@@ -4,7 +4,7 @@
 		<div class="row">
 			<h2 class="ui header">
 			<img src="/assets/images/tool.png" class="ui circular image">
-			Missions Completed
+			<%= __('Missions Completed') %>
 			</h2>
 		</div>
 		<div class="ui divider"></div>
@@ -14,13 +14,13 @@
 				<div class="ui statistic">
 					<div class="value" ng-bind="user.count"></div>
 					<div class="label">
-						Missions completed
+						<%= __('Missions completed') %>
 					</div>
 				</div>
 			</div>
 		</div>
 		<br>
-		<button ng-click="showDetail()">More</button>
+		<button ng-click="showDetail()"><%= __('More') %></button>
 	</div>
 	
 	<div class="ui middle aligned centered four column grid">
@@ -28,7 +28,7 @@
 		<div class="row">
 			<h2 class="ui header">
 			<img src="/assets/images/tool.png" class="ui circular image">
-				Tool Quality
+				<%= __('Tool Quality') %>
 			</h2>
 		</div>
 		<div class="ui divider"></div>
@@ -47,13 +47,13 @@
 						<div class="ui statistic">
 							<div class="value" ng-bind="user.ranking"></div>
 							<div class="label">
-								Avg Ranking
+								<%= __('Avg Ranking') %>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<button ng-click="showRanking()">More</button>
+			<button ng-click="showRanking()"><%= __('More') %></button>
 		</div>
 
 		<div class="ui bottom attached tab segment" data-tab="Bike">
@@ -64,7 +64,7 @@
 						<div class="ui statistic">
 							<div class="value" ng-bind="user.ranking"></div>
 							<div class="label">
-								Avg Ranking
+								<%= __('Avg Ranking1') %>
 							</div>
 						</div>
 					</div>
@@ -95,7 +95,7 @@
 </div>
 
 <div class="ui missionCompleted modal">
-	<div class="header">Ranking List</div>
+	<div class="header"><%= __('Ranking List') %></div>
 	<div class="content">
 		<table class="ui padded celled center aligned table">
 		<thead>
@@ -116,12 +116,12 @@
 	</div>
 
 	<div class="actions">
-	    <div class="ui cancel button">Cancel</div>
+	    <div class="ui cancel button"><%= __('Cancel') %></div>
 	  </div>
 </div>
 
 <div class="ui ranking modal">
-	<div class="header">Ranking List</div>
+	<div class="header"><%= __('Ranking List') %></div>
 	<div class="content">
 		<table class="ui padded celled center aligned table">
 		<thead>
@@ -142,6 +142,6 @@
 	</div>
 
 	<div class="actions">
-	    <div class="ui cancel button">Cancel</div>
+	    <div class="ui cancel button"><%= __('Cancel') %></div>
 	  </div>
 </div>
