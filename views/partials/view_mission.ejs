@@ -16,7 +16,7 @@
 							<div class="content">
 								<div class="summary">
 									<a class="user" ng-bind="mission_info.User.user_name" ng-click="user_info(mission_info.User.user_id)">
-									</a> hosted the mission on
+									</a> <%= __('hosted the mission on') %>
 									<div class="date">
 										2016/11/23
 									</div>
@@ -43,7 +43,7 @@
 				<div class="row">
 					<h2 class="ui header ">
 					<img src="/assets/images/tool.png" class="ui circular image">
-					Tool'em all
+					<%= __('Tool'em all') %>
 					</h2>
 				</div>
 				<div class="row">
@@ -51,29 +51,29 @@
 						<div class="item" ng-click="stop_recruit()" ng-show="status()">
 							<i class="map marker icon"></i>
 							<div class="content">
-								<div class="header">Stop recruiting</div>
-								<div class="description">The mission will then be started and disable toolmans to join.</div>
+								<div class="header"><%= __('Stop recruiting') %></div>
+								<div class="description"><%= __('The mission will then be started and disable toolmans to join.') %></div>
 							</div>
 						</div>
 						<div class="item" ng-hide="delete" ng-click="fire()">
 							<i class="map marker icon"></i>
 							<div class="content">
-								<div class="header">Fire a toolman</div>
-								<div class="description">Fire him/her if you think he's shit.</div>
+								<div class="header"><%= __('Fire a toolman') %></div>
+								<div class="description"><%= __('Fire him/her if you think he's shit.') %></div>
 							</div>
 						</div>
 						<div class="item" ng-show="delete" ng-click="fire()">
 							<i class="map marker icon"></i>
 							<div class="content">
-								<div class="header">Stop firing</div>
-								<div class="description">Stop firing.</div>
+								<div class="header"><%= __('Stop firing') %></div>
+								<div class="description"><%= __('Stop firing.') %></div>
 							</div>
 						</div>
 						<div class="item" ng-click="end_mission()">
 							<i class="map marker icon"></i>
 							<div class="content">
-								<div class="header" >End mission</div>
-								<div class="description">Close the mission.</div>
+								<div class="header" ><%= __('End mission') %></div>
+								<div class="description"><%= __('Close the mission.') %></div>
 							</div>
 						</div>
 					</div>
@@ -106,13 +106,13 @@
 		<div class="item" ng-show="identity()" ng-click="add_tool()">
 			<i ng-show="status()" class="plus square outline icon"></i>
 			<div  ng-show="status()" class="content">
-				<div class="header">Tool more</div>
+				<div class="header"><%= __('Tool more') %></div>
 			</div>
 		</div>
 		<div class="item" ng-hide="identity()" ng-click="tool_me()">
 			<i ng-show="status()" class="plus square outline icon"></i>
 			<div ng-show="status()" class="content">
-				<div class="header">Tool me</div>
+				<div class="header"><%= __('Tool me') %></div>
 			</div>
 		</div>
 	</div>
@@ -122,7 +122,7 @@
 	<!-- <div class="row"> -->
 	<h2 class="ui header ">
 	<img src="/assets/images/tool.png" class="ui circular image">
-	Chatroom
+	<%= __('Chatroom') %>
 	</h2>
 	<!-- </div> -->
 	<!-- <div class="row"> -->
@@ -154,7 +154,7 @@
 				<input type="text" ng-model="liveMessage" placeholder="Say Something">
 			</div>
 			<div class="ui blue labeled submit icon button" ng-click="sendMessage()">
-				<i class="icon edit"></i> Say
+				<i class="icon edit"></i> <%= __('Say') %>
 			</div>
 		</div>
 	</div>
@@ -179,7 +179,7 @@
 </div> -->
 </div>
 <div class="ui modal small mission_clear">
-<div class="header">Mission Cleared - Rate your toolmans</div>
+<div class="header"><%= __('Mission Cleared - Rate your toolmans') %></div>
 <div class="content" ng-repeat="tool in tools">
 	<div class="ui form">
 		<div >
@@ -196,11 +196,11 @@
 				</div>
 			</div>
 			<div class="field">
-				<label>Rating</label>
+				<label><%= __('Rating') %></label>
 				<div id="{{$index}}" class="ui star rating" data-max-rating="5" data-rating="{{tool.rating}}" ng-click="testClick($index)"></div>
 			</div>
 			<div class="field">
-				<label>Comment</label>
+				<label><%= __('Comment') %></label>
 				<textarea ng-model="tool.feedback"></textarea>
 			</div>
 			<br>
@@ -209,48 +209,48 @@
 	
 </div>
 <div class="actions">
-	<div class="ui ok button" ng-click="saveComment()">Save Comment</div>
-	<div class="ui cancel button">Cancel</div>
+	<div class="ui ok button" ng-click="saveComment()"><%= __('Save Comment') %></div>
+	<div class="ui cancel button"><%= __('Cancel') %></div>
 </div>
 </div>
 <div class="ui modal small add_tool">
-<div class="header" >Add a toolman</div>
+<div class="header" ><%= __('Add a toolman') %></div>
 <div class="content">
 	<div class="ui form" >
 		<div class="field">
 			<select ng-model="new_tool" ng-options="m.user_name for m in toolmans" class="ui search dropdown">
-				<option value="">Toolman</option>
+				<option value=""><%= __('Toolman') %></option>
 			</select>
 		</div>
 	</div>
 </div>
 <div class="actions">
-	<div class="ui ok button" ng-click="add_toolman()">Add</div>
-	<div class="ui cancel button">Cancel</div>
+	<div class="ui ok button" ng-click="add_toolman()"><%= __('Add') %></div>
+	<div class="ui cancel button"><%= __('Cancel') %></div>
 </div>
 </div>
 <div class="ui basic modal fire">
 <i class="close icon"></i>
 <div class="header">
-	Fire a toolman
+	<%= __('Fire a toolman') %>
 </div>
 <div class="image content">
 	<div class="image">
 		<i class="archive icon"></i>
 	</div>
 	<div class="description">
-		<p>Are you sure you want to fire this toolman?</p>
+		<p><%= __('Are you sure you want to fire this toolman?') %></p>
 	</div>
 </div>
 <div class="actions">
 	<div class="two fluid ui inverted buttons">
 		<div class="ui cancel red basic inverted button">
 			<i class="remove icon"></i>
-			No
+			<%= __('No') %>
 		</div>
 		<div class="ui ok green basic inverted button" ng-click="go_fire()">
 			<i class="checkmark icon"></i>
-			Yes
+			<%= __('Yes') %>
 		</div>
 	</div>
 </div>
@@ -259,25 +259,25 @@
 <div class="ui basic modal tool_me">
 <i class="close icon"></i>
 <div class="header">
-	Get tooled
+	<%= __('Get tooled') %>
 </div>
 <div class="image content">
 	<div class="image">
 		<i class="archive icon"></i>
 	</div>
 	<div class="description">
-		<p>Are you sure you want to get tooled?</p>
+		<p><%= __('Are you sure you want to get tooled?') %></p>
 	</div>
 </div>
 <div class="actions">
 	<div class="two fluid ui inverted buttons">
 		<div class="ui cancel red basic inverted button">
 			<i class="remove icon"></i>
-			No
+			<%= __('No') %>
 		</div>
 		<div class="ui ok green basic inverted button" ng-click="tool_me_go()">
 			<i class="checkmark icon"></i>
-			Yes
+			<%= __('Yes') %>
 		</div>
 	</div>
 </div>
@@ -286,25 +286,25 @@
 <div class="ui basic modal recruit">
 <i class="close icon"></i>
 <div class="header">
-	Stop recruit
+	<%= __('Stop recruit') %>
 </div>
 <div class="image content">
 	<div class="image">
 		<i class="archive icon"></i>
 	</div>
 	<div class="description">
-		<p>Are you sure you want to stop recruit toolmans?</p>
+		<p><%= __('Are you sure you want to stop recruit toolmans?') %></p>
 	</div>
 </div>
 <div class="actions">
 	<div class="two fluid ui inverted buttons">
 		<div class="ui cancel red basic inverted button">
 			<i class="remove icon"></i>
-			No
+			<%= __('No') %>
 		</div>
 		<div class="ui ok green basic inverted button" ng-click="stop_recruit_confirm()">
 			<i class="checkmark icon"></i>
-			Yes
+			<%= __('Yes') %>
 		</div>
 	</div>
 </div>
@@ -312,25 +312,25 @@
 <div class="ui basic modal end">
 <i class="close icon"></i>
 <div class="header">
-	End Mission
+	<%= __('End Mission') %>
 </div>
 <div class="image content">
 	<div class="image">
 		<i class="archive icon"></i>
 	</div>
 	<div class="description">
-		<p>Are you sure you want to end this mission?</p>
+		<p><%= __('Are you sure you want to end this mission?') %></p>
 	</div>
 </div>
 <div class="actions">
 	<div class="two fluid ui inverted buttons">
 		<div class="ui cancel red basic inverted button">
 			<i class="remove icon"></i>
-			No
+			<%= __('No') %>
 		</div>
 		<div class="ui ok green basic inverted button" ng-click="end_mission_confirm()">
 			<i class="checkmark icon"></i>
-			Yes
+			<%= __('Yes') %>
 		</div>
 	</div>
 </div>

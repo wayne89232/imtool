@@ -1,21 +1,21 @@
-<div class="ui primary button" ng-click="missionCleared()">mission clear</div>
+<div class="ui primary button" ng-click="missionCleared()"><%= __('mission clear') %></div>
 
 <div class="ui modal small">
-	<div class="header">Mission Cleared</div>
+	<div class="header"><%= __('Mission Cleared') %></div>
 	<div class="content">
 		<div class="ui form">
 			<div class="field">
-				<label>Rating</label>
+				<label><%= __('Rating') %></label>
 				<div class="ui star rating" data-max-rating="5"></div>
 			</div>
 			<div class="field">
-				<label>Comment</label>
+				<label><%= __('Comment') %></label>
 				<textarea></textarea>
 			</div>
 		</div>
 	</div>
 	<div class="actions">
-		<div class="ui ok button">Save Comment</div>
-		<div class="ui cancel button">Cancel</div>
+		<div class="ui ok button"><%= __('Save Comment') %></div>
+		<div class="ui cancel button"><%= __('Cancel') %></div>
 	</div>
 </div>
