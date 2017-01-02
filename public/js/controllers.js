@@ -8,8 +8,15 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
 		$scope.photo = $window.localStorage.getItem("photo");
 		$scope.local_user_name = $window.localStorage.getItem("name");
 	} 	
+    var lang = localStorage.getItem("lang");
+    console.log(lang)
+    if( lang!=null){
+    	$rootScope.lang = lang;
+    }
+    else{
+        $rootScope.lang = "en";
+    } 
 
-	
 	$rootScope.socket = io();
 
 	// copy this line whenever u need to notify others
@@ -38,6 +45,20 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
 	    	context: '#stick'
 	  	});
 	});
+	$scope.change_lang = function(){
+        if($rootScope.lang == "en"){
+        	localStorage.setItem("lang", 'zh-TW');
+        }
+        else{
+        	localStorage.setItem("lang", 'en');
+        }
+        $http({
+        	method:"POST", url:'/setLocale', 
+        	data:{locale:localStorage.getItem("lang")}
+        }).then(function(result){
+        	$window.location.reload();
+        });
+	}
 	$scope.jump_login = function(){
 		$('.ui.modal.login2').modal('show');
 	}
@@ -184,5 +205,7 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
 	}
 	$('.ui.rating').rating('enable');
 
-})
+}).config(function ($httpProvider) {
+	$httpProvider.defaults.headers.common["Accept-Language"] = ""
+});
 

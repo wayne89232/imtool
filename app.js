@@ -32,6 +32,11 @@ var express = require('express'),
 
 var app = module.exports = express();
 var upload = multer({ dest: 'public/assets/images/' })
+var i18n = require('i18n');
+var i18nController = require('./routes/i18nController');
+
+
+
 
 /**
  * Configuration
@@ -58,6 +63,13 @@ app.use(session({
   saveUninitialized: true
 }))
 
+i18n.configure({
+  locales:['en', 'zh-TW'],
+  defaultLocale: 'en',
+  directory: __dirname + '/setting/locales'
+});
+
+app.use(i18n.init);
 
 var env = process.env.NODE_ENV || 'development';
 
@@ -119,6 +131,8 @@ app.get('/get_community_member/:id',community.get_community_member);
 app.get('/viewCommunity/:id', community.view_community);
 
 
+app.get('/locales', i18nController.locales);
+app.post('/setLocale', i18nController.setLocale);
 
 
 

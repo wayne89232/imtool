@@ -62,7 +62,7 @@ exports.create_community = function(req, res){
 				console.log('A user failed to join the group');
 		    } else {
 		    	console.log('All users have been processed successfully');
-		    	res.json({ data: "success" });
+		    	res.json({ data: result });
 			}
 		});
 

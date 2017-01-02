@@ -15,9 +15,12 @@
                 </div>
             <div class="field">
                 <label>Group photo</label>
-                <input type="file" ng-model="uploadImage" ngf-select="test()" ngf-max-height="1000" ngf-max-size="1MB">
-                <button ng-click="uploadImageFile(uploadImage)">Upload</button>
-                <img ngf-src="uploadImage">
+                <div class="ui input">
+                <input  type="file" ng-model="uploadImage" ngf-select="test()" ngf-max-height="1000" ngf-max-size="1MB">
+                <button class="ui button" ng-click="uploadImageFile(uploadImage)">Upload</button>
+                </div>
+                
+                <img class="ui centered image" ngf-src="uploadImage">
             </div>
             <h4 class="ui dividing header">Member Information</h4>
             <div class="field">
