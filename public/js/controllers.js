@@ -96,7 +96,13 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
 		$('.ui.basic.modal.menu').modal('show');
 	}
 	$scope.create_mission = function(){
-		$('.ui.modal.mission').modal('show');
+		if($window.localStorage.getItem("is_login")){
+			$('.ui.modal.mission').modal('show');
+		}
+		else{
+			swal("Login first");
+			$scope.jump_login();
+		}
 	}
 	$scope.view_notifications = function(){
 		$('.ui.modal.notification').modal('show');
@@ -105,7 +111,7 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
     	if($scope.title != null ){
             var data = {
             	user_id: $window.localStorage.getItem("user_id"),
-            	location: $scope.location,
+            	location: "nan", //$scope.location
                 title: $scope.title, 
                 recruit_time: new Date(),
                 skills: $scope.skills,
@@ -182,6 +188,7 @@ angular.module('myApp.controllers', ['ngRoute','ngFileUpload','luegg.directives'
     		$location.path('/user_info/'+$window.localStorage.getItem("user_id"));
     	}
     	else{
+    		swal("Login first");
     		$scope.jump_login();
     	}
     }

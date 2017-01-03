@@ -99,7 +99,12 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
 
 	//for tool me
 	$scope.tool_me = function(){
-		$('.ui.basic.modal.tool_me').modal('show');
+		if(!$window.localStorage.getItem("is_login")){
+			swal("Login first");
+		}
+		else{	
+			$('.ui.basic.modal.tool_me').modal('show');
+		}
 	}
 	$scope.tool_me_go = function(){
 
@@ -201,6 +206,10 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
 
 
     $scope.sendMessage = function(){
+    	if(!$window.localStorage.getItem("is_login")){
+			swal("Login first");
+		}
+		else{
     	var name = $window.localStorage.getItem("name");
     	var time = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');;
     	var new_message = {
@@ -223,6 +232,7 @@ angular.module('myApp.controllers').controller('view_mission', function($scope, 
 			$scope.liveMessage = "";
         	$rootScope.socket.emit('add message',new_message)
 		});	
+		}
     }
     $rootScope.socket.on('add message',function(data){
     	$scope.$apply(function(){
