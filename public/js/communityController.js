@@ -1,9 +1,15 @@
 'use strict';
 
 angular.module('myApp.controllers').controller('community', function($scope, $http, $location,$window){
+		if(!$window.localStorage.getItem("is_login")){
+			swal("Login first");
+			$location.path('/');
+		}	
+
 	$http({ method:"GET", url:'/list_ur_community/'+ $window.localStorage.getItem("user_id") }).then(function(communities){
 		console.log(communities)
 		$scope.communities = communities.data.data;
+
 
 	});
 	$scope.view_community = function(id){

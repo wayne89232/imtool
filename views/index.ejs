@@ -103,7 +103,7 @@
 					<div class="ui vertical labeled icon menu center aligned">
 						<a class="item" ng-click="show_menu()">
 							<i class="list layout icon"></i>
-							<%= __('Menu') %>
+							Menu
 						</a>
 <!-- 						<a class="item" ng-click="change_lang()">
 							<i class="settings icon"></i>
@@ -111,7 +111,7 @@
 						</a> -->
 						<a class="item" ng-click="jump_login()" ng-hide="is_login">
 							<i class="street view icon"></i>
-							<%= __('Login') %>
+							Login
 						</a>
 						<a class="item" ng-click="user_info()"  ng-show="is_login">
 							<img class="ui avatar image" src="{{photo}}">
@@ -119,11 +119,11 @@
 						</a>
 						<a class="item" ng-click="view_notifications()"  ng-show="is_login">
 							<i class="mail view icon"></i>
-							<%= __('Notifications') %>
+							Notifications
 						</a>
 						<a class="item" ng-click="logout()" ng-show="is_login">
 							<i class="wheelchair icon"></i>
-							<%= __('Logout') %>
+							Logout
 						</a>
 					</div>
 				</div>
@@ -136,21 +136,21 @@
 							<div class="ui cancel basic inverted button mb" >
 								<a href="/home" style="color: white">
 									<div class="row"><i class="massive home icon"></i></div>
-									<div class="row"><h1><%= __('Home') %></h1></div>
+									<div class="row"><h1>Home</h1></div>
 								</a>
 							</div>
 						</div>
 						<div class="column  center aligned" >
 							<div class="ui cancel basic inverted button mb" ng-click="user_info()">
 								<div class="row"><i class="massive user icon"></i></div>
-								<div class="row"><h1><%= __('User Info') %></h1></div>
+								<div class="row"><h1>User Info</h1></div>
 							</div>
 						</div>
 						<div class="column  center aligned">
 							<a href="/mission_list">
 								<div class="ui cancel basic inverted button mb">
 									<div class="row"><i class="massive browser icon"></i></div>
-									<div class="row"><h1><%= __('Mission') %></h1></div>
+									<div class="row"><h1>Mission</h1></div>
 								</div>
 							</a>
 						</div>
@@ -159,14 +159,14 @@
 						<div class="column  center aligned">
 							<div class="ui cancel basic inverted button mb" ng-click="create_mission()">
 								<div class="row"><i class="massive legal icon"></i></div>
-								<div class="row"><h1><%= __('Start tooling') %></h1></div>
+								<div class="row"><h1>Start tooling</h1></div>
 							</div>
 						</div>
 						<div class="column  center aligned" >
 							<a href="/community">
 								<div class="ui cancel basic inverted button mb">
 									<div class="row"><i class="massive users icon"></i></div>
-									<div class="row"><h1><%= __('Community') %></h1></div>
+									<div class="row"><h1>Community</h1></div>
 								</div>
 							</a>
 						</div>
@@ -174,7 +174,7 @@
 							<a href="/rank_list">
 								<div class="ui cancel basic inverted button mb">
 									<div class="row"><i class="massive sort content ascending  icon"></i></div>
-									<div class="row"><h1><%= __('Ranking') %></h1></div>
+									<div class="row"><h1>Ranking</h1></div>
 								</div>
 							</a>
 						</div>
@@ -189,7 +189,7 @@
 							<h2 class="ui teal image header">
 							<img src="assets/images/tool.png" class="image">
 							<div class="content">
-								<%= __('Login') %>
+								Login
 							</div>
 							<h2>
 							<form class="ui large form">
@@ -206,7 +206,7 @@
 											<input type="password" name="password" placeholder="Password" ng-model="password" >
 										</div>
 									</div>
-									<div class="ui fluid large  submit button" ng-click="login()"><%= __('Login') %></div>
+									<div class="ui fluid large  submit button" ng-click="login()">Login</div>
 								</div>
 								<div class="ui error message"></div>
 							</form>
@@ -215,13 +215,13 @@
 				</div>
 				<div class="actions">
 					<div class="ui message">
-						<%= __('New to us?') %><a ng-click="jump_register()"><%= __('Sign Up') %></a>
+						New to us?<a ng-click="jump_register()">Sign Up</a>
 					</div>
 				</div>
 			</div>
 			<!-- view notifications -->
 			<div class="ui modal notification">
-				<div class="header"><%= __('Notifications') %></div>
+				<div class="header">Notifications</div>
 				<div class="content">
 					<div class="ui list">
 						<div class="item" ng-repeat="s in notifications">
@@ -234,7 +234,7 @@
 					</div>
 				</div>
 				<div class="actions">
-					<div class="ui cancel button"><%= __('Close') %></div>
+					<div class="ui cancel button">Close</div>
 				</div>
 			</div>
 			<!-- add mission -->
@@ -246,51 +246,51 @@
 							<h2 class="ui teal image header">
 							<img src="assets/images/tool.png" class="image">
 							<div class="content">
-								<%= __('Start tooling') %>
+								Start tooling
 							</div>
 							</h2>
 							<form class="ui form">
-								<h4 class="ui dividing header"><%= __('Mission Title') %></h4>
+								<h4 class="ui dividing header">Mission Title</h4>
 								<div class="field">
 									<div class="fields">
 										<input ng-model="title" type="text" placeholder="title">
 									</div>
 								</div>
 								<div class="field">
-									<label><%= __('Description') %></label>
+									<label>Description</label>
 									<div class="ui segment">
 										<textarea ng-model="content"></textarea>
 									</div>
 								</div>
-								<h4 class="ui dividing header"><%= __('Locations') %></h4>
+<!-- 								<h4 class="ui dividing header">Locations</h4>
 								<div class="field">
-									<label><%= __('Where to tool you or be tooled') %></label>
+									<label>Where to tool you or be tooled</label>
 									<select ng-model="location" class="ui fluid search dropdown" multiple="">
-										<option value=""><%= __('Add your own if not here') %></option>
+										<option value="">Add your own if not here</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
 										<option value="3">3</option>
 									</select>
-								</div>
-								<h4 class="ui dividing header"><%= __('Required skills') %></h4>
+								</div> -->
+								<h4 class="ui dividing header">Required skills</h4>
 								<div class="field">
 									<select class="ui fluid search dropdown" multiple="" ng-model="skills">
-										<option value=""><%= __('Add your own if not here') %></option>
+										<option value="">Add your own if not here</option>
 										<option ng-repeat="s in skill_list" value="{{s}}">{{s}}</option>
 									</select>
 								</div>
-								<h4 class="ui dividing header"><%= __('Schedule') %></h4>
+								<h4 class="ui dividing header">Schedule</h4>
 								<div class="field">
-									<label><%= __('Start time') %></label>
+									<label>Start time</label>
 									<div class="fields">
 										<input type="text" class="datepicker" placeholder="Pick the date the task should start" ng-model="start_time">
 									</div>
-									<label><%= __('Deadline') %></label>
+									<label>Deadline</label>
 									<div class="fields">
 										<input type="text" class="datepicker" placeholder="Deadline" ng-model="expire_time">
 									</div>
 								</div>
-								<div class="ui button" tabindex="0" ng-click="add_mission()"><%= __('GO') %></div>
+								<div class="ui button" tabindex="0" ng-click="add_mission()">GO</div>
 							</form>
 						</div>
 					</div>
@@ -298,7 +298,7 @@
 			</div>
 <div class="ui inline nag">
   <span class="title">
-    <%= __('New notification') %>
+    New notification
   </span>
   <i class="close icon"></i>
 </div>
@@ -311,7 +311,7 @@
 					<div class="ui  section divider"></div>
 					<img src="/assets/images/tool.png" class="ui centered mini image">
 					<div class="ui horizontal small divided link list">
-						<a class="item" href="/home" ><%= __('Hello, toolmans.') %></a>
+						<a class="item" href="/home" >Hello, toolmans.</a>
 					</div>
 				</div>
 			</div>

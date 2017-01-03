@@ -19,15 +19,16 @@ angular.module('myApp.controllers').controller('user_info', function($scope, $ht
 						}
 					}
 
+
 				});
 			});
 		});
     });
     if($routeParams.id==$window.localStorage.getItem("user_id")){
-    	$scope.is_user=false;
+    	$scope.is_user=true;
     }
     else{
-    	$scope.is_user=true;
+    	$scope.is_user=false;
     }
 
 
