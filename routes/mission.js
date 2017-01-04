@@ -36,7 +36,7 @@ exports.create_mission = function(req, res){
 		start_time: req.body.start_time,
 		expire_time: req.body.expire_time || 1,
 		recruit_time: req.body.recruit_time,
-		location_id: req.body.location,
+		location_id: "1111111",
 		content: req.body.content || "",
 		state: 'Recruiting'
 	};
